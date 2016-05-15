@@ -41,7 +41,19 @@
 
 <p id="demo"></p>
 
+<script>
+function insertReply(content) {
+    document.getElementById('output').innerHTML = content;
+}
 
+// create script element
+var script = document.createElement('script');
+// assing src with callback name
+script.src = 'https://extraction.import.io/query/extractor/caed2ded-0644-436b-8779-f26acea0a6ee?_apikey=40ba541598a248e1a1e60051053c1fac730ea81d54f31ddf734302f9fc676662bda18c20a80b674902110a734364a1f4d1b7e72bcd0c6b9f1caae27f0b5a1db3acb6e433435f247897c46429418cdbcd&url=https%3A%2F%2Fwww.ons.gov.uk%2Freleasecalendar%3Fquery%3D%26fromDate%3D%26toDate%3D%26view%3Dupcoming%26size%3D50';
+// insert script to document and load content
+document.body.appendChild(script);
+
+</script>
 
 
 <a href="#" class="scrollToTop">Scroll To Top</a>
