@@ -1,5 +1,5 @@
 var $currentmonth =  'November, 2015'
-var $title =  'Publishing Dashboard'
+var $title =  'Dashboard'
 var $categories = ['January','February','March','April','May','June','July','August','September','October','November','December']
 var $totalreleases = 56
 var $totalgreen = 45

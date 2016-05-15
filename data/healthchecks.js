@@ -4,7 +4,7 @@ $(function () {
 	marginBottom:50,
 },
         title: {
-            text: 'Healthcheck grades of total releases, 2015',
+            text: '2015',
         },
         xAxis: {
         categories: $categories,

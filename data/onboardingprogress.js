@@ -24,15 +24,15 @@ $(function () {
 		y:20	
         },
         series: [{
-            name: 'On board',
+            name: 'A',
             data: [88,367]
         },
 	{
-            name: 'In progress',
+            name: 'B',
             data: [11,14]
         }, 
 	{
-            name: 'Not invited',
+            name: 'C',
             data: [59,63]
         }]
 

@@ -1,4 +1,4 @@
-var $title =  'Publishing Dashboard'
+var $title =  'Dashboard'
 var $categories = ['January','February','March','April','May','June','July','August','September','October','November','December']
 var $green = [31.03,58.33,52.17,38.10,48.39,52.27,71.74,83.33,83.93,86.54]
 var $greenwc = [55.17,33.33,41.30,57.14,48.39,45.45,26.09,16.67,16.07,13.46]

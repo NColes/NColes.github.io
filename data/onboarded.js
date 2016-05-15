@@ -1,7 +1,7 @@
 $(function () {
     $('#onboarded').highcharts({
         title: {
-            text: 'Onboarded Releases',
+            text: 'Title',
         },
         xAxis: {
             categories:$categories,

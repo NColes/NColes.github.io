@@ -1,7 +1,7 @@
 Highcharts.setOptions ({
     colors: ['#CC6015', '#5B41FF', '#3FFF33'],
     credits: {
-	enabled:false,
+      enabled:false,
 },
     chart: {
 	style: {

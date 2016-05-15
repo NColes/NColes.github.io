@@ -4,7 +4,7 @@ $(function () {
 		type: 'column'
 	},
         title: {
-            text: 'Not in the queue by 4pm',
+            text: 'Title of chart',
         },
 	xAxis: {
 		categories: $categories,
