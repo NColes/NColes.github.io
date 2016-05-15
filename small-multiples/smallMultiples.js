@@ -14,10 +14,12 @@ Highcharts.setOptions ({
 	enabled:false,
 },
     chart: {
-	style: {
-		fontFamily: 'Arial, Helvetica, sans-serif',
-		},
-        backgroundColor: '#FCFCFC',
+      style: {
+        fontFamily: 'Arial, Helvetica, sans-serif',
+        },
+      backgroundColor: '#FFFFFF',
+      spacingLeft: 5,
+      spacingRight: 5,
     },
 
     credits:{
