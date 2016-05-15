@@ -1,0 +1,200 @@
+/* -----------Layout----------- */
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin:0 auto;
+	width:80%;
+	max-width:1100px;
+	min-height:600px;
+	background-color:#f2f2f2;
+}
+
+.header {
+	height:10%;
+	background-color:#1D1D1B;
+	color:whiteSmoke;
+}
+
+.footer {
+	height:39px;
+	background-color:#1D1D1B;
+	margin:0px;
+	margin-top:10px;
+	text-align:center;
+	color:white;
+}
+
+.footer ul {
+	margin:0px;
+	list-style:none;
+	padding-left:0px;
+}
+
+.footer ul li {
+	float:left;
+	width:33.33%;
+}
+
+.footer ul li a {
+	display:block;
+	padding:10px;
+	color:inherit;
+	height:19px;
+	text-decoration:none;
+}
+
+.footer ul li a:hover {
+	background-color:#323132;
+	color:white;
+}
+
+.scrollToTop{
+	width:70px; 
+	height:40px;
+	padding:10px; 
+	text-align:center; 
+	background: #1D1D1B;
+	color: whiteSmoke;
+	text-decoration: none;
+	position:fixed;
+	bottom:30px;
+	right:10px;
+	display:none;
+	border-radius:10px;
+
+}
+.scrollToTop:hover{
+	text-decoration:none;
+	background: #323132;
+}
+
+
+
+/* -----------Navigation----------- */
+
+.currentpage {
+	background-color:#404040;
+	color:white;
+}
+
+.nav {
+	height:39px;
+	background-color:#CCCCCC;
+	margin:0px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.nav ul {
+	margin:0px;
+	list-style:none;
+	padding:0px;
+}
+
+.nav ul li {
+	float:left;
+	width:20%;
+}
+
+.nav ul li a {
+	display:block;
+	padding:10px;
+	text-decoration:none;
+	color:inherit;
+}
+
+.nav ul li a:hover {
+	background-color:#323132;
+	color:white;
+}
+
+
+/* -----------Content----------- */
+
+.main {
+	width:100%;
+	border-left:1px solid #e6e3da;
+	border-right:1px solid #e6e3da;
+	background-color:#FCFCFC;
+}
+
+.content li {
+	margin-bottom:5px;
+}
+
+p {
+	margin:5px 5px 15px 5px;
+}
+
+h1 {
+	margin:0px;
+	padding:15px;
+}
+
+h3 {
+	font-size:1.3em;
+}
+
+.reporttable {
+	max-width:100%;
+	font-size:14px;
+}
+
+
+
+
+/* -----------Screen size control----------- */
+
+@media screen and (max-width: 1006px) {
+	.nav {
+		min-height:60px;
+	}
+	.nav ul li a {
+		height:38px;
+	}
+}
+
+@media screen and (max-width: 935px) {
+	.scrollToTop {
+		position:fixed;
+		width:7.75%;
+		bottom:0px;
+		right:0;
+		border-radius:0px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.nav {
+		min-height:117px;
+	}	
+	.nav ul li {
+		min-width:50%;
+	}
+	.nav ul li a {
+		height:19px;
+	}
+	body {
+		min-width:100%;
+		padding-bottom:39px;
+	}
+	.scrollToTop {
+		width:100%;
+		position:fixed;
+		bottom:0px;
+		right:0px;
+		border-radius:0px;
+		height:20px;
+	}
+
+}
+
+@media screen and (max-width: 400px) {
+	.nav {
+		min-height:195px;
+	}
+	.nav ul li {
+		min-width:100%;
+	}
+
+}

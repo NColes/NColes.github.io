@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="dashboard-style.css">
+  <meta name="viewport" content="user-scalable=no, width=device-width, maximum-scale=1.0">
+  <link rel="shortcut icon" href="images/pub_sup_team_1_A3_Poster_2.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
+  <script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+  <script type="text/javascript" src="data/chart-theme.js"></script>
+  <script type="text/javascript" src="data/variables.js"></script>
+  <script type="text/javascript" src="js-control/sortable.js"></script>
+  <script type="text/javascript" src="js-control/scroll-to-top.js"></script>
+
+</head>
+
+
+<body>
+<div class="main">
+<div class="header">
+
+  <h1>My Dashboard</h1>
+
+</div>
+
+<div class="nav">
+
+<ul>
+	<li class="currentpage"><a href="#">Dashboard</a></li>
+	<li><a href="report/index.html">Report</a></li>
+	<li><a href="#">Healthchecks</a></li>
+	<li><a href="releases/index.html">Releases</a></li>
+	<li><a href="#">Contact</a></li>
+</ul>
+
+</div>
+
+<div class="dashboard" id="sortable-long-boxes">
+
+	<div class="longbox" id="sortable-long-boxes">
+
+		<div id="healthchecks" class="chart">#</div>
+		<script type="text/javascript" src="data/healthchecks.js"></script>
+
+	</div>
+
+
+	<div class="triplebox" id="sortable-small-boxes">
+	<div class="box1">
+
+		<div id="onboarded" class="chart"></div>
+		<script type="text/javascript" src="data/onboarded.js"></script>
+
+	</div>
+
+	<div class="box1">
+
+		<div id="onboardingprogress" class="chart"></div>
+		<script type="text/javascript" src="data/onboardingprogress.js"></script>
+
+	</div>
+
+	<div class="box2">
+
+		<div id="4pm" class="chart"></div>
+		<script type="text/javascript" src="data/4pm.js"></script>
+
+	</div>
+</div>
+	<div class="longbox">
+
+		<div id="healthchecks2014" class="chart"></div>
+		<script type="text/javascript" src="data/healthchecks2014.js"></script>
+
+	</div>
+
+</div>
+
+</br>
+
+</div>
+
+
+
+
+
+<a href="#" class="scrollToTop">Scroll To Top</a>
+
+</body>
+
+<div class="footer">
+
+<ul>
+	<li><a href="#">The data</a></li>
+	<li><a href="#">Contact us</a></li>
+	<li><a href="#">Blank</a></li>
+</ul>
+
+</div>
+
+
+
+</html>
