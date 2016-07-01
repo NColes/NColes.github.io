@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="user-scalable=no, width=device-width, maximum-scale=1.0">
+    <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="main">
+
+	<header class="heading">
+		<h1>Release metadata tool</h1>
+	</header>
+
+        <table id="formtable">
+            <tr>
+                <td><label>Paste URL to check</label></td>
+                <td colspan="3"><input class="textBox" id="URLName" type="text" size="32" required/></td>
+
+            </tr>
+            <tr>
+                <td style="vertical-align:middle;"><label class="clickme"><input type="checkbox"id="showLatest" value="true" checked>Show latest?</label></td>
+                <td><input type="button" class="standardButton" value="Check URL" onclick="assemble();" /></td>
+                <td><input type="button" class="standardButton" value="Get metadata" onclick="getMetadata();" /></td>
+            </tr>
+        </table>
+
+
+
+        <h2>Release metadata</h2>
+
+        <table>
+
+            <body>
+                <tr>
+                    <td style="width:200px;">Title</td>
+                    <td style="width:600px;" id="dTitle"></td>
+                </tr>
+                <tr>
+                    <td>Edition</td>
+                    <td id="dEdition"></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td id="dType"></td>
+                </tr>
+                <tr>
+                    <td>Metadescription</td>
+                    <td id="dMeta"></td>
+                </tr>
+                <tr>
+                    <td>Keywords</td>
+                    <td id="dKeywords"></td>
+                </tr>
+                <tr>
+                    <td>National Statistics</td>
+                    <td id="descNS"></td>
+                </tr>
+                <tr>
+                    <td>Contact details</td>
+                    <td>Email:
+                        <div id="dEmail" style="display:inline;"></div><br>Name:
+                        <div id="dName" style="display:inline;"></div><br>Telephone:
+                        <div id="dPhone" style="display:inline;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Next release date</td>
+                    <td id="dNext"></td>
+                </tr>
+            </body>
+        </table>
+
+        <h2>Sections</h2>
+
+        <ol>
+            <div id="sections"></div>
+            <div id="accordion"></div>
+        </ol>
+
+        <h2>Charts or images</h2>
+
+        <div id="allcharts"></div>
+
+        <h2>Tables</h2>
+
+        <div id="alltables"></div>
+
+        <h2>Related links</h2>
+
+        <div id="rBulletins"></div>
+        <div id="rDocs"></div>
+        <div id="rMethod"></div>
+        <div id="rMethodA"></div>
+
+        <h2>Related data</h2>
+
+        <p><div id="rLink"></div><div id="rData"></div></p>
+
+
+        <script src="assemble.js"></script>
+
+        <script>
+function naturalCompare(a, b) {
+    ax = [],
+        bx = [];
+
+    a.replace(/(\d+)|(\D+)/g, function(_, $1, $2) {
+        ax.push([$1 || Infinity, $2 || ""])
+    });
+    b.replace(/(\d+)|(\D+)/g, function(_, $1, $2) {
+        bx.push([$1 || Infinity, $2 || ""])
+    });
+
+    while (ax.length && bx.length) {
+        an = ax.shift();
+        bn = bx.shift();
+        nn = (an[0] - bn[0]) || an[1].localeCompare(bn[1]);
+        if (nn) return nn;
+    }
+
+    return ax.length - bx.length;
+}
+        </script>
+
+
+        <script src="getMetadata.js">
+
+        </script>
+    </div>
+</body>
+
+</html>
