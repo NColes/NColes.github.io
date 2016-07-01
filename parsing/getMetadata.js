@@ -110,10 +110,9 @@ getMetadata = function() {
 
             sectionsList = "";
             for (var i = 0; i < myJSON.sections.length; i++) {
-
                 sectionsList += '<li>' + myJSON.sections[i].title + '</li>';
-                document.getElementById("sections").innerHTML = sectionsList;
             };
+                document.getElementById("sections").innerHTML = sectionsList;
 
 
             accordionList = "";
@@ -157,7 +156,7 @@ getMetadata = function() {
     })
 
 .error(function() { swal({
-  title: "Error!",
+  title: "Uh-oh!",
   text: "That is not a valid bulletin, article or dataset link.",
   type: "error",
   confirmButtonText: "Try again"

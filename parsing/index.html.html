@@ -3,7 +3,10 @@
 <html>
 
 <head>
+    <title>Metadata tool</title>
+    <link rel="icon" href="../favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <meta name="viewport" content="user-scalable=no, width=device-width, maximum-scale=1.0">
     <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
@@ -17,19 +20,31 @@
     <div class="main">
 
 	<header class="heading">
-		<h1>Release metadata tool</h1>
+		
+		<div class="nav">
+
+<ul>
+  <li><div id="logo"><img src="../nc_logo2.svg" align="center" height="100px"></div></li>
+	<li><a href="#">Home</a></li>
+	<li class="currentpage"><a href="#">Metadata tool</a></li>
+	<li><a href="#">Page A</a></li>
+	<li><a href="releases/index.html">Page B</a></li>
+	<li><a href="#">Contact</a></li>
+</ul>
+
+</div>
 	</header>
 
         <table id="formtable">
             <tr>
                 <td><label>Paste URL to check</label></td>
-                <td colspan="3"><input class="textBox" id="URLName" type="text" size="32" required/></td>
+                <td colspan="3"><input class="textBox" id="URLName" type="text" size="100" required></td>
 
             </tr>
             <tr>
                 <td style="vertical-align:middle;"><label class="clickme"><input type="checkbox"id="showLatest" value="true" checked>Show latest?</label></td>
-                <td><input type="button" class="standardButton" value="Check URL" onclick="assemble();" /></td>
-                <td><input type="button" class="standardButton" value="Get metadata" onclick="getMetadata();" /></td>
+                <td><input type="button" class="standardButton" value="Check URL" onclick="assemble();getMetadata();" /><input type="button" class="standardButton" value="Get metadata" onclick="getMetadata();" /></td>
+                <td></td>
             </tr>
         </table>
 

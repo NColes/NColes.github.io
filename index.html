@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Dashboard</title>
+  <title>Home</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta name="viewport" content="user-scalable=no, width=device-width, maximum-scale=1.0">
   <link rel="shortcut icon" href="">
-
+  <link rel="icon" href="favicon.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -21,24 +21,23 @@
 
 <body>
 <div class="main">
-<div class="header">
 
-  <h1>My Dashboard</h1>
-
-</div>
-
-<div class="nav">
+	<header class="heading">
+		
+		<div class="nav">
 
 <ul>
-	<li class="currentpage"><a href="#">Dashboard</a></li>
-	<li><a href="parsing/index.html">Metadata tool</a></li>
+  <li><div id="logo"><img src="nc_logo2.svg" align="center" height="100px"></div></li>
+	<li><a href="#">Home</a></li>
+	<li class="currentpage"><a href="#">Metadata tool</a></li>
 	<li><a href="#">Topic B</a></li>
 	<li><a href="releases/index.html">Topic C</a></li>
 	<li><a href="#">Contact</a></li>
 </ul>
 
 </div>
-
+	</header>
+<div style="height:600px;"></div>
 <p id="demo"></p>
 
 <script>
