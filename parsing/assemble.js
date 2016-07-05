@@ -9,7 +9,12 @@ assemble = function() {
     myURL = document.getElementById("URLName").value;
 
     if (myURL === "") {
-        alert("Please insert a URL");
+                swal({
+            title: "Woops!",
+            text: "Looks like you forgot to put a URL in.",
+            type: "error",
+            confirmButtonText: "Try again"
+        });
     } else {
 
 

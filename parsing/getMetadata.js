@@ -60,10 +60,10 @@ getMetadata = function() {
                 relDataLink = 'https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data';
 
                 $.getJSON(relDataLink, function(json) {
-                    relData = '<p>' + json.description.title + '</p>';
+                    relData = '<tr>' + '<td><a href="https://www.ons.gov.uk' + json.uri +'" target="_blank">' + json.description.title + '</a></td>' + '<td>' + json.description.summary + '</td>' + '</tr>';
                     dataArray.push(relData);
                     dataArray.sort(naturalCompare);
-                    document.getElementById("rData").innerHTML = dataArray.join("");
+                    document.getElementById("rData").innerHTML = dataArray.join("");   
                 });
 
 
@@ -90,10 +90,10 @@ getMetadata = function() {
                 relDataLink = 'https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data';
 
                 $.getJSON(relDataLink, function(json) {
-                    relData = '<p>' + json.description.title + '</p>';
+                    relData = '<tr>' + '<td><a href="https://www.ons.gov.uk' + json.uri +'" target="_blank">' + json.description.title + '</a></td>' + '<td>' + json.description.summary + '</td>' + '</tr>';
                     dataArray.push(relData);
                     dataArray.sort(naturalCompare);
-                    document.getElementById("rData").innerHTML = dataArray.join("");
+                    document.getElementById("rData").innerHTML = dataArray.join("");   
                 });
 
 
@@ -112,7 +112,7 @@ getMetadata = function() {
             for (var i = 0; i < myJSON.sections.length; i++) {
                 sectionsList += '<li>' + myJSON.sections[i].title + '</li>';
             };
-                document.getElementById("sections").innerHTML = sectionsList;
+            document.getElementById("sections").innerHTML = sectionsList;
 
 
             accordionList = "";
@@ -122,23 +122,35 @@ getMetadata = function() {
                 document.getElementById("accordion").innerHTML = accordionList;
             };
 
-
-
             for (var x = 0; x < myJSON.charts.length; x++) {
-                tempChart = '<p>' + myJSON.charts[x].title + '</p>';
-                chartsArray.push(tempChart);
+                chartArray = [];
+                chartLink = 'https://www.ons.gov.uk' + myJSON.charts[x].uri + '/data';
+
+                $.getJSON(chartLink, function(json) {
+                    chartInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>' + json.unit + '</td>' + '<td>' + json.altText + '</td>' + '</tr>';
+                    chartArray.push(chartInfo);
+                    chartArray.sort(naturalCompare);
+                    document.getElementById("allcharts").innerHTML = chartArray.join("");
+                });
+
             };
+
 
             if (myJSON.images.length > 0) {
 
-                var n;
-                for (n = 0; n < myJSON.images.length; n++) {
-                    tempImage = '<p>' + myJSON.images[n].title + ' <strong>(image)</strong></p>';
-                    chartsArray.push(tempImage);
+                for (var n = 0; n < myJSON.images.length; n++) {
+
+                    imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
+                    $.getJSON(imageLink, function(json) {
+                        imageInfo = '<tr>' + '<td>' + json.title + '<strong> (image)</strong></td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '</tr>';
+                        chartArray.push(imageInfo);
+                        chartArray.sort(naturalCompare);
+                        document.getElementById("allcharts").innerHTML = chartArray.join("");
+                    });
                 };
             };
             chartsArray.sort(naturalCompare);
-            document.getElementById("allcharts").innerHTML = chartsArray.join("");
+
 
 
             for (var z = 0; z < myJSON.tables.length; z++) {
@@ -155,12 +167,14 @@ getMetadata = function() {
 
     })
 
-.error(function() { swal({
-  title: "Uh-oh!",
-  text: "That is not a valid bulletin, article or dataset link.",
-  type: "error",
-  confirmButtonText: "Try again"
-}); });
+    .error(function() {
+        swal({
+            title: "Uh-oh!",
+            text: "That is not a valid bulletin, article or dataset link.",
+            type: "error",
+            confirmButtonText: "Try again"
+        });
+    });
 
 
 };

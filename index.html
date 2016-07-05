@@ -13,7 +13,6 @@
   <script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
   <script type="text/javascript" src="data/chart-theme.js"></script>
   <script type="text/javascript" src="data/variables.js"></script>
-  <script type="text/javascript" src="js-control/sortable.js"></script>
   <script type="text/javascript" src="js-control/scroll-to-top.js"></script>
 
 </head>
@@ -21,13 +20,11 @@
 
 <body>
 <div class="main">
-
-	<header class="heading">
-		
+<header class="heading">
+		<div id="logo"><img src="nc_logo2.svg" align="center" height="100px"></div>
 		<div class="nav">
 
 <ul>
-  <li><div id="logo"><img src="nc_logo2.svg" align="center" height="100px"></div></li>
 	<li><a href="#">Home</a></li>
 	<li class="currentpage"><a href="#">Metadata tool</a></li>
 	<li><a href="#">Topic B</a></li>
@@ -37,6 +34,9 @@
 
 </div>
 	</header>
+
+
+	
 <div style="height:600px;"></div>
 <p id="demo"></p>
 
@@ -57,8 +57,6 @@ document.getElementById("demo").innerHTML = obj.extractorData.data.group.Searcht
 
 <a href="#" class="scrollToTop">Scroll To Top</a>
 
-</body>
-
 <div class="footer">
 
 <ul>
@@ -68,6 +66,11 @@ document.getElementById("demo").innerHTML = obj.extractorData.data.group.Searcht
 </ul>
 
 </div>
+</div>
+
+</body>
+
+
 
 
 

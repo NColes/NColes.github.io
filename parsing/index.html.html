@@ -13,6 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../js-control/scroll-to-top.js"></script>
 
 </head>
 
@@ -34,6 +35,7 @@
 
 </div>
 	</header>
+<div id="content">
 
         <table id="formtable">
             <tr>
@@ -81,9 +83,9 @@
                 </tr>
                 <tr>
                     <td>Contact details</td>
-                    <td>Email:
-                        <div id="dEmail" style="display:inline;"></div><br>Name:
-                        <div id="dName" style="display:inline;"></div><br>Telephone:
+                    <td>Name:
+                        <div id="dName" style="display:inline;"></div><br>Email:
+                        <div id="dEmail" style="display:inline;"></div><br>Telephone:
                         <div id="dPhone" style="display:inline;"></div>
                     </td>
                 </tr>
@@ -102,9 +104,21 @@
         </ol>
 
         <h2>Charts or images</h2>
+  <table id="chartTable">
+  <thead>
+    <tr> 
+      <th>Title</th>
+      <th>Subtitle</th>
+      <th>Source</th>
+      <th>Units</th>
+      <th>Alt text</th>
+     </tr>
+    </th>
+    </thead>
+    <tbody id="allcharts">
 
-        <div id="allcharts"></div>
-
+        </tbody>
+  </table>
         <h2>Tables</h2>
 
         <div id="alltables"></div>
@@ -118,7 +132,15 @@
 
         <h2>Related data</h2>
 
-        <p><div id="rLink"></div><div id="rData"></div></p>
+<table id="chartTable">
+<thead>
+  <th>Title</th>
+  <th>Summary<th>
+</thead>
+<tbody id="rData">
+</tbody>
+</table>
+        
 
 
         <script src="assemble.js"></script>
@@ -151,6 +173,18 @@ function naturalCompare(a, b) {
 
         </script>
     </div>
+    <a href="#" class="scrollToTop">Scroll To Top</a>
+    <div class="footer">
+
+<ul>
+	<li><a href="#">The data</a></li>
+	<li><a href="#">Contact us</a></li>
+	<li><a href="#">Blank</a></li>
+</ul>
+
+</div>
+    </div>
+    
 </body>
 
 </html>
