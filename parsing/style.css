@@ -33,9 +33,11 @@ width:100%;
 text-align:left;
 padding:10px;
 }
+
 #chartTable td {
   margin-top:5px;
   margin-bottom:5px;
+  padding:10px;
 }
 
 td {

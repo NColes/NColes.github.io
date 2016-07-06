@@ -1,4 +1,4 @@
-getMetadata = function() {
+dgetMetadata = function() {
     $.getJSON(JSONURL, function(json) {
         myJSON = json;
         console.log(myJSON.description.title);
@@ -143,7 +143,7 @@ getMetadata = function() {
 
                     imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
                     $.getJSON(imageLink, function(json) {
-                        imageInfo = '<tr>' + '<td>' + json.title + '<strong> (image)</strong></td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td>' + '</tr>';
+                        imageInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td>' + '</tr>';
                         chartArray.push(imageInfo);
                         chartArray.sort(naturalCompare);
                         document.getElementById("allcharts").innerHTML = chartArray.join("");
