@@ -1,15 +1,15 @@
 var newPathname = "";
-
+var JSONURL = "";
 
 assemble = function() {
     myURL = "";
     myURL2 = "";
     newPathname = "";
-    pathArray = "";
+    pathArray = [];
     myURL = document.getElementById("URLName").value;
 
     if (myURL === "") {
-                swal({
+        swal({
             title: "Woops!",
             text: "Looks like you forgot to put a URL in.",
             type: "error",
@@ -17,37 +17,36 @@ assemble = function() {
         });
     } else {
 
+        pathArray = myURL.split("/");
 
-        if (myURL.substr(myURL.length - 6) === "latest") {
-            newPathname = myURL;
+        if (pathArray[pathArray.length - 1] === "latest") {
+            JSONURL = myURL + "/data";
+        } else if (pathArray[pathArray.length - 2] === "datasets") {
+            JSONURL = myURL + "/data";
         } else {
+
             if (myURL.substr(0, 5) === "https") {
-                myURL2 = myURL.replace("https://www.ons.gov.uk/", "");
-            } else {
-                if (myURL.substr(0, 4) === "http") {
-                    myURL2 = myURL.replace("http://www.ons.gov.uk/", "");
-                } else {
-                    if (myURL.substr(0, 3) === "www") {
-                        myURL2 = myURL.replace("www.ons.gov.uk/", "");
-                    } else {
-                        if (myURL.substr(0, 10) === "ons.gov.uk") {
-                            myURL2 = myURL.replace("ons.gov.uk/", "");
-                        };
-                    };
-                };
+                pathArray.splice(0, 3);
+
+            } else
+            if (myURL.substr(0, 4) === "http") {
+                pathArray.splice(0, 3);
+
+            } else
+            if (myURL.substr(0, 3) === "www") {
+                pathArray.splice(0, 1);
+            } else
+            if (myURL.substr(0, 10) === "ons.gov.uk") {
+                pathArray.splice(0, 1);
             };
-            pathArray = myURL2.split("/");
-            secondLevelLocation = pathArray[0];
+
             for (i = 0; i < pathArray.length - 1; i++) {
                 newPathname += "/";
                 newPathname += pathArray[i];
             };
-
             newPathname += "/latest";
-
+            JSONURL = "https://www.ons.gov.uk" + newPathname + "/data";
+            console.log(newPathname);
         };
-
-        console.log(newPathname);
-        JSONURL = "https://www.ons.gov.uk" + newPathname + "/data";
     };
 };

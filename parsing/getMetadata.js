@@ -56,7 +56,7 @@ getMetadata = function() {
             for (var d = 0; d < myJSON.relatedData.length; d++) {
                 dataArray = [];
                 linkArray = [];
-                linkArray.push('<p><a href="https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '">');
+                linkArray.push('<a href="https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '">');
                 relDataLink = 'https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data';
 
                 $.getJSON(relDataLink, function(json) {
@@ -75,13 +75,14 @@ getMetadata = function() {
 
 
         if (myJSON.type === "article") {
+          if (myJSON.relatedArticles != null) {
             if (myJSON.relatedArticles.length > 0) {
 
                 for (var t = 0; t < myJSON.relatedArticles.length; t++) {
                     relatedArt = '<p>' + myJSON.relatedArticles[t].title + '</p>';
                     document.getElementById("rBulletins").innerHTML = relatedArt;
                 };
-            };
+            };};
 
             for (var d = 0; d < myJSON.relatedData.length; d++) {
                 dataArray = [];
@@ -127,7 +128,7 @@ getMetadata = function() {
                 chartLink = 'https://www.ons.gov.uk' + myJSON.charts[x].uri + '/data';
 
                 $.getJSON(chartLink, function(json) {
-                    chartInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>' + json.unit + '</td>' + '<td>' + json.altText + '</td>' + '</tr>';
+                    chartInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>' + json.unit + '</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">Chart builder</a></td>' + '</tr>';
                     chartArray.push(chartInfo);
                     chartArray.sort(naturalCompare);
                     document.getElementById("allcharts").innerHTML = chartArray.join("");
@@ -142,7 +143,7 @@ getMetadata = function() {
 
                     imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
                     $.getJSON(imageLink, function(json) {
-                        imageInfo = '<tr>' + '<td>' + json.title + '<strong> (image)</strong></td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '</tr>';
+                        imageInfo = '<tr>' + '<td>' + json.title + '<strong> (image)</strong></td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td>' + '</tr>';
                         chartArray.push(imageInfo);
                         chartArray.sort(naturalCompare);
                         document.getElementById("allcharts").innerHTML = chartArray.join("");
@@ -154,7 +155,7 @@ getMetadata = function() {
 
 
             for (var z = 0; z < myJSON.tables.length; z++) {
-                tempTable = '<p>' + myJSON.tables[z].title + '</p>';
+                tempTable = '<tr><td>' + myJSON.tables[z].title + '</td></tr>';
                 tablesArray.push(tempTable);
             };
             tablesArray.sort(naturalCompare);
