@@ -26,20 +26,6 @@ input {
     margin: 0 auto;   
 }
 
-#chartTable {
-width:100%;
-}
-#chartTable th {
-text-align:left;
-padding:10px;
-}
-
-#chartTable td {
-  margin-top:5px;
-  margin-bottom:5px;
-  padding:10px;
-}
-
 td {
     text-align:left;
     vertical-align:top;

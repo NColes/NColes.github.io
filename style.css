@@ -77,6 +77,20 @@ header {
 	background: #323132;
 }
 
+#chartTable {
+width:100%;
+}
+#chartTable th {
+text-align:left;
+padding:10px;
+}
+
+#chartTable td {
+  text-align:left;
+  margin-top:5px;
+  margin-bottom:5px;
+  padding:10px;
+}
 
 
 /* -----------Navigation----------- */
