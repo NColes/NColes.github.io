@@ -49,4 +49,6 @@ assemble = function() {
             console.log(newPathname);
         };
     };
+    
+    document.getElementById("metadata").style.display="block";
 };

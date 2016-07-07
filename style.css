@@ -161,29 +161,9 @@ h3 {
 
 /* -----------Screen size control----------- */
 
-@media screen and (max-width: 1006px) {
-	.nav {
-		min-height:60px;
-	}
-	.nav ul li a {
-		height:38px;
-	}
-}
+
 
 @media screen and (max-width: 600px) {
-	.nav {
-		min-height:295px;
-		border-bottom:2px solid black;
-		width:100%;
-		margin-bottom:20px;
-	}	
-
-	.nav ul li {
-		min-width:100%;
-	}
-	.nav ul li a {
-		height:19px;
-	}
 .main {
 		min-width:100%;
 		margin:0;
@@ -203,13 +183,3 @@ body {
 
 }
 
-@media screen and (max-width: 400px) {
-	.nav {
-		min-height:295px;
-		border-bottom:2px solid black;
-	}
-	.nav ul li {
-		min-width:100%;
-	}
-
-}

@@ -1,4 +1,4 @@
-dgetMetadata = function() {
+getMetadata = function() {
     $.getJSON(JSONURL, function(json) {
         myJSON = json;
         console.log(myJSON.description.title);
