@@ -141,72 +141,12 @@
                 </table>
                 <h4>Tables</h4>
                 <table id="chartTable" class="table table-hover">
-                    <thead>
-
-      </div>
-
-      <div class="row marketing">
-        <div class="">
-            <h4>Release metadata</h4>
-
-            <table id="chartTable">
-
-                <body>
-                    <tr>
-                        <td style="width:200px;">Title</td>
-                        <td style="width:600px;" id="dTitle"></td>
-                    </tr>
-                    <tr>
-                        <td>Edition</td>
-                        <td id="dEdition"></td>
-                    </tr>
-                    <tr>
-                        <td>Type</td>
-                        <td id="dType"></td>
-                    </tr>
-                    <tr>
-                        <td>Metadescription</td>
-                        <td id="dMeta"></td>
-                    </tr>
-                    <tr>
-                        <td>Keywords</td>
-                        <td id="dKeywords"></td>
-                    </tr>
-                    <tr>
-                        <td>National Statistics</td>
-                        <td id="descNS"></td>
-                    </tr>
-                    <tr>
-                        <td>Contact details</td>
-                        <td>Name:
-                            <div id="dName" style="display:inline;"></div><br>Email:
-                            <div id="dEmail" style="display:inline;"></div><br>Telephone:
-                            <div id="dPhone" style="display:inline;"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Next release date</td>
-                        <td id="dNext"></td>
-                    </tr>
-                </body>
-            </table>
-            
-                        <h4>Sections</h4>
-
-            <ol>
-                <div id="sections"></div>
-                <div id="accordion"></div>
-            </ol>
-
-            <h4>Charts or images</h4>
-            <table id="chartTable">
-                <thead>
                     <tr>
 
                         <th>Title</th>
-                    </thead>
-                    <tbody id="alltables">
-                    </tbody>
+                        </thead>
+                        <tbody id="alltables">
+                        </tbody>
                 </table>
 
                 <h3>Related data</h3>
@@ -217,7 +157,10 @@
                         <th>Summary
                             <th>
                     </thead>
-                    <tbody id="rData"><tr><td colspan="2">No related data.</td></tr>
+                    <tbody id="rData">
+                        <tr>
+                            <td colspan="2">No related data.</td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -230,31 +173,30 @@
 
             </div>
         </div>
-    </div>
 
     </div>
     <!-- /container -->
     <script>
-        function naturalCompare(a, b) {
-            ax = [],
-                bx = [];
+function naturalCompare(a, b) {
+    ax = [],
+        bx = [];
 
-            a.replace(/(\d+)|(\D+)/g, function(_, $1, $2) {
-                ax.push([$1 || Infinity, $2 || ""])
-            });
-            b.replace(/(\d+)|(\D+)/g, function(_, $1, $2) {
-                bx.push([$1 || Infinity, $2 || ""])
-            });
+    a.replace(/(\d+)|(\D+)/g, function(_, $1, $2) {
+        ax.push([$1 || Infinity, $2 || ""])
+    });
+    b.replace(/(\d+)|(\D+)/g, function(_, $1, $2) {
+        bx.push([$1 || Infinity, $2 || ""])
+    });
 
-            while (ax.length && bx.length) {
-                an = ax.shift();
-                bn = bx.shift();
-                nn = (an[0] - bn[0]) || an[1].localeCompare(bn[1]);
-                if (nn) return nn;
-            }
+    while (ax.length && bx.length) {
+        an = ax.shift();
+        bn = bx.shift();
+        nn = (an[0] - bn[0]) || an[1].localeCompare(bn[1]);
+        if (nn) return nn;
+    }
 
-            return ax.length - bx.length;
-        }
+    return ax.length - bx.length;
+}
     </script>
 
     <script src="assemble.js"></script>
