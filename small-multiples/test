@@ -1,0 +1,53 @@
+
+  <meta name="viewport" content="user-scalable=no, width=device-width, maximum-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+
+<style>
+.multiples {max-width:600px;height:200px;margin:5px;}
+.chart {float:left;width:30%;height:100%;margin:5px;display:inline;}
+.markdown-chart-container {max-width:600px;height:982px;}
+</style>
+
+
+<div class="section__content--markdown">
+<div class="markdown-chart-container panel--bottom-mar print--avoid-break">
+<h4 class="flush--third--vertical">Figure 7: IPHRP percentage change over 12 months by English region, January 2006 to February 2016</h4>
+<h5 class="flush--third--bottom">12 month percentage change</h5>
+
+
+<div class="multiples" style="">
+	<div id="chart0" class="chart"></div>
+	<div id="chart1" class="chart"></div>
+	<div id="chart2" class="chart"></div>
+</div>
+
+<div class="multiples" style="">
+	<div id="chart3" class="chart"></div>
+	<div id="chart4" class="chart"></div>
+	<div id="chart5" class="chart"></div>
+</div>
+
+<div class="multiples" style="">
+	<div id="chart6" class="chart"></div>
+	<div id="chart7" class="chart"></div>
+	<div id="chart8" class="chart"></div>
+</div>
+
+<h6 class="flush--third--bottom">Source: Office for National Statistics</h6>
+<h6 class="flush--third--bottom">Notes:</h6>
+<ol>
+	<li>Not seasonally adjusted.</li>
+	<li>The grey line shows the average England 12 month percentage change.</li>
+</ol>
+
+<h6 class="print--hide">Download this image</h6>
+<a class="btn btn--primary print--hide" title="Download as png" href="#">.png</a>
+<a class="btn btn--primary print--hide" title="Download as xls" href="#">.xls</a>
+</div>
+</div>
+
+
+<script src="smallMultiples.js"></script>
+<script src="data.js"></script>
