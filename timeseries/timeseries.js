@@ -11,13 +11,7 @@ var dayToday = dateToday + ' ' + monthToday + ' ' + yearToday;
 var dateArray = [];
 var jsonDate;
 //Get JSON data, loop through all results combining the title, URI and release date with HTML table formatting
-$.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+DIOP+DRSI+EMP+IOS1+LMS+MM19+MM22+MM23+MQ10+MQ5+MRET+NFBS+OTT
-
-+PB+PGDP+PN2+PNBP+PPI+PRDY+PROF+PSE+PUSF+QNA+RGHI+SDQ7+SPPI+SRS+TOPSI+UKEA+UNEM&sortBy=relevance&filter=datasets&q=AM+BB+BBSU+BERD+CAPSTK+CT
-
-+CXNV+DIOP+DRSI+EMP+IOS1+LMS+MM19+MM22+MM23+MQ10+MQ5+MRET+NFBS+OTT+PB+PGDP+PN2+PNBP+PPI+PRDY+PROF+PSE+PUSF+QNA+RGHI+SDQ7+SPPI+SRS+TOPSI+UKEA
-
-+UNEM&size=50", function(json) {
+$.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+DIOP+DRSI+EMP+IOS1+LMS+MM19+MM22+MM23+MQ10+MQ5+MRET+NFBS+OTT+PB+PGDP+PN2+PNBP+PPI+PRDY+PROF+PSE+PUSF+QNA+RGHI+SDQ7+SPPI+SRS+TOPSI+UKEA+UNEM&sortBy=relevance&filter=datasets&q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+DIOP+DRSI+EMP+IOS1+LMS+MM19+MM22+MM23+MQ10+MQ5+MRET+NFBS+OTT+PB+PGDP+PN2+PNBP+PPI+PRDY+PROF+PSE+PUSF+QNA+RGHI+SDQ7+SPPI+SRS+TOPSI+UKEA+UNEM&size=50", function(json) {
     JSON = json;
 
     function myFunction(arr) {
