@@ -24,6 +24,7 @@ $.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+D
         console.log(arr[0].result.results[0].uri);
         console.log(arr[0].result.results[0].description.releaseDate);
         console.log(arr[0].result.results.length);
+        console.log(arr[0].result.results[0].description.summary);
 
 
         for (var i = 0; i < arr[0].result.results.length; i++) {
@@ -47,12 +48,8 @@ $.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+D
                     if (dateArray[0] < 10) {
                         dateArray[0] = "0" + dateArray[0];
                     };
-                    //			dateFormatted = dateArray[0].concat("/", monthNames.indexOf(dateArray[1]) + 1, "/", dateArray[2]);
                     dateFormatted = dateArray[2].concat(monthNames.indexOf(dateArray[1]) + 1, dateArray[0]);
-                    console.log(dateFormatted);
-                    //			console.log(dateArray[0]);
-                    //			console.log(monthNames.indexOf(dateArray[1]) + 1);
-                    //			console.log(dateArray[2]);
+
                 };
 
 
@@ -61,16 +58,13 @@ $.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+D
                 if (jsonDate === dayToday) {
                     JSONout += '<tr style="color:red;"><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + 
 
-jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td></tr>';
+jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td></tr>';
                 } else {
-                    JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + jsonTitle3 + '</a></td>' + 
-
-'<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td></tr>';
+                    JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td></tr>';
                 };
 
                 document.getElementById("publishedreleases").innerHTML = JSONout;
                 dateFormatted = "";
-
 
             };
             document.body.innerHTML = document.body.innerHTML.replace('undefined', 'Not yet announced');
@@ -103,21 +97,24 @@ jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + d
     });
 
     $('#chartTable').dataTable({
-	"pageLength": 20,
+        "pageLength": 20,
+        "lengthChange": false,
         "order": [
             [2, "asc"],
-            [1, "asc"]
+            [0, "asc"]
         ],
+        
 
         "columnDefs": [{
             type: 'sort-numbers-ignore-text',
             targets: 2
         }, {
             "visible": false,
-            "targets": 2
+            "targets": [2, 3, 4, 5],
+            "searchable": true
         }, {
             "iDataSort": 2,
-            "aTargets": 1
+            "aTargets": 1,
         }]
 
     });
