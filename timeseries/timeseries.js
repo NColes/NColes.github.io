@@ -10,8 +10,8 @@ var dayToday = dateToday + ' ' + monthToday + ' ' + yearToday;
 
 var dateArray = [];
 var jsonDate;
-//Get JSON data, loop through all results combining the title, URI and release date with HTML table formatting
-$.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+DIOP+DRSI+EMP+IOS1+LMS+MM19+MM22+MM23+MQ10+MQ5+MRET+NFBS+OTT+PB+PGDP+PN2+PNBP+PPI+PRDY+PROF+PSE+PUSF+QNA+RGHI+SDQ7+SPPI+SRS+TOPSI+UKEA+UNEM&sortBy=relevance&filter=datasets&q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+DIOP+DRSI+EMP+IOS1+LMS+MM19+MM22+MM23+MQ10+MQ5+MRET+NFBS+OTT+PB+PGDP+PN2+PNBP+PPI+PRDY+PROF+PSE+PUSF+QNA+RGHI+SDQ7+SPPI+SRS+TOPSI+UKEA+UNEM&size=50", function(json) {
+
+$.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+DIOP+DRSI+EDP1+EDP2+EDP3+EDP4+EMP+GERD+IOS1+LMS+MM19+MM22+MM23+MQ10+MQ5+MRET+NBS+OTT+PB+PGDP+PN2+PNBP+PPI+PRDY+PROF+PSE+PUSF+QNA+RGHI+SDQ7+SPPI+SRS+TOPSI+UKEA+UNEM+WGDP&sortBy=relevance&filter=datasets&q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+DIOP+DRSI+EDP1+EDP2+EDP3+EDP4+EMP+GERD+IOS1+LMS+MM19+MM22+MM23+MQ10+MQ5+MRET+NBS+OTT+PB+PGDP+PN2+PNBP+PPI+PRDY+PROF+PSE+PUSF+QNA+RGHI+SDQ7+SPPI+SRS+TOPSI+UKEA+UNEM+WGDP&size=50", function(json) {
     JSON = json;
 
     function myFunction(arr) {
@@ -36,8 +36,8 @@ $.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+D
                 jsonDate = arr[0].result.results[i].description.nextRelease;
             };
             jsonTitle = arr[0].result.results[i].description.title;
-            jsonTitle2 = jsonTitle.split("<strong>").join("");
-            jsonTitle3 = jsonTitle2.split("</strong>").join("");
+            jsonTitle = jsonTitle.split("<strong>").join("");
+            jsonTitle = jsonTitle.split("</strong>").join("");
 
             if (arr[0].result.results[i].description.nextRelease != null) {
                 dateArray = jsonDate.split(" ");
@@ -58,9 +58,9 @@ $.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+D
                 if (jsonDate === dayToday) {
                     JSONout += '<tr style="color:red;"><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + 
 
-jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td></tr>';
+jsonTitle + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td></tr>';
                 } else {
-                    JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td></tr>';
+                    JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + jsonTitle + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td></tr>';
                 };
 
                 document.getElementById("publishedreleases").innerHTML = JSONout;
