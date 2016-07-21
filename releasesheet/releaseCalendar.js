@@ -84,18 +84,18 @@ function generateReleaseTable(arr) {
         jsonDateToday = jsonDate + " " + jsonMonth;
 
         if (new RegExp(marketSensitive.join("|")).test(arr[0].result.results[i].description.title)) {
-            MS = ' <img src="MS.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive.">';
+            MS = ' <img src="ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive.">';
         };
 
         if (new RegExp(timeseriesData.join("|")).test(arr[0].result.results[i].description.title)) {
-            TS = ' <img src="TS.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release">';
+            TS = ' <img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release">';
         };
 
         //Highlight todays releases
 
         if (jsonDateToday === todaysDate) {
 
-            JSONout += '<tr><td><img src="today.svg" class="MS" data-toggle="tooltip" title="Published today"> <a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + MS + TS + '</td>' +
+            JSONout += '<tr><td><img src="today.svg" data-toggle="tooltip" title="Published today"> <a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + MS + TS + '</td>' +
                 '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
                 
         } else {
