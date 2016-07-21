@@ -1,0 +1,31 @@
+.tableText {
+    text-align: left;
+}
+
+.tableData {
+    text-align: right;
+}
+
+.releaseTable {
+    width: 47%;
+    float: left;
+    margin: 10px;
+    text-align: left;
+}
+
+.TS {
+    cursor:pointer;
+}
+
+.MS {
+    cursor:pointer;
+}
+
+@media screen and (max-width:1000px) {
+  .releaseTable {
+    width:100%;
+    }
+    table {
+      width:100%
+      }
+}
