@@ -13,11 +13,7 @@
     text-align: left;
 }
 
-.TS {
-    cursor:pointer;
-}
-
-.MS {
+.TS, .pubToday, .MS {
     cursor:pointer;
 }
 
