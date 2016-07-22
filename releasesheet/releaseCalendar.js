@@ -86,11 +86,11 @@ function generateReleaseTable(arr) {
         
         jsonDateToday = jsonDate + " " + jsonMonth;
 
-        if (new RegExp(marketSensitive.join("|")).test(arr[0].result.results[i].description.title)) {
+        if (new RegExp(marketSensitive.join("|"), "i").test(arr[0].result.results[i].description.title)) {
             MS = ' <img src="ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive.">';
         };
 
-        if (new RegExp(timeseriesData.join("|")).test(arr[0].result.results[i].description.title)) {
+        if (new RegExp(timeseriesData.join("|"), "i").test(arr[0].result.results[i].description.title)) {
             TS = ' <img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release">';
         };
 
