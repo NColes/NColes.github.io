@@ -30,7 +30,8 @@ function generateReleaseTable(arr) {
 		        'Retail Sales in Great Britain',
 		        'UK economic accounts',
 		        'UK trade',
-		        'UK trade in goods by classification of product by activity (CPA 2008)' ];
+		        'UK trade in goods by classification of product by activity (CPA 2008)',
+		        'Gross domestic product, preliminary estimate:' ];
 
     timeseriesData = [ 'UK GDP, second estimate',
 		       'Overseas travel and tourism, monthly provisional',
@@ -45,7 +46,7 @@ function generateReleaseTable(arr) {
 		       'UK producer price inflation',
 		       'UK consumer price inflation',
 		       'Turnover and orders in UK production and Great Britain services industries (TOPSI)',
-		       'UK services producer price index (SPPI)',
+		       'UK services producer price index',
 		       'Business investment in the UK',
 		       'Mergers and acquisitions involving UK companies',
 		       'Public sector employment, UK',
@@ -59,7 +60,9 @@ function generateReleaseTable(arr) {
 		       'Capital stock and consumption of fixed capital in the UK',
 		       'Investment by insurance companies, pension funds and trusts in the UK (MQ5)',
 		       'United Kingdom Balance of Payments, The Pink Book',
-		       'UK national accounts (The Blue Book)' ];
+		       'UK national accounts (The Blue Book)',
+		       'Gross domestic product, preliminary estimate:',
+		       'UK national accounts'];
 
     for (var i = 0; i < arr[0].result.results.length; i++) {
         TS = "";
