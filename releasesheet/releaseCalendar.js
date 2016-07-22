@@ -171,7 +171,17 @@ $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&from
             "visible": false
         }]
     });
+    
+    if (document.getElementById("publishedTable").offsetHeight < document.getElementById("upcomingTable").offsetHeight) {
 
+        document.getElementById("publishedTable").style.height = document.getElementById("upcomingTable").offsetHeight + "px";
+
+    } else if (document.getElementById("publishedTable").offsetHeight > document.getElementById("upcomingTable").offsetHeight) {
+
+        document.getElementById("upcomingTable").style.height = document.getElementById("publishedTable").offsetHeight + "px";
+
+    };
+    
 $('[data-toggle="tooltip"]').tooltip();
 });
 
