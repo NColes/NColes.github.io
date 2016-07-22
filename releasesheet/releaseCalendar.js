@@ -172,6 +172,8 @@ $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&from
         }]
     });
     
+    $('[data-toggle="tooltip"]').tooltip();
+    
     if (document.getElementById("publishedTable").offsetHeight < document.getElementById("upcomingTable").offsetHeight) {
 
         document.getElementById("publishedTable").style.height = document.getElementById("upcomingTable").offsetHeight + "px";
@@ -183,8 +185,6 @@ $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&from
     };
     
 });
-
-$('[data-toggle="tooltip"]').tooltip();
 
 $( window ).resize(function() {
     if (document.getElementById("publishedTable").offsetHeight < document.getElementById("upcomingTable").offsetHeight) {
