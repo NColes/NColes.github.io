@@ -202,7 +202,7 @@ $.getJSON(fortnightAwayURL, function(json) {
             "visible": false
         }]
     });
-    
+    });
     $('[data-toggle="tooltip"]').tooltip();
 
 $( window ).resize(function() {
@@ -210,5 +210,6 @@ $( window ).resize(function() {
 	resizeTable();
 
 });
+
 
 window.setTimeout(resizeTable, 500);
