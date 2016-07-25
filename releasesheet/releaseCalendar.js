@@ -37,10 +37,7 @@ function generateReleaseTable(arr) {
 
     JSONout = "";
     
-
-
     marketSensitive = [ 
-
 'Balance of payments for the UK:',
 'Business investment in the UK:',
 'Construction output in Great Britain:',
@@ -61,11 +58,9 @@ function generateReleaseTable(arr) {
 'UK quarterly national accounts:',
 'UK trade in goods by classification of product by activity (CPA 2008):',
 'UK trade:'
-
  ];
 
     timeseriesData = [ 
-
 'Balance of payments for the UK:',
 'Business enterprise research and development in the UK:',
 'Business investment in the UK:',
@@ -96,7 +91,6 @@ function generateReleaseTable(arr) {
 'UK trade in goods by classification of product by activity',
 'UK trade:',
 'United Kingdom Balance of Payments, The Pink Book:'
-
 ];
 
     for (var i = 0; i < arr[0].result.results.length; i++) {
@@ -210,8 +204,6 @@ $.getJSON(fortnightAwayURL, function(json) {
     });
     
     $('[data-toggle="tooltip"]').tooltip();
-
-});
 
 $( window ).resize(function() {
 
