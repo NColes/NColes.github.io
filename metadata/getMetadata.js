@@ -6,39 +6,27 @@ getMetadata = function() {
         document.getElementById("dTitle").innerHTML = myJSON.description.title;
         document.getElementById("dType").innerHTML = myJSON.type;
         document.getElementById("dMeta").innerHTML = myJSON.description.metaDescription;
+        document.getElementById("dSumm").innerHTML = myJSON.description.summary;
         document.getElementById("dEmail").innerHTML = myJSON.description.contact.email;
         document.getElementById("dName").innerHTML = myJSON.description.contact.name;
         document.getElementById("dPhone").innerHTML = myJSON.description.contact.telephone;
 
         if (myJSON.description.keywords.length > 0) {
             keywordsArray = [];
+            keywordsOut = [];            
             keywordsArray = myJSON.description.keywords[0].split(",");
-
-            function uniq_fast(keywordsArray) {
-                var seen = {};
-                var out = [];
-                var len = keywordsArray.length;
-                var j = 0;
-                for (var i = 0; i < len; i++) {
-                    var item = keywordsArray[i];
-                    if (seen[item] !== 1) {
-                        seen[item] = 1;
-                        out[j++] = item;
-                    }
-                }
-                return out;
-            };
+           
             document.getElementById("dKeywords").innerHTML = keywordsArray.join("<br>");
         } else {
             document.getElementById("dKeywords").innerHTML = "No keywords"
         };
 
-
-        if (myJSON.description.nationalStatistic = true) {
+        if (myJSON.description.nationalStatistic === true) {
             document.getElementById("descNS").innerHTML = "Yes";
-        } else {
+        } else if (myJSON.description.nationalStatistic === false) {
             document.getElementById("descNS").innerHTML = "No";
         };
+
 
         document.getElementById("dNext").innerHTML = myJSON.description.nextRelease;
 
@@ -128,7 +116,17 @@ getMetadata = function() {
                 chartLink = 'https://www.ons.gov.uk' + myJSON.charts[x].uri + '/data';
 
                 $.getJSON(chartLink, function(json) {
-                    chartInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>' + json.unit + '</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">Chart builder</a></td>' + '</tr>';
+                    chartBuilderType = "";
+                    if (json.chartType === "rotated") {
+                      chartBuilderType = "Rotated bar";
+                      } else if (json.chartType === "line") {
+                      chartBuilderType = "Line";
+                      } else if (json.chartType === "barline") {
+                      chartBuilderType = "Bar and line";
+                      } else {
+                      chartBuilderType = json.chartType;
+                      };
+                    chartInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>' + json.unit + '</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + chartBuilderType + '</a></td>' + '</tr>';
                     chartArray.push(chartInfo);
                     chartArray.sort(naturalCompare);
                     document.getElementById("allcharts").innerHTML = chartArray.join("");

@@ -3,7 +3,34 @@ var dToday = new Date;
 var dateToday = dToday.getDate();
 var mToday = new Date;
 var monthToday = monthNames[mToday.getMonth()];
+var monthTodayValue = mToday.getMonth();
 var todaysDate = dateToday + " " + monthToday;
+var fortnightAway = new Date(+new Date + 12096e5);
+var fortnightBack = new Date(+new Date - 12096e5);
+
+var dAway = fortnightAway.getDate();
+var mAway = fortnightAway.getMonth() + 1;
+var yAway = fortnightAway.getFullYear();
+
+var dBack = fortnightBack.getDate();
+var mBack = fortnightBack.getMonth() + 1;
+var yBack = fortnightBack.getFullYear();
+
+
+var fortnightAwayURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=&fromDateMonth=&fromDateYear=&toDateDay=" + dAway + "&toDateMonth=" + mAway + "&toDateYear=" + yAway + "&view=upcoming&size=50";
+var fortnightBackURL= "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dBack + "&fromDateMonth=" + mBack + "&fromDateYear=" + yBack + "&toDateDay=&toDateMonth=&toDateYear=&view=&size=50";
+
+function resizeTable() {
+    if (document.getElementById("publishedTable").offsetHeight > document.getElementById("upcomingTable").offsetHeight) {
+
+        document.getElementById("upcomingTable").style.height = document.getElementById("publishedTable").offsetHeight + "px";
+
+    } else if (document.getElementById("publishedTable").offsetHeight < document.getElementById("upcomingTable").offsetHeight) {
+
+        document.getElementById("publishedTable").style.height = document.getElementById("upcomingTable").offsetHeight + "px";
+
+    };
+};
 
 
 function generateReleaseTable(arr) {
@@ -12,54 +39,65 @@ function generateReleaseTable(arr) {
     
 
 
-    marketSensitive = [ 'Balance of payments for the UK',
-		        'Business investment in the UK',
-		        'Construction output in Great Britain',
-		        'UK consumer price inflation',
-		        'Economic well-being',
-		        'UK GDP, preliminary estimate',
-		        'UK GDP, second estimate',
-		        'UK quarterly national accounts',
-		        'UK index of production',
-		        'UK index of services',
-		        'UK labour market statistics',
-		        'Regional labour market statistics in the UK',
-		        'UK producer price inflation',
-		        'Public sector employment, UK',
-		        'UK public sector finances:',
-		        'Retail Sales in Great Britain',
-		        'UK economic accounts',
-		        'UK trade',
-		        'UK trade in goods by classification of product by activity (CPA 2008)' ];
+    marketSensitive = [ 
 
-    timeseriesData = [ 'UK GDP, second estimate',
-		       'Overseas travel and tourism, monthly provisional',
-		       'UK labour market statistics',
-		       'UK public sector finances:',
-		       'Retail Sales in Great Britain',
-		       'UK index of services',
-		       'UK GDP, preliminary estimate',
-		       'Profitability of UK Companies',
-		       'UK index of production',
-		       'UK trade',
-		       'UK producer price inflation',
-		       'UK consumer price inflation',
-		       'Turnover and orders in UK production and Great Britain services industries (TOPSI)',
-		       'UK services producer price index (SPPI)',
-		       'Business investment in the UK',
-		       'Mergers and acquisitions involving UK companies',
-		       'Public sector employment, UK',
-		       'UK trade in goods by classification of product by activity (CPA 2008)',
-		       'Balance of payments for the UK',
-		       'UK consumer trends',
-		       'UK quarterly national accounts',
-		       'UK economic accounts',
-		       'UK productivity',
-		       'Business enterprise research and development in the UK',
-		       'Capital stock and consumption of fixed capital in the UK',
-		       'Investment by insurance companies, pension funds and trusts in the UK (MQ5)',
-		       'United Kingdom Balance of Payments, The Pink Book',
-		       'UK national accounts (The Blue Book)' ];
+'Balance of payments for the UK:',
+'Business investment in the UK:',
+'Construction output in Great Britain:',
+'Economic well-being:',
+'Gross domestic product, preliminary estimate:',
+'Public sector employment, UK:',
+'Regional labour market statistics in the UK:',
+'Retail Sales in Great Britain:',
+'UK consumer price inflation:',
+'UK economic accounts:',
+'UK GDP, preliminary estimate:',
+'UK GDP, second estimate:',
+'UK index of production:',
+'UK index of services:',
+'UK labour market statistics:',
+'UK producer price inflation:',
+'UK public sector finances:',
+'UK quarterly national accounts:',
+'UK trade in goods by classification of product by activity (CPA 2008):',
+'UK trade:'
+
+ ];
+
+    timeseriesData = [ 
+
+'Balance of payments for the UK:',
+'Business enterprise research and development in the UK:',
+'Business investment in the UK:',
+'Capital stock and consumption of fixed capital in the UK:',
+'Gross domestic product, preliminary estimate:',
+'Investment by insurance companies, pension funds and trusts in the UK',
+'Mergers and acquisitions involving UK companies:',
+'Overseas travel and tourism, monthly provisional:',
+'Profitability of UK Companies:',
+'Public sector employment, UK:',
+'Retail Sales in Great Britain:',
+'The Blue Book',
+'Turnover and orders in UK production and Great Britain services industries',
+'UK consumer price inflation:',
+'UK consumer trends:',
+'UK economic accounts:',
+'UK GDP, preliminary estimate:',
+'UK GDP, second estimate:',
+'UK index of production:',
+'UK index of services:',
+'UK labour market statistics:',
+'UK national accounts:',
+'UK producer price inflation:',
+'UK productivity:',
+'UK public sector finances:',
+'UK quarterly national accounts:',
+'UK services producer price index',
+'UK trade in goods by classification of product by activity',
+'UK trade:',
+'United Kingdom Balance of Payments, The Pink Book:'
+
+];
 
     for (var i = 0; i < arr[0].result.results.length; i++) {
         TS = "";
@@ -83,11 +121,11 @@ function generateReleaseTable(arr) {
         
         jsonDateToday = jsonDate + " " + jsonMonth;
 
-        if (new RegExp(marketSensitive.join("|")).test(arr[0].result.results[i].description.title)) {
+        if (new RegExp(marketSensitive.join("|"), "i").test(arr[0].result.results[i].description.title)) {
             MS = ' <img src="ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive.">';
         };
 
-        if (new RegExp(timeseriesData.join("|")).test(arr[0].result.results[i].description.title)) {
+        if (new RegExp(timeseriesData.join("|"), "i").test(arr[0].result.results[i].description.title)) {
             TS = ' <img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release">';
         };
 
@@ -118,7 +156,7 @@ function generateReleaseTable(arr) {
 };
 
 //Published data
-$.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDate=&toDate=&view=&size=20", function(json) {
+$.getJSON(fortnightBackURL, function(json) {
     JSON = json;
 
     tablePublished = true;
@@ -128,10 +166,10 @@ $.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDate=&toDate=&
     ]);
 
     $('#publishedTable').dataTable({
-        "paging": false,
+	"lengthChange":false,
+	"pageLength":15,
         "searching": false,
         "autoWidth": false,
-        "info": false,
         "order": [
             [2, "desc"]
         ],
@@ -141,12 +179,14 @@ $.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDate=&toDate=&
         }]
 
     });
+    
+    $('[data-toggle="tooltip"]').tooltip();
 
 });
 
 
 //Upcoming data
-$.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&fromDate=&toDate=&view=&size=20", function(json) {
+$.getJSON(fortnightAwayURL, function(json) {
     JSON2 = json;
 
     tablePublished = false;
@@ -156,10 +196,10 @@ $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&from
     ]);
 
     $('#upcomingTable').dataTable({
-        "paging": false,
+	"lengthChange":false,
+	"pageLength":15,
         "autoWidth": false,
         "searching": false,
-        "info": false,
         "order": [
             [2, "asc"]
         ],
@@ -168,16 +208,15 @@ $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&from
             "visible": false
         }]
     });
+    
+    $('[data-toggle="tooltip"]').tooltip();
 
-    if (document.getElementById("publishedTable").offsetHeight < document.getElementById("upcomingTable").offsetHeight) {
-
-        document.getElementById("publishedTable").style.height = document.getElementById("upcomingTable").offsetHeight + "px";
-
-    } else if (document.getElementById("publishedTable").offsetHeight > document.getElementById("upcomingTable").offsetHeight) {
-
-        document.getElementById("upcomingTable").style.height = document.getElementById("publishedTable").offsetHeight + "px";
-
-    };
-$('[data-toggle="tooltip"]').tooltip();
 });
 
+$( window ).resize(function() {
+
+	resizeTable();
+
+});
+
+window.setTimeout(resizeTable, 500);
