@@ -7,7 +7,7 @@
 }
 
 .releaseTable {
-    width: 47%;
+    width: 600px;
     float: left;
     margin: 10px;
     text-align: left;
@@ -17,7 +17,7 @@
     cursor:pointer;
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width:1380px) {
   .releaseTable {
     width:100%;
     }
@@ -26,6 +26,14 @@
       }
 }
 
+.container {
+  width:100%;
+}
+
+.dt-buttons{
+  margin-bottom:-38px;
+  margin-left:480px;
+}
 /*Overflow ideas
 max-width: 385px;
 min-width: 300px;

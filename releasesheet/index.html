@@ -19,10 +19,20 @@
     <link href="../bootstrap.min.css" rel="stylesheet">
     <link href="../css/justified-nav.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    
     <script type="text/javascript" src="../js-control/tooltip.js"></script>
-
+     
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css" />
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script> 
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+
+
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -57,8 +67,8 @@
                             <th colspan="3">Published releases</th>
                         </tr>
                         <tr>
-                            <th class="tableText" style="width:80%">Release</th>
-                            <th class="tableData" style="width:20%">Publishing date</th>
+                            <th class="tableText" style="width:70%">Release</th>
+                            <th class="tableData" style="width:30%">Publishing date</th>
                             <th class="tableData">Unformatted date</th>
                         </tr>
                     </thead>
@@ -74,8 +84,8 @@
                             <th colspan="3">Upcoming releases</th>
                         </tr>
                         <tr>
-                            <th class="tableText" style="width:80%">Release</th>
-                            <th class="tableData" style="width:20%">Publishing date</th>
+                            <th class="tableText" style="width:70%">Release</th>
+                            <th class="tableData" style="width:30%">Publishing date</th>
                             <th class="tableData">Unformatted date</th>
                         </tr>
                     </thead>
@@ -83,6 +93,7 @@
 
                 </table>
             </div>
+            <div id="dlButtons"></div>
         </div>
 
     </div>
