@@ -25,3 +25,11 @@
       width:100%
       }
 }
+
+/*Overflow ideas
+max-width: 385px;
+min-width: 300px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+*/
