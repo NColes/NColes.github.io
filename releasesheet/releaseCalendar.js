@@ -164,10 +164,10 @@ $.getJSON(fortnightBackURL, function(json) {
         "searching": false,
         "autoWidth": false,
         "order": [
-            [2, "desc"]
+            [3, "desc"]
         ],
         "columnDefs": [{
-            "targets": 2,
+            "targets": 3,
             "visible": false
         }]
 
@@ -207,10 +207,10 @@ $.getJSON(fortnightAwayURL, function(json) {
             }
         ],
         "order": [
-            [2, "asc"]
+            [3, "asc"]
         ],
         "columnDefs": [{
-            "targets": 2,
+            "targets": 3,
             "visible": false
         }]
     });
