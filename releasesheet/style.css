@@ -7,7 +7,7 @@
 }
 
 .releaseTable {
-    width: 600px;
+    width: 47%;
     float: left;
     margin: 10px;
     text-align: left;
@@ -31,8 +31,8 @@
 }
 
 .dt-buttons{
-  margin-bottom:-38px;
-  margin-left:480px;
+  margin-bottom:-80px;
+  margin-left:410px;
 }
 /*Overflow ideas
 max-width: 385px;
