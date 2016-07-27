@@ -34,6 +34,10 @@
   margin-bottom:-80px;
   margin-left:410px;
 }
+
+#releaseNotes {
+	padding:10px 0px;
+}
 /*Overflow ideas
 max-width: 385px;
 min-width: 300px;
