@@ -116,11 +116,11 @@ function generateReleaseTable(arr) {
         jsonDateToday = jsonDate + " " + jsonMonth;
 
         if (new RegExp(marketSensitive.join("|"), "i").test(arr[0].result.results[i].description.title)) {
-            MS = ' <img src="ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive."> <div style="display:none;">MS</div>';
+            MS = '<img src="ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive."><div style="display:none;">MS </div>';
         };
 
         if (new RegExp(timeseriesData.join("|"), "i").test(arr[0].result.results[i].description.title)) {
-            TS = ' <img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release">  <div style="display:none;">TS</div>';
+            TS = '<img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
 
         //Highlight todays releases
@@ -128,11 +128,11 @@ function generateReleaseTable(arr) {
         if (jsonDateToday === todaysDate) {
 
             JSONout += '<tr><td><img src="today.svg" class="pubToday" data-toggle="tooltip" title="Published today"> <a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData">' + MS + TS + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
+                '<td class="tableData">' + MS + TS + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
 
         } else {
             JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData">' + MS + TS + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
+                '<td class="tableData">' + MS + TS + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
         };
 
         if (tablePublished === true) {
