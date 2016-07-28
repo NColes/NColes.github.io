@@ -120,7 +120,7 @@ getChartsTables = function() {
                 imageInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td></tr>';
                 chartsArray.push(imageInfo);
                 chartsArray.sort(naturalCompare);
-                document.getElementById("allcharts").innerHTML = chartArrays.join("");
+                document.getElementById("allcharts").innerHTML = chartsArray.join("");
             });
         };
     };
