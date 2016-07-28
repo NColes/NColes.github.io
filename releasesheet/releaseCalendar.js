@@ -186,12 +186,21 @@ $.getJSON(fortnightAwayURL, function(json) {
     generateReleaseTable([
         JSON2
     ]);
-    $('#upcomingTable').dataTable({
+    var createUpcoming = $('#upcomingTable').dataTable({
         "lengthChange": false,
         "pageLength": 15,
         "autoWidth": false,
         "searching": false,
-        "dom": 'Bfrtip',
+        "order": [
+            [3, "asc"]
+        ],
+        "columnDefs": [{
+            "targets": 3,
+            "visible": false
+        }]
+    });
+
+	 var buttons = new $.fn.dataTable.Buttons(createUpcoming, {
         "buttons": [
 
             {
@@ -205,15 +214,9 @@ $.getJSON(fortnightAwayURL, function(json) {
                     "columns": ':visible'
                 }
             }
-        ],
-        "order": [
-            [3, "asc"]
-        ],
-        "columnDefs": [{
-            "targets": 3,
-            "visible": false
-        }]
-    });
+        ]
+}).container().appendTo($('#dlbuttons'));
+
     $('[data-toggle="tooltip"]').tooltip();
 });
 

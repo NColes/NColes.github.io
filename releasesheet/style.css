@@ -31,9 +31,9 @@
 }
 
 .dt-buttons{
-  margin-bottom:-80px;
-  margin-left:180px;
+  float:right !important;
 }
+
 
 
 #releaseNotes {
