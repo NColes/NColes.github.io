@@ -104,7 +104,7 @@ getChartsTables = function() {
                 } else {
                     chartBuilderType = json.chartType;
                 };
-                chartInfo = '<tr>' + '<td><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + chartBuilderType + '</a></td>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>' + json.unit + '</td>' + '<td>' + json.altText + '</td>' + '</tr>';
+                chartInfo = '<tr><td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>' + json.unit + '</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + chartBuilderType + '</a></td></tr>';
                 chartArray.push(chartInfo);
                 chartArray.sort(naturalCompare);
                 document.getElementById("allcharts").innerHTML = chartArray.join("");
@@ -117,15 +117,16 @@ getChartsTables = function() {
         for (var n = 0; n < myJSON.images.length; n++) {
             imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
             $.getJSON(imageLink, function(json) {
-                imageInfo = '<tr>' + '<td><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '</tr>';
-                chartArray.push(imageInfo);
-                chartArray.sort(naturalCompare);
+                imageInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td></tr>';
+                chartsArray.push(imageInfo);
+                chartsArray.sort(naturalCompare);
                 document.getElementById("allcharts").innerHTML = chartArray.join("");
             });
         };
     };
 
     chartsArray.sort(naturalCompare);
+    
     if (myJSON.tables.length > 0) {
         for (var z = 0; z < myJSON.tables.length; z++) {
             tempTable = '<tr><td>' + myJSON.tables[z].title + '</td></tr>';
