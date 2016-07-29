@@ -169,8 +169,10 @@ $.getJSON(fortnightBackURL, function(json) {
         "columnDefs": [{
             "targets": 3,
             "visible": false
-        }]
-
+        }],
+        "drawCallback": function(settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+        }
     });
     $('[data-toggle="tooltip"]').tooltip();
 });
@@ -197,7 +199,10 @@ $.getJSON(fortnightAwayURL, function(json) {
         "columnDefs": [{
             "targets": 3,
             "visible": false
-        }]
+        }],
+        "drawCallback": function(settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+        }
     });
 
 	 var buttons = new $.fn.dataTable.Buttons(createUpcoming, {
