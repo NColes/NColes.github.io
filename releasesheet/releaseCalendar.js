@@ -116,7 +116,7 @@ function generateReleaseTable(arr) {
         jsonDateToday = jsonDate + " " + jsonMonth;
 
         if (new RegExp(marketSensitive.join("|"), "i").test(arr[0].result.results[i].description.title)) {
-            MS = '<img src="ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive."><div style="display:none;">MS </div>';
+            MS = ' <img src="ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive."><div style="display:none;">MS </div>';
         };
 
         if (new RegExp(timeseriesData.join("|"), "i").test(arr[0].result.results[i].description.title)) {
