@@ -76,6 +76,10 @@ h3 {
 	font-size:14px;
 }
 
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc {
+	background-position-y:15px;
+}
+
 /* -----------Screen size control----------- */
 
 @media screen and (max-width: 600px) {
@@ -96,6 +100,12 @@ body {
 		height:20px;
 	}
 
+}
+
+@media screen and (max-width: 730px) {
+	table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc {
+		background-image:none;
+	}
 }
 
 /* -----------Buttons----------- */
