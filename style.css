@@ -126,6 +126,7 @@ a.dt-button:hover:not(.disabled) {
     border: none;
     background-color:#074021;
     background-image:none;
+    color: #fff;
 }
 
 #dlbuttons {
@@ -147,4 +148,5 @@ a.dt-button:hover:not(.disabled) {
 
 .standardButton:hover {
     background-color:#074021;
+    color: #fff;
 }
