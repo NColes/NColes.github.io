@@ -4,6 +4,8 @@ var dateToday = dToday.getDate();
 var mToday = new Date;
 var monthToday = monthNames[mToday.getMonth()];
 var monthTodayValue = mToday.getMonth();
+var yToday = new Date;
+var yearToday = yToday.getFullYear();
 var todaysDate = dateToday + " " + monthToday;
 var fortnightAway = new Date(+new Date + 12096e5);
 var fortnightBack = new Date(+new Date - 12096e5);
@@ -168,6 +170,8 @@ function generateReleaseTable(arr) {
 
 };
 
+tableHeadingDates();
+
 //Published data
 $.getJSON(fortnightBackURL, function(json) {
     JSON = json;
@@ -195,8 +199,6 @@ $.getJSON(fortnightBackURL, function(json) {
     });
     $('[data-toggle="tooltip"]').tooltip();
 });
-
-tableHeadingDates();
 
 //Upcoming data
 $.getJSON(fortnightAwayURL, function(json) {
