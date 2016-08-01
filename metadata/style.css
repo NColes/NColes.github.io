@@ -1,22 +1,5 @@
 /* -----------Content----------- */
 
-.standardButton {
-    color: #F2F2F2;
-    background-color: #0F8243;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 23px;
-    padding: 10px 20px;
-    border: 0;
-    cursor: pointer;
-    outline: none;
-}
-
-.clickme {
-    cursor: pointer;
-}
-
 input {
   margin:0 10px 0 10px;
 }
