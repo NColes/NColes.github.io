@@ -32,6 +32,25 @@ function resizeTable() {
     };
 };
 
+function tableHeadingDates() { 
+        if (dAway < 10) {
+            dAway = dAway.substring(1);
+        };
+
+        mAway = monthNames[mAway - 1];
+
+	document.getElementById("forwardDate").innerHTML = todaysDate + " " + yearToday + " to " + dAway + " " + mAway + " " + yAway;
+
+        if (dBack < 10) {
+            dBack = dBack.substring(1);
+        };
+
+        mBack = monthNames[mBack - 1];
+
+	document.getElementById("backDate").innerHTML =  dBack + " " + mBack + " " + yBack + " to " + todaysDate + " " + yearToday;
+
+};
+
 
 function generateReleaseTable(arr) {
 
@@ -177,7 +196,7 @@ $.getJSON(fortnightBackURL, function(json) {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
-
+tableHeadingDates();
 
 //Upcoming data
 $.getJSON(fortnightAwayURL, function(json) {
