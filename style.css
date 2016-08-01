@@ -144,3 +144,7 @@ a.dt-button:hover:not(.disabled) {
     cursor: pointer;
     outline: none;
 }
+
+.standardButton:hover {
+    background-color:#074021;
+}
