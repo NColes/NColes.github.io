@@ -100,10 +100,6 @@ body {
 
 /* -----------Buttons----------- */
 
-#dlbuttons {
-	padding:10px 0px;
-}
-
 .dt-buttons {
     min-width:100%;
     box-sizing: border-box;
@@ -130,6 +126,10 @@ a.dt-button:hover:not(.disabled) {
     border: none;
     background-color:#074021;
     background-image:none;
+}
+
+#dlbuttons {
+	padding:10px 0px;
 }
 
 .standardButton {
