@@ -37,6 +37,14 @@ padding:10px;
   padding:10px;
 }
 
+.tableText {
+    text-align: left;
+}
+
+.tableData {
+    text-align: right;
+}
+
 /* -----------Navigation----------- */
 
 .currentpage {
