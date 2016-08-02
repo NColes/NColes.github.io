@@ -56,11 +56,9 @@ $.getJSON("https://www.ons.gov.uk/search/data?q=AM+BB+BBSU+BERD+CAPSTK+CT+CXNV+D
                 //Highlight todays releases
 
                 if (jsonDate === dayToday) {
-                    JSONout += '<tr style="color:red;"><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + 
-
-jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td></tr>';
+                    JSONout += '<tr style="color:red;"><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td><td>' + arr[0].result.results[i].description.datasetId + '</td></tr>';
                 } else {
-                    JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td></tr>';
+                    JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + dateFormatted + '</td><td>' + arr[0].result.results[i].description.summary + '</td><td>' + arr[0].result.results[i].description.metaDescription + '</td><td>' + arr[0].result.results[i].description.keywords + '</td><td>' + arr[0].result.results[i].description.datasetId + '</td></tr>';
                 };
 
                 document.getElementById("publishedreleases").innerHTML = JSONout;
@@ -110,7 +108,7 @@ jsonTitle3 + '</a></td>' + '<td class="tableData">' + jsonDate + '</td><td>' + d
             targets: 2
         }, {
             "visible": false,
-            "targets": [2, 3, 4, 5],
+            "targets": [2, 3, 4, 5, 6],
             "searchable": true
         }, {
             "iDataSort": 2,
