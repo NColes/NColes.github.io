@@ -25,7 +25,11 @@ getKeywords = function() {
     if (myJSON.description.keywords.length > 0) {
         keywordsArray = [];
         keywordsOut = [];
-        keywordsArray = myJSON.description.keywords[0].split(",");
+        thisKeyword;
+        for (var i = 0; i < myJSON.description.keywords.length;i++) {
+            thisKeyword = myJSON.description.keywords[i];
+            keywordsArray.push(thisKeyword);
+        };
         document.getElementById("dKeywords").innerHTML = keywordsArray.join("<br>");
     } else {
         document.getElementById("dKeywords").innerHTML = "No keywords"
