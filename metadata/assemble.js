@@ -48,7 +48,8 @@ assemble = function() {
             JSONURL = "https://www.ons.gov.uk" + newPathname + "/data";
             console.log(newPathname);
         };
+        document.getElementById("metadata").style.display="block";
     };
     
-    document.getElementById("metadata").style.display="block";
+
 };
