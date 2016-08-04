@@ -1,12 +1,13 @@
 basicMetadata = function() {
+    monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     document.getElementById("dTitle").innerHTML = myJSON.description.title;
-    document.getElementById("dType").innerHTML = myJSON.type;
+    document.getElementById("dType").innerHTML = myJSON.type.substring(0, 1).toUpperCase() + myJSON.type.substring(1);
     document.getElementById("dMeta").innerHTML = myJSON.description.metaDescription;
     document.getElementById("dEmail").innerHTML = myJSON.description.contact.email;
     document.getElementById("dName").innerHTML = myJSON.description.contact.name;
     document.getElementById("dPhone").innerHTML = myJSON.description.contact.telephone;
     document.getElementById("dNext").innerHTML = myJSON.description.nextRelease;
-monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     document.getElementById("dPubl").innerHTML = myJSON.description.releaseDate.substring(8, 10) + " " + monthNames[myJSON.description.releaseDate.substring(5, 7) - 1] + " " + myJSON.description.releaseDate.substring(0, 4);
 
     if (myJSON.type === "article") {
@@ -26,7 +27,7 @@ getKeywords = function() {
         keywordsArray = [];
         keywordsOut = [];
         thisKeyword = "";
-        for (var i = 0; i < myJSON.description.keywords.length;i++) {
+        for (var i = 0; i < myJSON.description.keywords.length; i++) {
             thisKeyword = myJSON.description.keywords[i];
             keywordsArray.push(thisKeyword);
         };
@@ -34,6 +35,22 @@ getKeywords = function() {
     } else {
         document.getElementById("dKeywords").innerHTML = "No keywords"
     };
+};
+
+getTaxonomy = function() {
+    taxonomy = "";
+    if (myJSON.type === "dataset_landing_page") {
+        for (var i = 3; i < pathArray.length - 2; i++) {
+            taxonomy += '<div id="taxonomy">' + pathArray[i] + '</div>';
+        };
+    } else {
+
+        for (var i = 0; i < pathArray.length - 3; i++) {
+            taxonomy += '<div id="taxonomy">' + pathArray[i] + '</div>';
+        };
+    };
+
+    document.getElementById("dTax").innerHTML = taxonomy;
 };
 
 getRelatedBulletins = function() {
@@ -130,7 +147,7 @@ getChartsTables = function() {
     };
 
     chartsArray.sort(naturalCompare);
-    
+
     if (myJSON.tables.length > 0) {
         for (var z = 0; z < myJSON.tables.length; z++) {
             tempTable = '<tr><td>' + myJSON.tables[z].title + '</td></tr>';
@@ -155,7 +172,7 @@ getMetadata = function() {
             document.getElementById("dEdition").innerHTML = myJSON.description.edition;
             getSections();
             getChartsTables();
-
+            getTaxonomy();
         };
 
         if (myJSON.type === "article") {
@@ -164,7 +181,13 @@ getMetadata = function() {
             getRelatedData();
             getSections();
             getChartsTables();
+            getTaxonomy();
         };
+
+        if (myJSON.type === "dataset_landing_page") {
+            getTaxonomy();
+        };
+
 
     })
 
