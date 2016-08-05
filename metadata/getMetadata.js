@@ -143,7 +143,8 @@ getChartsTables = function() {
             });
         };
     };
-    document.getElementById("allcharts").innerHTML = chartsArray.join("");
+
+    document.getElementById("allcharts").innerHTML = chartArray.join("");
     
 
     if (myJSON.tables.length > 0) {
