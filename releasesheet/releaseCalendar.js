@@ -43,10 +43,6 @@ function tableHeadingDates() {
 
 	document.getElementById("forwardDate").innerHTML = todaysDate + " " + yearToday + " to " + dAway + " " + mAway + " " + yAway;
 
-        if (dBack < 10) {
-            dBack = dBack.substring(1);
-        };
-
         mBack = monthNames[mBack - 1];
 
 	document.getElementById("backDate").innerHTML =  dBack + " " + mBack + " " + yBack + " to " + todaysDate + " " + yearToday;
