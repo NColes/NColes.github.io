@@ -90,6 +90,12 @@ table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTa
 
 /* -----------Screen size control----------- */
 
+@media screen and (min-width: 600px) {
+#tableWide {
+	width:130%;
+	}
+}
+
 @media screen and (max-width: 600px) {
 .main {
 		min-width:100%;
