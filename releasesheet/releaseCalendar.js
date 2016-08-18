@@ -35,9 +35,6 @@ function resizeTable() {
 };
 
 function tableHeadingDates() { 
-        if (dAway < 10) {
-            dAway = dAway.substring(1);
-        };
 
         mAway = monthNames[mAway - 1];
 
