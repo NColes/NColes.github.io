@@ -105,7 +105,6 @@ getSections = function() {
 };
 
 getChartsTables = function() {
-    chartsArray = [];
     tablesArray = [];
     if (myJSON.charts.length > 0) {
         for (var x = 0; x < myJSON.charts.length; x++) {
@@ -139,8 +138,8 @@ getChartsTables = function() {
             imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
             $.getJSON(imageLink, function(json) {
                 imageInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td></tr>';
-                chartsArray.push(imageInfo);
-                chartsArray.sort(naturalCompare);
+                chartArray.push(imageInfo);
+                chartArray.sort(naturalCompare);
                 document.getElementById("allcharts").innerHTML = chartArray.join("");
             });
         };
