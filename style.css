@@ -174,3 +174,7 @@ a.dt-button:hover:not(.disabled) {
     background-color:#074021;
     color: #fff;
 }
+
+.TS, .pubToday, .MS {
+    cursor:pointer;
+}

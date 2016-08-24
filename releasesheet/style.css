@@ -13,10 +13,6 @@
     text-align: left;
 }
 
-.TS, .pubToday, .MS {
-    cursor:pointer;
-}
-
 @media screen and (max-width:1380px) {
   .releaseTable {
     width:100%;
