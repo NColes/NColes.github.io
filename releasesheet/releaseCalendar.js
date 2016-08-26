@@ -139,7 +139,7 @@ function generateReleaseTable(arr) {
             TS = '<img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
         
-        if (JSON.result.results[i].description.cancelled == true) {
+        if (arr[0].result.results[i].description.cancelled == true) {
 	    cancelledReason = arr[0].result.results[i].description.cancellationNotice[0];
 	    cancelled = '<img src="../dashboard/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="right" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
 	};
