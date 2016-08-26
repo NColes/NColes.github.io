@@ -136,6 +136,11 @@ function generateReleaseTable(arr) {
         if (new RegExp(timeseriesData.join("|"), "i").test(arr[0].result.results[i].description.title)) {
             TS = '<img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
+        
+        if (JSON.result.results[i].description.cancelled == true) {
+	    cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
+	    cancelled = '<img src="../dashboard/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="right" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
+	};
 
         //Highlight todays releases
 
