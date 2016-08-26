@@ -1,8 +1,8 @@
-var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var monthNamesLong = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var dToday = new Date;
 var dateToday = dToday.getDate();
 var mToday = new Date;
-var monthToday = monthNames[mToday.getMonth()];
+var monthToday = monthNamesLong[mToday.getMonth()];
 var monthTodayValue = mToday.getMonth();
 var yToday = new Date;
 var yearToday = yToday.getFullYear();
@@ -22,107 +22,31 @@ var yBack = fortnightBack.getFullYear();
 var fortnightAwayURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=&fromDateMonth=&fromDateYear=&toDateDay=" + dAway + "&toDateMonth=" + mAway + "&toDateYear=" + yAway + "&view=upcoming&size=50";
 var fortnightBackURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dBack + "&fromDateMonth=" + mBack + "&fromDateYear=" + yBack + "&toDateDay=&toDateMonth=&toDateYear=&view=&size=50";
 
-var marketSensitive = [
-        'Balance of payments for the UK:',
-        'Business investment in the UK',
-        'Construction output in Great Britain:',
-        'Economic well-being:',
-        'Gross domestic product, preliminary estimate:',
-        'Public sector employment, UK:',
-        'Regional labour market statistics in the UK:',
-        'Retail Sales in Great Britain:',
-        'UK consumer price inflation:',
-        'UK economic accounts:',
-        'UK GDP, preliminary estimate:',
-        'UK GDP, second estimate:',
-        'UK index of production:',
-        'UK index of services:',
-        'UK labour market statistics:',
-        'UK producer price inflation:',
-        'UK public sector finances:',
-        'UK quarterly national accounts:',
-        'UK trade in goods by classification of product by activity (CPA 2008):',
-        'UK trade:'
-    ];
-
-var timeseriesData = [
-        'Balance of payments for the UK:',
-        'Business enterprise research and development in the UK:',
-        'Business investment in the UK',
-        'Capital stock and consumption of fixed capital in the UK:',
-        'Gross domestic product, preliminary estimate:',
-        'Investment by insurance companies, pension funds and trusts in the UK',
-        'Mergers and acquisitions involving UK companies:',
-        'Overseas travel and tourism, monthly provisional:',
-        'Profitability of UK Companies:',
-        'Public sector employment, UK:',
-        'Retail Sales in Great Britain:',
-        'The Blue Book',
-        'Turnover and orders in UK production and Great Britain services industries',
-        'UK consumer price inflation:',
-        'UK consumer trends:',
-        'UK economic accounts:',
-        'UK GDP, preliminary estimate:',
-        'UK GDP, second estimate:',
-        'UK index of production:',
-        'UK index of services:',
-        'UK labour market statistics:',
-        'UK national accounts:',
-        'UK producer price inflation:',
-        'UK productivity:',
-        'UK public sector finances:',
-        'UK quarterly national accounts:',
-        'UK services producer price index',
-        'UK trade in goods by classification of product by activity',
-        'UK trade:',
-        'United Kingdom Balance of Payments, The Pink Book:'
-    ];
-
-function resizeTable() {
-    if (document.getElementById("publishedTable").offsetHeight > document.getElementById("upcomingTable").offsetHeight) {
-
-        document.getElementById("upcomingTable").style.height = document.getElementById("publishedTable").offsetHeight + "px";
-
-    } else if (document.getElementById("publishedTable").offsetHeight < document.getElementById("upcomingTable").offsetHeight) {
-
-        document.getElementById("publishedTable").style.height = document.getElementById("upcomingTable").offsetHeight + "px";
-
-    };
-};
-
 function tableHeadingDates() { 
-        if (dAway < 10) {
-            dAway = dAway.substring(1);
-        };
 
-        mAway = monthNames[mAway - 1];
+        mAway = monthNamesLong[mAway - 1];
 
 	document.getElementById("forwardDate").innerHTML = todaysDate + " " + yearToday + " to " + dAway + " " + mAway + " " + yAway;
 
-        if (dBack < 10) {
-            dBack = dBack.substring(1);
-        };
-
-        mBack = monthNames[mBack - 1];
+        mBack = monthNamesLong[mBack - 1];
 
 	document.getElementById("backDate").innerHTML =  dBack + " " + mBack + " " + yBack + " to " + todaysDate + " " + yearToday;
 
 };
 
 
-function generateReleaseTable(arr) {
+function generateReleaseTable() {
 
     JSONout = "";
 
-    for (var i = 0; i < arr[0].result.results.length; i++) {
+    for (var i = 0; i < JSON.result.results.length; i++) {
         TS = "";
         MS = "";
-        cancelledReason = "";
+	cancelledReason = "";
 	cancelled = "";
-	
-        jsonDate = arr[0].result.results[i].description.releaseDate.substring(8, 10);
-        jsonMonth = arr[0].result.results[i].description.releaseDate.substring(5, 7);
-        jsonYear = arr[0].result.results[i].description.releaseDate.substring(0, 4);
+        jsonDate = JSON.result.results[i].description.releaseDate.substring(8, 10);
+        jsonMonth = JSON.result.results[i].description.releaseDate.substring(5, 7);
+        jsonYear = JSON.result.results[i].description.releaseDate.substring(0, 4);
 
         //Format months to match JSON
         if (jsonMonth < 10) {
@@ -135,33 +59,33 @@ function generateReleaseTable(arr) {
         };
 
         //Display months as text
-        jsonMonth = monthNames[jsonMonth - 1];
+        jsonMonth = monthNamesLong[jsonMonth - 1];
 
         jsonDateToday = jsonDate + " " + jsonMonth;
 
-        if (new RegExp(marketSensitive.join("|"), "i").test(arr[0].result.results[i].description.title)) {
-            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive."><div style="display:none;">MS </div>';
+        if (new RegExp(marketSensitive.join("|"), "i").test(JSON.result.results[i].description.title)) {
+            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
         };
 
-        if (new RegExp(timeseriesData.join("|"), "i").test(arr[0].result.results[i].description.title)) {
-            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
+        if (new RegExp(timeseriesData.join("|"), "i").test(JSON.result.results[i].description.title)) {
+            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
-        
-        if (arr[0].result.results[i].description.cancelled == true) {
-	    cancelledReason = arr[0].result.results[i].description.cancellationNotice[0];
-	    cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
+
+	if (JSON.result.results[i].description.cancelled == true) {
+	    cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
+	    cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
 	};
 
         //Highlight todays releases
 
         if (jsonDateToday === todaysDate) {
 
-            JSONout += '<tr><td><img src="https://ncoles.github.io/releasesheet/today.svg" class="pubToday" data-toggle="tooltip" title="Published today"> <a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
+            JSONout += '<tr><td><img src="https://ncoles.github.io/releasesheet/today.svg" class="pubToday" data-toggle="tooltip" data-placement="right" title="Published today"> <a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
+                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
 
         } else {
-            JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
+            JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
+                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
         };
 
         if (tablePublished === true) {
@@ -184,9 +108,7 @@ $.getJSON(fortnightBackURL, function(json) {
 
     tablePublished = true;
 
-    generateReleaseTable([
-        JSON
-    ]);
+    generateReleaseTable();
     $('#publishedTable').dataTable({
         "lengthChange": false,
         "pageLength": 10,
@@ -202,23 +124,17 @@ $.getJSON(fortnightBackURL, function(json) {
             "visible": false
         }],
         "drawCallback": function(settings) {
-            $('[data-toggle="tooltip"]').tooltip({placement: "bottom"});
+            $('[data-toggle="tooltip"]').tooltip();
         }
     });
-    $('[data-toggle="tooltip"]').tooltip({placement: "bottom"});
+    $('[data-toggle="tooltip"]').tooltip();
 });
-
-
 
 //Upcoming data
 $.getJSON(fortnightAwayURL, function(json) {
-    JSON2 = json;
-
+    JSON = json;
     tablePublished = false;
-
-    generateReleaseTable([
-        JSON2
-    ]);
+    generateReleaseTable();
     var createUpcoming = $('#upcomingTable').dataTable({
         "lengthChange": false,
         "pageLength": 10,
@@ -234,13 +150,10 @@ $.getJSON(fortnightAwayURL, function(json) {
             "visible": false
         }],
         "drawCallback": function(settings) {
-            $('[data-toggle="tooltip"]').tooltip({placement: "bottom"});
+            $('[data-toggle="tooltip"]').tooltip();
         }
     });
-
-
-
-    $('[data-toggle="tooltip"]').tooltip({placement: "bottom"});
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 //Todays releases
@@ -265,28 +178,26 @@ $.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + da
         };
 
         //Display months as text
-        jsonMonth = monthNames[jsonMonth - 1];
+        jsonMonth = monthNamesLong[jsonMonth - 1];
 
         jsonDateToday = jsonDate + " " + jsonMonth;
 
         if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[i].description.title)) {
-            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive."><div style="display:none;">MS </div>';
+            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
         };
 
         if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[i].description.title)) {
-            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
+            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
+
+	if (json.result.results[i].description.cancelled == true) {
+	    cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
+	    cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
+	};
             JSONout += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' + json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + '</td></tr>';
 	document.getElementById("toadysReleases").innerHTML = JSONout;
-   };
+   };$('[data-toggle="tooltip"]').tooltip();
 
 });
 
-
-
-//$( window ).resize(function() {
-//	resizeTable();
-//});
-
-
-//window.setTimeout(resizeTable, 500);
+tableHeadingDates();
