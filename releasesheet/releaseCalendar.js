@@ -140,7 +140,7 @@ function generateReleaseTable(arr) {
         };
         
         if (JSON.result.results[i].description.cancelled == true) {
-	    cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
+	    cancelledReason = arr[0].result.results[i].description.cancellationNotice[0];
 	    cancelled = '<img src="../dashboard/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="right" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
 	};
 
