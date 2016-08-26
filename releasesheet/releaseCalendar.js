@@ -110,6 +110,8 @@ function generateReleaseTable(arr) {
     for (var i = 0; i < arr[0].result.results.length; i++) {
         TS = "";
         MS = "";
+        cancelledReason = "";
+	cancelled = "";
         jsonDate = arr[0].result.results[i].description.releaseDate.substring(8, 10);
         jsonMonth = arr[0].result.results[i].description.releaseDate.substring(5, 7);
         jsonYear = arr[0].result.results[i].description.releaseDate.substring(0, 4);
@@ -147,11 +149,11 @@ function generateReleaseTable(arr) {
         if (jsonDateToday === todaysDate) {
 
             JSONout += '<tr><td><img src="today.svg" class="pubToday" data-toggle="tooltip" title="Published today"> <a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
+                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
 
         } else {
             JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
+                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
         };
 
         if (tablePublished === true) {
