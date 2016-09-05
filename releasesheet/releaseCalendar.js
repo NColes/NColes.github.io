@@ -22,18 +22,6 @@ var yBack = fortnightBack.getFullYear();
 var fortnightAwayURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=&fromDateMonth=&fromDateYear=&toDateDay=" + dAway + "&toDateMonth=" + mAway + "&toDateYear=" + yAway + "&view=upcoming&size=50";
 var fortnightBackURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dBack + "&fromDateMonth=" + mBack + "&fromDateYear=" + yBack + "&toDateDay=&toDateMonth=&toDateYear=&view=&size=50";
 
-function resizeTable() {
-    if (document.getElementById("publishedTable").offsetHeight > document.getElementById("upcomingTable").offsetHeight) {
-
-        document.getElementById("upcomingTable").style.height = document.getElementById("publishedTable").offsetHeight + "px";
-
-    } else if (document.getElementById("publishedTable").offsetHeight < document.getElementById("upcomingTable").offsetHeight) {
-
-        document.getElementById("publishedTable").style.height = document.getElementById("upcomingTable").offsetHeight + "px";
-
-    };
-};
-
 function tableHeadingDates() { 
 
         mAway = monthNames[mAway - 1];
@@ -47,18 +35,18 @@ function tableHeadingDates() {
 };
 
 
-function generateReleaseTable(arr) {
+function generateReleaseTable() {
 
     JSONout = "";
 
-    for (var i = 0; i < arr[0].result.results.length; i++) {
+    for (var i = 0; i < JSON.result.results.length; i++) {
         TS = "";
         MS = "";
         cancelledReason = "";
 	cancelled = "";
-        jsonDate = arr[0].result.results[i].description.releaseDate.substring(8, 10);
-        jsonMonth = arr[0].result.results[i].description.releaseDate.substring(5, 7);
-        jsonYear = arr[0].result.results[i].description.releaseDate.substring(0, 4);
+        jsonDate = JSON.result.results[i].description.releaseDate.substring(8, 10);
+        jsonMonth = JSON.result.results[i].description.releaseDate.substring(5, 7);
+        jsonYear = JSON.result.results[i].description.releaseDate.substring(0, 4);
 
         //Format months to match JSON
         if (jsonMonth < 10) {
@@ -75,29 +63,29 @@ function generateReleaseTable(arr) {
 
         jsonDateToday = jsonDate + " " + jsonMonth;
 
-        if (new RegExp(marketSensitive.join("|"), "i").test(arr[0].result.results[i].description.title)) {
+        if (new RegExp(marketSensitive.join("|"), "i").test(JSON.result.results[i].description.title)) {
             MS = ' <img src="ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive."><div style="display:none;">MS </div>';
         };
 
-        if (new RegExp(timeseriesData.join("|"), "i").test(arr[0].result.results[i].description.title)) {
+        if (new RegExp(timeseriesData.join("|"), "i").test(JSON.result.results[i].description.title)) {
             TS = '<img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
         
-        if (arr[0].result.results[i].description.cancelled == true) {
-	    cancelledReason = arr[0].result.results[i].description.cancellationNotice[0];
-	    cancelled = '<img src="../dashboard/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="right" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
+        if (JSON.result.results[i].description.cancelled == true) {
+	    cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
+	    cancelled = '<img src="http://ncoles.github.io/dashboard/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="right" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
 	};
 
         //Highlight todays releases
 
         if (jsonDateToday === todaysDate) {
 
-            JSONout += '<tr><td><img src="today.svg" class="pubToday" data-toggle="tooltip" title="Published today"> <a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
+            JSONout += '<tr><td><img src="today.svg" class="pubToday" data-toggle="tooltip" title="Published today"> <a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
+                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
 
         } else {
-            JSONout += '<tr><td><a href="https://www.ons.gov.uk' + arr[0].result.results[i].uri + '">' + arr[0].result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + arr[0].result.results[i].description.releaseDate + '</td></tr>';
+            JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
+                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
         };
 
         if (tablePublished === true) {
@@ -122,9 +110,8 @@ $.getJSON(fortnightBackURL, function(json) {
 
     tablePublished = true;
 
-    generateReleaseTable([
-        JSON
-    ]);
+    generateReleaseTable();
+    
     $('#publishedTable').dataTable({
         "lengthChange": false,
         "pageLength": 15,
@@ -146,13 +133,12 @@ $.getJSON(fortnightBackURL, function(json) {
 
 //Upcoming data
 $.getJSON(fortnightAwayURL, function(json) {
-    JSON2 = json;
+    JSON = json;
 
     tablePublished = false;
 
-    generateReleaseTable([
-        JSON2
-    ]);
+    generateReleaseTable();
+    
     var createUpcoming = $('#upcomingTable').dataTable({
         "lengthChange": false,
         "pageLength": 15,
@@ -189,13 +175,3 @@ $.getJSON(fortnightAwayURL, function(json) {
 
     $('[data-toggle="tooltip"]').tooltip();
 });
-
-
-
-
-//$( window ).resize(function() {
-//	resizeTable();
-//});
-
-
-//window.setTimeout(resizeTable, 500);
