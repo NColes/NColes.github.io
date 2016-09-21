@@ -1,3 +1,9 @@
+$('#URLName').keypress(function(event){
+  if(event.keyCode == 13){
+    $('#checkURL').click();
+  }
+});
+
 var newPathname = "";
 var JSONURL = "";
 
