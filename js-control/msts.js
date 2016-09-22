@@ -29,7 +29,7 @@ timeseriesData = [
         'Gross domestic product, preliminary estimate:',
         'Investment by insurance companies, pension funds and trusts in the UK',
         'Mergers and acquisitions involving UK companies:',
-        'Overseas travel and tourism, monthly provisional:',
+        'Overseas travel and tourism, monthly provisional results:',
         'Profitability of UK Companies:',
         'Public sector employment, UK:',
         'Retail Sales in Great Britain:',
