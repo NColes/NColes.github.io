@@ -1,6 +1,6 @@
 marketSensitive = [
         'Balance of payments for the UK:',
-        'Business investment in the UK:',
+        'Business investment in the UK',
         'Construction output in Great Britain:',
         'Economic well-being:',
         'Gross domestic product, preliminary estimate:',
@@ -24,7 +24,7 @@ marketSensitive = [
 timeseriesData = [
         'Balance of payments for the UK:',
         'Business enterprise research and development in the UK:',
-        'Business investment in the UK:',
+        'Business investment in the UK',
         'Capital stock and consumption of fixed capital in the UK:',
         'Gross domestic product, preliminary estimate:',
         'Investment by insurance companies, pension funds and trusts in the UK',
