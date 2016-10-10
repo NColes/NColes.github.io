@@ -1,3 +1,7 @@
+function thousandsSeperator(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 basicMetadata = function() {
     monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -63,20 +67,42 @@ getRelatedBulletins = function() {
     };
 };
 
-getRelatedData = function() {
+getRelatedData = function(callback) {
     for (var d = 0; d < myJSON.relatedData.length; d++) {
         dataArray = [];
         linkArray = [];
+        TSDArray = [];
         linkArray.push('<a href="https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '">');
         relDataLink = 'https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data';
         $.getJSON(relDataLink, function(json) {
-            relData = '<tr>' + '<td><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + json.description.title + '</a></td>' + '<td>' + json.description.summary + '</td>' + '</tr>';
-            dataArray.push(relData);
-            dataArray.sort(naturalCompare);
-            document.getElementById("rData").innerHTML = dataArray.join("");
+            if (json.description.title.indexOf("time series") != -1) {
+                TSDKeywords = "";
+                if (json.description.keywords.length == 0) {
+                    TSDKeywords = "No keywords.";
+                } else {
+                    TSDKeywords = json.description.keywords.join("<br>");
+                };
+                relData = '<tr><td><a data-name="' + json.description.title + '" href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + json.description.title + '</a></td>' + '<td>' + json.description.summary + '</td><td>' + json.description.datasetId + '</td><td>' + TSDKeywords + '</td><td>Contact: ' + json.description.contact.name + '<br>Email: ' + json.description.contact.email + '<br>Telephone: ' + json.description.contact.telephone + '</td></tr>';
+                TSDArray.push(relData);
+                document.getElementById("rTSD").innerHTML = TSDArray.join("");
+            } else if (json.description.title.indexOf("timeseries") != -1) {
+                TSDKeywords = "";
+                if (json.description.keywords.length == 0) {
+                    TSDKeywords = "No keywords.";
+                } else {
+                    TSDKeywords = json.description.keywords.join("<br>");
+                };
+                relData = '<tr><td><a data-name="' + json.description.title + '" href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + json.description.title + '</a></td>' + '<td>' + json.description.summary + '</td><td>' + json.description.datasetId + '</td><td>' + TSDKeywords + '</td><td>Contact: ' + json.description.contact.name + '<br>Email: ' + json.description.contact.email + '<br>Telephone: ' + json.description.contact.telephone + '</td></tr>';
+                TSDArray.push(relData);
+                document.getElementById("rTSD").innerHTML = TSDArray.join("");
+            } else {
+                relData = '<tr><td><a data-name="' + json.description.title + '" href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + json.description.title + '</a></td>' + '<td>' + json.description.summary + '</td>' + '</tr>';
+                dataArray.push(relData);
+                dataArray.sort(naturalCompare);
+                document.getElementById("rData").innerHTML = dataArray.join("");
+            };
+            callback && callback();
         });
-
-
     };
 };
 
@@ -168,20 +194,24 @@ getMetadata = function() {
 
         if (myJSON.type === "bulletin") {
             getRelatedBulletins();
-            getRelatedData();
             document.getElementById("dEdition").innerHTML = myJSON.description.edition;
             getSections();
             getChartsTables();
             getTaxonomy();
+            getRelatedData( function(){
+                getDatasetNumbers();
+            });
         };
 
         if (myJSON.type === "article") {
             document.getElementById("dEdition").innerHTML = myJSON.description.edition;
             getRelatedArticles();
-            getRelatedData();
             getSections();
             getChartsTables();
             getTaxonomy();
+            getRelatedData( function(){
+                getDatasetNumbers();
+            });
         };
 
         if (myJSON.type === "dataset_landing_page") {
@@ -201,4 +231,51 @@ getMetadata = function() {
     });
 
 
+};
+
+getAtAGlance = function(callback) {
+
+    document.getElementById("atAGlance").style.display = "";
+    document.getElementById("aTitle").innerHTML = myJSON.description.title + ": ";
+
+    var allWords = "";
+    for (var s = 0; s < myJSON.sections.length; s++) {
+        allWords += myJSON.sections[s].markdown;
+    };
+
+
+    if (myJSON.type === "bulletin") {
+
+        document.getElementById("aEdition").innerHTML = myJSON.description.edition;
+        document.getElementById("characterCount").innerHTML = ("(" + thousandsSeperator(roundHundred(allWords.length)) + " characters).");
+        document.getElementById("wordCount").innerHTML = (thousandsSeperator(roundHundred(allWords.split(" ").length)) + " words ");
+        document.getElementById("chartTotal").innerHTML = ((myJSON.charts.length + myJSON.images.length) + " charts.");
+        document.getElementById("tableTotal").innerHTML = (myJSON.tables.length + " tables.");
+
+        var previousURL = "https://www.ons.gov.uk/" + pathArray.slice(0, (pathArray.length - 1)).join("/") + "/previousReleases/data";
+
+        $.getJSON(previousURL, function(json) {
+            document.getElementById("previousVersions").innerHTML = json.result.numberOfResults + " editions";
+            callback && callback();
+        });
+
+    } else if (myJSON.type === "article") {
+        document.getElementById("aEdition").innerHTML = myJSON.description.edition;
+        document.getElementById("characterCount").innerHTML = ("(" + thousandsSeperator(roundHundred(allWords.length)) + " characters).");
+        document.getElementById("wordCount").innerHTML = (thousandsSeperator(roundHundred(allWords.split(" ").length)) + " words ");
+        document.getElementById("chartTotal").innerHTML = ((myJSON.charts.length + myJSON.images.length) + " charts.");
+        document.getElementById("tableTotal").innerHTML = (myJSON.tables.length + " tables.");
+
+        var previousURL = "https://www.ons.gov.uk/" + pathArray.slice(0, (pathArray.length - 1)).join("/") + "/previousReleases/data";
+
+        $.getJSON(previousURL, function(json) {
+            document.getElementById("previousVersions").innerHTML = json.result.numberOfResults + " editions";
+            callback && callback();
+        });
+    };
+};
+
+getDatasetNumbers = function() {
+    document.getElementById("datasetTotal").innerHTML = ((myJSON.relatedData.length - TSDArray.length) + " datasets,");
+    document.getElementById("timeseriesTotal").innerHTML = (TSDArray.length + " timeseries datasets.");
 };
