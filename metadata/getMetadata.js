@@ -264,7 +264,7 @@ getMetadata = function() {
             getTaxonomy();
         };
 
-
+        getAtAGlance();
     })
 
     .error(function() {
