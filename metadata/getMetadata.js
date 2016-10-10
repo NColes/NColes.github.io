@@ -185,6 +185,52 @@ getChartsTables = function() {
     };
 };
 
+getAtAGlance = function(callback) {
+
+    document.getElementById("atAGlance").style.display = "";
+    document.getElementById("aTitle").innerHTML = myJSON.description.title + ": ";
+
+    var allWords = "";
+    for (var s = 0; s < myJSON.sections.length; s++) {
+        allWords += myJSON.sections[s].markdown;
+    };
+
+
+    if (myJSON.type === "bulletin") {
+
+        document.getElementById("aEdition").innerHTML = myJSON.description.edition;
+        document.getElementById("characterCount").innerHTML = ("(" + thousandsSeperator(roundHundred(allWords.length)) + " characters).");
+        document.getElementById("wordCount").innerHTML = (thousandsSeperator(roundHundred(allWords.split(" ").length)) + " words ");
+        document.getElementById("chartTotal").innerHTML = ((myJSON.charts.length + myJSON.images.length) + " charts.");
+        document.getElementById("tableTotal").innerHTML = (myJSON.tables.length + " tables.");
+
+        var previousURL = "https://www.ons.gov.uk/" + pathArray.slice(0, (pathArray.length - 1)).join("/") + "/previousReleases/data";
+
+        $.getJSON(previousURL, function(json) {
+            document.getElementById("previousVersions").innerHTML = json.result.numberOfResults + " editions";
+            callback && callback();
+        });
+
+    } else if (myJSON.type === "article") {
+        document.getElementById("aEdition").innerHTML = myJSON.description.edition;
+        document.getElementById("characterCount").innerHTML = ("(" + thousandsSeperator(roundHundred(allWords.length)) + " characters).");
+        document.getElementById("wordCount").innerHTML = (thousandsSeperator(roundHundred(allWords.split(" ").length)) + " words ");
+        document.getElementById("chartTotal").innerHTML = ((myJSON.charts.length + myJSON.images.length) + " charts.");
+        document.getElementById("tableTotal").innerHTML = (myJSON.tables.length + " tables.");
+
+        var previousURL = "https://www.ons.gov.uk/" + pathArray.slice(0, (pathArray.length - 1)).join("/") + "/previousReleases/data";
+
+        $.getJSON(previousURL, function(json) {
+            document.getElementById("previousVersions").innerHTML = json.result.numberOfResults + " editions";
+            callback && callback();
+        });
+    };
+};
+
+getDatasetNumbers = function() {
+    document.getElementById("datasetTotal").innerHTML = ((myJSON.relatedData.length - TSDArray.length) + " datasets,");
+    document.getElementById("timeseriesTotal").innerHTML = (TSDArray.length + " timeseries datasets.");
+};
 
 getMetadata = function() {
     $.getJSON(JSONURL, function(json) {
@@ -231,51 +277,4 @@ getMetadata = function() {
     });
 
 
-};
-
-getAtAGlance = function(callback) {
-
-    document.getElementById("atAGlance").style.display = "";
-    document.getElementById("aTitle").innerHTML = myJSON.description.title + ": ";
-
-    var allWords = "";
-    for (var s = 0; s < myJSON.sections.length; s++) {
-        allWords += myJSON.sections[s].markdown;
-    };
-
-
-    if (myJSON.type === "bulletin") {
-
-        document.getElementById("aEdition").innerHTML = myJSON.description.edition;
-        document.getElementById("characterCount").innerHTML = ("(" + thousandsSeperator(roundHundred(allWords.length)) + " characters).");
-        document.getElementById("wordCount").innerHTML = (thousandsSeperator(roundHundred(allWords.split(" ").length)) + " words ");
-        document.getElementById("chartTotal").innerHTML = ((myJSON.charts.length + myJSON.images.length) + " charts.");
-        document.getElementById("tableTotal").innerHTML = (myJSON.tables.length + " tables.");
-
-        var previousURL = "https://www.ons.gov.uk/" + pathArray.slice(0, (pathArray.length - 1)).join("/") + "/previousReleases/data";
-
-        $.getJSON(previousURL, function(json) {
-            document.getElementById("previousVersions").innerHTML = json.result.numberOfResults + " editions";
-            callback && callback();
-        });
-
-    } else if (myJSON.type === "article") {
-        document.getElementById("aEdition").innerHTML = myJSON.description.edition;
-        document.getElementById("characterCount").innerHTML = ("(" + thousandsSeperator(roundHundred(allWords.length)) + " characters).");
-        document.getElementById("wordCount").innerHTML = (thousandsSeperator(roundHundred(allWords.split(" ").length)) + " words ");
-        document.getElementById("chartTotal").innerHTML = ((myJSON.charts.length + myJSON.images.length) + " charts.");
-        document.getElementById("tableTotal").innerHTML = (myJSON.tables.length + " tables.");
-
-        var previousURL = "https://www.ons.gov.uk/" + pathArray.slice(0, (pathArray.length - 1)).join("/") + "/previousReleases/data";
-
-        $.getJSON(previousURL, function(json) {
-            document.getElementById("previousVersions").innerHTML = json.result.numberOfResults + " editions";
-            callback && callback();
-        });
-    };
-};
-
-getDatasetNumbers = function() {
-    document.getElementById("datasetTotal").innerHTML = ((myJSON.relatedData.length - TSDArray.length) + " datasets,");
-    document.getElementById("timeseriesTotal").innerHTML = (TSDArray.length + " timeseries datasets.");
 };
