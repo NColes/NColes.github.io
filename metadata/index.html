@@ -70,6 +70,42 @@
         </div>
 
         <div class="row marketing">
+            <div id="atAGlance" style="display:none;">
+                <h4>At a glance</h4>
+                <div id="atAGlanceContent">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="min-width:150px">Title</td>
+                                <td><span id="aTitle"></span><span id="aEdition"></span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Number of editions</td>
+                                <td id="previousVersions"></td>
+                            </tr>
+                            <tr>
+                                <td>Length</td>
+                                <td><span id="wordCount"></span> <span id="characterCount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Total charts</td>
+                                <td id="chartTotal"></td>
+                            </tr>
+                            <tr>
+                                <td>Total tables</td>
+                                <td id="tableTotal"></td>
+                            </tr>
+                            <tr>
+                                <td>Datasets</td>
+                                <td><span id="datasetTotal"></span> <span id="timeseriesTotal"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
             <div id="metadata" style="display:none;">
                 <h3>Release metadata</h3>
 
@@ -147,7 +183,8 @@
                         </tr>
                         </th>
                     </thead>
-                    <tbody id="allcharts"><td colspan="6">No charts.</td>
+                    <tbody id="allcharts">
+                        <td colspan="6">No charts.</td>
 
                     </tbody>
                 </table>
@@ -159,7 +196,9 @@
                         </tr>
                     </thead>
                     <tbody id="alltables">
-                    <tr><td>No tables.</td></tr>
+                        <tr>
+                            <td>No tables.</td>
+                        </tr>
                     </tbody>
                 </table>
 
