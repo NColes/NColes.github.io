@@ -39,3 +39,20 @@ h3 {
 h4 {
 	padding-left:11px;
 }
+
+#atAGlance {
+	background-color: #EAEAEA;
+	border: 1px solid #D0D2D3;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+
+#atAGlance h4 {
+	border-bottom: 1px solid #D0D2D3;
+	padding: 20px 10px 20px 15px;
+	margin:0px;
+}
+
+#atAGlanceContent {
+	margin:15px;
+}
