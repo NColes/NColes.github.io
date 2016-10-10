@@ -2,6 +2,10 @@ function thousandsSeperator(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
+function roundHundred(value) {
+    return Math.round(value / 100) * 100
+};
+
 basicMetadata = function() {
     monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
