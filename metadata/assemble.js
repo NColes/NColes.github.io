@@ -1,11 +1,12 @@
-$('#URLName').keypress(function(event){
-  if(event.keyCode == 13){
-    $('#checkURL').click();
-  }
+$('#URLName').keypress(function(event) {
+    if (event.keyCode == 13) {
+        $('#checkURL').click();
+    }
 });
 
 var newPathname = "";
 var JSONURL = "";
+var previousPath = ""
 
 assemble = function() {
     myURL = "";
@@ -25,9 +26,7 @@ assemble = function() {
 
         pathArray = myURL.split("/");
 
-        if (pathArray[pathArray.length - 1] === "latest") {
-            JSONURL = myURL + "/data";
-        } else if (pathArray[pathArray.length - 2] === "datasets") {
+        if (pathArray[pathArray.length - 2] === "datasets") {
             JSONURL = myURL + "/data";
         } else {
 
@@ -50,12 +49,18 @@ assemble = function() {
                 newPathname += "/";
                 newPathname += pathArray[i];
             };
-            newPathname += "/latest";
+
+            previousPath = "https://www.ons.gov.uk/" + newPathname + "/previousReleases/data";
+
+            if (document.getElementById("showLatest").checked == true) {
+                newPathname += "/latest";
+            } else {
+                newPathname += "/" + pathArray[(pathArray.length - 1)];
+            };
+
             JSONURL = "https://www.ons.gov.uk" + newPathname + "/data";
             console.log(newPathname);
         };
-        document.getElementById("metadata").style.display="block";
+        document.getElementById("metadata").style.display = "block";
     };
-    
-
 };
