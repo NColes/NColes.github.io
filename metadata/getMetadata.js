@@ -207,10 +207,8 @@ getAtAGlance = function(callback) {
         document.getElementById("wordCount").innerHTML = (thousandsSeperator(roundHundred(allWords.split(" ").length)) + " words ");
         document.getElementById("chartTotal").innerHTML = ((myJSON.charts.length + myJSON.images.length) + " charts.");
         document.getElementById("tableTotal").innerHTML = (myJSON.tables.length + " tables.");
-
-        var previousURL = "https://www.ons.gov.uk/" + pathArray.slice(0, (pathArray.length - 1)).join("/") + "/previousReleases/data";
-
-        $.getJSON(previousURL, function(json) {
+        
+        $.getJSON(previousPath, function(json) {
             document.getElementById("previousVersions").innerHTML = json.result.numberOfResults + " editions";
             callback && callback();
         });
@@ -221,10 +219,8 @@ getAtAGlance = function(callback) {
         document.getElementById("wordCount").innerHTML = (thousandsSeperator(roundHundred(allWords.split(" ").length)) + " words ");
         document.getElementById("chartTotal").innerHTML = ((myJSON.charts.length + myJSON.images.length) + " charts.");
         document.getElementById("tableTotal").innerHTML = (myJSON.tables.length + " tables.");
-
-        var previousURL = "https://www.ons.gov.uk/" + pathArray.slice(0, (pathArray.length - 1)).join("/") + "/previousReleases/data";
-
-        $.getJSON(previousURL, function(json) {
+        
+        $.getJSON(previousPath, function(json) {
             document.getElementById("previousVersions").innerHTML = json.result.numberOfResults + " editions";
             callback && callback();
         });
