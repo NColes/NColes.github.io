@@ -198,7 +198,7 @@ getAtAGlance = function(callback) {
     for (var s = 0; s < myJSON.sections.length; s++) {
         allWords += myJSON.sections[s].markdown;
     };
-
+    allWords = allWords.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
 
     if (myJSON.type === "bulletin") {
 
