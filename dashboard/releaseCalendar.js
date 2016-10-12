@@ -165,279 +165,141 @@ generateUpcomingReleases = function() {
 
         $('[data-toggle="tooltip"]').tooltip();
     });
-
 };
 
 //Todays releases
-
 generateTodaysReleases = function() {
 
-    $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&toDateDay=" + (dateToday + 1) + "&toDateMonth=" + (monthTodayValue + 1) + "&toDateYear=" + yearToday + "&size=50", function(json) {
-        JSONoutToday = "";
+    $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&toDateDay=" + (dateToday + 1) +
 
-        for (var i = 0; i < json.result.results.length; i++) {
-            TS = "";
-            MS = "";
-            jsonDate = json.result.results[i].description.releaseDate.substring(8, 10);
-            jsonMonth = json.result.results[i].description.releaseDate.substring(5, 7);
-            jsonYear = json.result.results[i].description.releaseDate.substring(0, 4);
+        "&toDateMonth=" + (monthTodayValue + 1) + "&toDateYear=" + yearToday + "&size=50",
+        function(json) {
+            JSONoutToday = "";
 
-            //Format months to match JSON
-            if (jsonMonth < 10) {
-                jsonMonth = jsonMonth.substring(1);
-            };
-
-
-            if (jsonDate < 10) {
-                jsonDate = jsonDate.substring(1);
-            };
-
-            //Display months as text
-            jsonMonth = monthNamesLong[jsonMonth - 1];
-
-            jsonDateToday = jsonDate + " " + jsonMonth;
-
-            if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[i].description.title)) {
-                MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
-            };
-
-            if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[i].description.title)) {
-                TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
-            };
-
-            if (json.result.results[i].description.cancelled == true) {
-                cancelledReason = json.result.results[i].description.cancellationNotice[0];
-                cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
-            };
-            JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' + json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + '</td></tr>';
-
-            document.getElementById("toadysReleases").innerHTML = JSONoutToday;
-
-        };
-
-        $('[data-toggle="tooltip"]').tooltip();
-
-
-        $.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dateToday + "&fromDateMonth=" + (monthTodayValue + 1) + "&fromDateYear=" + yearToday + "&size=50", function(json) {
-
-
-            for (var s = 0; s < json.result.results.length; s++) {
+            for (var i = 0; i < json.result.results.length; i++) {
                 TS = "";
                 MS = "";
-                jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
-                jsonMonth2 = json.result.results[s].description.releaseDate.substring(5, 7);
-                jsonYear2 = json.result.results[s].description.releaseDate.substring(0, 4);
+                jsonDate = json.result.results[i].description.releaseDate.substring(8, 10);
+                jsonMonth = json.result.results[i].description.releaseDate.substring(5, 7);
+                jsonYear = json.result.results[i].description.releaseDate.substring(0, 4);
 
                 //Format months to match JSON
-                if (jsonMonth2 < 10) {
-                    jsonMonth2 = jsonMonth2.substring(1);
+                if (jsonMonth < 10) {
+                    jsonMonth = jsonMonth.substring(1);
                 };
 
 
-                if (jsonDate2 < 10) {
-                    jsonDate2 = jsonDate2.substring(1);
+                if (jsonDate < 10) {
+                    jsonDate = jsonDate.substring(1);
                 };
 
                 //Display months as text
-                jsonMonth2 = monthNamesLong[jsonMonth2 - 1];
+                jsonMonth = monthNamesLong[jsonMonth - 1];
 
-                jsonDateToday = jsonDate2 + " " + jsonMonth2;
+                jsonDateToday = jsonDate + " " + jsonMonth;
 
-                if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[s].description.title)) {
-                    MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
-                };
-
-                if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[s].description.title)) {
-                    TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
-                };
-
-                if (json.result.results[s].description.cancelled == true) {
-                    cancelledReason = JSON.result.results[s].description.cancellationNotice[0];
-                    cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
-                };
-                JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' + json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + '</td></tr>';
-                document.getElementById("toadysReleases").innerHTML = JSONoutToday;
-            };
-
-            $('#todaysTable').dataTable({
-                "lengthChange": false,
-                "paging": false,
-                "info": false,
-                "searching": false,
-                "autoWidth": false,
-                "ordering": false,
-                "scrollY": '300px',
-                "scrollCollapse": true,
-            });
-
-        });
-
-    });
-
-};
-
-            document.getElementById("toadysReleases").innerHTML = JSONoutToday;
-
-        };
-
-        $('[data-toggle="tooltip"]').tooltip();
-
-
-        $.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dateToday + "&fromDateMonth=" + (monthTodayValue + 1) + "&fromDateYear=" + yearToday + "&size=50", function(json) {
-
-
-            for (var s = 0; s < json.result.results.length; s++) {
-          	TS = "";
-	        MS = "";
-                jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
-                jsonMonth2 = json.result.results[s].description.releaseDate.substring(5, 7);
-                jsonYear2 = json.result.results[s].description.releaseDate.substring(0, 4);
-
-                //Format months to match JSON
-                if (jsonMonth2 < 10) {
-                    jsonMonth2 = jsonMonth2.substring(1);
-                };
-
-
-                if (jsonDate2 < 10) {
-                    jsonDate2 = jsonDate2.substring(1);
-                };
-
-                //Display months as text
-                jsonMonth2 = monthNamesLong[jsonMonth2 - 1];
-
-                jsonDateToday = jsonDate2 + " " + jsonMonth2;
-
-                if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[s].description.title)) {
-                    MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
-//Todays releases
-
-generateTodaysReleases = function() {
-
-    $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&toDateDay=" + (dateToday + 1) + 
-
-"&toDateMonth=" + (monthTodayValue + 1) + "&toDateYear=" + yearToday + "&size=50", function(json) {
-        JSONoutToday = "";
-
-        for (var i = 0; i < json.result.results.length; i++) {
-            TS = "";
-            MS = "";
-            jsonDate = json.result.results[i].description.releaseDate.substring(8, 10);
-            jsonMonth = json.result.results[i].description.releaseDate.substring(5, 7);
-            jsonYear = json.result.results[i].description.releaseDate.substring(0, 4);
-
-            //Format months to match JSON
-            if (jsonMonth < 10) {
-                jsonMonth = jsonMonth.substring(1);
-            };
-
-
-            if (jsonDate < 10) {
-                jsonDate = jsonDate.substring(1);
-            };
-
-            //Display months as text
-            jsonMonth = monthNamesLong[jsonMonth - 1];
-
-            jsonDateToday = jsonDate + " " + jsonMonth;
-
-            if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[i].description.title)) {
-                MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-
-
-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
-            };
-
-            if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[i].description.title)) {
-                TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-
-
-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
-            };
-
-            if (json.result.results[i].description.cancelled == true) {
-                cancelledReason = json.result.results[i].description.cancellationNotice[0];
-                cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" 
-
-title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
-            };
-            JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' + 
-
-json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + 
-
-'</td></tr>';
-
-            document.getElementById("toadysReleases").innerHTML = JSONoutToday;
-};
-        
-        $('[data-toggle="tooltip"]').tooltip();
-
-
-        $.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dateToday + "&fromDateMonth=" + 
-
-(monthTodayValue + 1) + "&fromDateYear=" + yearToday + "&size=50", function(json) {
-
-
-            for (var s = 0; s < json.result.results.length; s++) {
-          	TS = "";
-	        MS = "";
-                jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
-                jsonMonth2 = json.result.results[s].description.releaseDate.substring(5, 7);
-                jsonYear2 = json.result.results[s].description.releaseDate.substring(0, 4);
-
-                //Format months to match JSON
-                if (jsonMonth2 < 10) {
-                    jsonMonth2 = jsonMonth2.substring(1);
-                };
-
-
-                if (jsonDate2 < 10) {
-                    jsonDate2 = jsonDate2.substring(1);
-                };
-
-                //Display months as text
-                jsonMonth2 = monthNamesLong[jsonMonth2 - 1];
-
-                jsonDateToday = jsonDate2 + " " + jsonMonth2;
-
-                if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[s].description.title)) {
+                if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[i].description.title)) {
                     MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-
 
-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
+                    placement = "left"
+                    title = "This release is market sensitive." > < div style = "display:none;" > MS < /div>';
                 };
 
-                if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[s].description.title)) {
+                if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[i].description.title)) {
                     TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-
 
-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
+                    placement = "left"
+                    title = "Timeseries data is published alongside this release" > < div style = "display:none;" > TS < /div>';
                 };
 
-                if (json.result.results[s].description.cancelled == true) {
-                    cancelledReason = JSON.result.results[s].description.cancellationNotice[0];
+                if (json.result.results[i].description.cancelled == true) {
+                    cancelledReason = json.result.results[i].description.cancellationNotice[0];
                     cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" 
 
-title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
+                    title = "Cancelled: ' + cancelledReason + '" > < div style = "display:none;" > Cancelled < /div>';
                 };
-                JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' + 
+                JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' +
 
-json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + 
+                    json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS +
 
-'</td></tr>';
+                    '</td></tr>';
+
                 document.getElementById("toadysReleases").innerHTML = JSONoutToday;
             };
 
-            $('#todaysTable').dataTable({
-                "lengthChange": false,
-                "paging": false,
-                "info": false,
-                "searching": false,
-                "autoWidth": false,
-                "ordering": false,
-                "scrollY": '300px',
-                "scrollCollapse": true,
-            });
+            $('[data-toggle="tooltip"]').tooltip();
+
+
+            $.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dateToday + "&fromDateMonth=" +
+
+                (monthTodayValue + 1) + "&fromDateYear=" + yearToday + "&size=50",
+                function(json) {
+
+
+                    for (var s = 0; s < json.result.results.length; s++) {
+                        TS = "";
+                        MS = "";
+                        jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
+                        jsonMonth2 = json.result.results[s].description.releaseDate.substring(5, 7);
+                        jsonYear2 = json.result.results[s].description.releaseDate.substring(0, 4);
+
+                        //Format months to match JSON
+                        if (jsonMonth2 < 10) {
+                            jsonMonth2 = jsonMonth2.substring(1);
+                        };
+
+
+                        if (jsonDate2 < 10) {
+                            jsonDate2 = jsonDate2.substring(1);
+                        };
+
+                        //Display months as text
+                        jsonMonth2 = monthNamesLong[jsonMonth2 - 1];
+
+                        jsonDateToday = jsonDate2 + " " + jsonMonth2;
+
+                        if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[s].description.title)) {
+                            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-
+
+                            placement = "left"
+                            title = "This release is market sensitive." > < div style = "display:none;" > MS < /div>';
+                        };
+
+                        if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[s].description.title)) {
+                            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-
+
+                            placement = "left"
+                            title = "Timeseries data is published alongside this release" > < div style = "display:none;" > TS < /div>';
+                        };
+
+                        if (json.result.results[s].description.cancelled == true) {
+                            cancelledReason = JSON.result.results[s].description.cancellationNotice[0];
+                            cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" 
+
+                            title = "Cancelled: ' + cancelledReason + '" > < div style = "display:none;" > Cancelled < /div>';
+                        };
+                        JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' +
+
+                            json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS +
+
+                            '</td></tr>';
+                        document.getElementById("toadysReleases").innerHTML = JSONoutToday;
+                    };
+
+                    $('#todaysTable').dataTable({
+                        "lengthChange": false,
+                        "paging": false,
+                        "info": false,
+                        "searching": false,
+                        "autoWidth": false,
+                        "ordering": false,
+                        "scrollY": '300px',
+                        "scrollCollapse": true,
+                    });
+
+                });
 
         });
-
-    });
 
 };
 
