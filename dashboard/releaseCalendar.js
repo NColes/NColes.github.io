@@ -199,13 +199,11 @@ generateTodaysReleases = function() {
                 jsonDateToday = jsonDate + " " + jsonMonth;
 
                 if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[i].description.title)) {
-                    MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement = "left"
-                    title = "This release is market sensitive." > < div style = "display:none;" > MS < /div>';
+                    MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement = "left" title = "This release is market sensitive." > < div style = "display:none;" > MS < /div>';
                 };
 
                 if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[i].description.title)) {
-                    TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement = "left"
-                    title = "Timeseries data is published alongside this release" > < div style = "display:none;" > TS < /div>';
+                    TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement = "left" title = "Timeseries data is published alongside this release" > < div style = "display:none;" > TS < /div>';
                 };
 
                 if (json.result.results[i].description.cancelled == true) {
@@ -251,24 +249,16 @@ generateTodaysReleases = function() {
                         jsonDateToday = jsonDate2 + " " + jsonMonth2;
 
                         if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[s].description.title)) {
-                            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-
-
-                            placement = "left"
-                            title = "This release is market sensitive." > < div style = "display:none;" > MS < /div>';
+                            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement = "left" title = "This release is market sensitive." > < div style = "display:none;" > MS < /div>';
                         };
 
                         if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[s].description.title)) {
-                            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-
-
-                            placement = "left"
-                            title = "Timeseries data is published alongside this release" > < div style = "display:none;" > TS < /div>';
+                            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement = "left" title = "Timeseries data is published alongside this release" > < div style = "display:none;" > TS < /div>';
                         };
 
                         if (json.result.results[s].description.cancelled == true) {
                             cancelledReason = JSON.result.results[s].description.cancellationNotice[0];
-                            cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" 
-
-                            title = "Cancelled: ' + cancelledReason + '" > < div style = "display:none;" > Cancelled < /div>';
+                            cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title = "Cancelled: ' + cancelledReason + '" > < div style = "display:none;" > Cancelled < /div>';
                         };
                         JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' +
 
