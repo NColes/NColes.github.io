@@ -222,6 +222,71 @@ generateTodaysReleases = function() {
 
 
             for (var s = 0; s < json.result.results.length; s++) {
+                TS = "";
+                MS = "";
+                jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
+                jsonMonth2 = json.result.results[s].description.releaseDate.substring(5, 7);
+                jsonYear2 = json.result.results[s].description.releaseDate.substring(0, 4);
+
+                //Format months to match JSON
+                if (jsonMonth2 < 10) {
+                    jsonMonth2 = jsonMonth2.substring(1);
+                };
+
+
+                if (jsonDate2 < 10) {
+                    jsonDate2 = jsonDate2.substring(1);
+                };
+
+                //Display months as text
+                jsonMonth2 = monthNamesLong[jsonMonth2 - 1];
+
+                jsonDateToday = jsonDate2 + " " + jsonMonth2;
+
+                if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[s].description.title)) {
+                    MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
+                };
+
+                if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[s].description.title)) {
+                    TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
+                };
+
+                if (json.result.results[s].description.cancelled == true) {
+                    cancelledReason = JSON.result.results[s].description.cancellationNotice[0];
+                    cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
+                };
+                JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' + json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + '</td></tr>';
+                document.getElementById("toadysReleases").innerHTML = JSONoutToday;
+            };
+
+            $('#todaysTable').dataTable({
+                "lengthChange": false,
+                "paging": false,
+                "info": false,
+                "searching": false,
+                "autoWidth": false,
+                "ordering": false,
+                "scrollY": '300px',
+                "scrollCollapse": true,
+            });
+
+        });
+
+    });
+
+};
+
+            document.getElementById("toadysReleases").innerHTML = JSONoutToday;
+
+        };
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+
+        $.getJSON("https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dateToday + "&fromDateMonth=" + (monthTodayValue + 1) + "&fromDateYear=" + yearToday + "&size=50", function(json) {
+
+
+            for (var s = 0; s < json.result.results.length; s++) {
           	TS = "";
 	        MS = "";
                 jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
