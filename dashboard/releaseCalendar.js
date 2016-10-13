@@ -208,7 +208,7 @@ generateTodaysReleases = function() {
 
                 if (json.result.results[i].description.cancelled == true) {
                     cancelledReason = json.result.results[i].description.cancellationNotice[0];
-                    cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title = "Cancelled: ' + cancelledReason + '" > < div style = "display:none;" > Cancelled < /div>';
+                    cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title = "Cancelled: ' + cancelledReason + '"> <div style="display:none;"> Cancelled </div>';
                 };
                 JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' + json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS +
 
