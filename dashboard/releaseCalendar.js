@@ -78,11 +78,11 @@ function generateReleaseTable() {
         if (tablePublished === true) {
 
             document.getElementById("publishedreleases").innerHTML = JSONout;
-
+            JSONout = "";
         } else {
 
             document.getElementById("upcomingreleases").innerHTML = JSONout;
-
+            JSONout = "";
         };
 
     };
