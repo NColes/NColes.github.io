@@ -74,19 +74,14 @@ function generateReleaseTable() {
             JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
                 '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
         };
-
-        if (tablePublished === true) {
-
-            document.getElementById("publishedreleases").innerHTML = JSONout;
-            JSONout = "";
-        } else {
-
-            document.getElementById("upcomingreleases").innerHTML = JSONout;
-            JSONout = "";
-        };
-
     };
-
+    if (tablePublished === true) {
+       document.getElementById("publishedreleases").innerHTML = JSONout;
+       JSONout = "";
+    } else {
+       document.getElementById("upcomingreleases").innerHTML = JSONout;
+       JSONout = "";
+    };
 };
 
 function tableHeadingDates() {
