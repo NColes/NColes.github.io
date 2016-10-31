@@ -164,13 +164,10 @@ generateUpcomingReleases = function() {
 
 //Todays releases
 generateTodaysReleases = function() {
-
-    $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&toDateDay=" + (dateToday + 1) +
-
-        "&toDateMonth=" + (monthTodayValue + 1) + "&toDateYear=" + yearToday + "&size=50",
-        function(json) {
-            JSONoutToday = "";
-
+tomorrowDate = new Date;
+tomorrowDate.setDate(dateToday + 1);
+    $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&toDateDay=" + (tomorrowDate.getDate()) + "&toDateMonth=" + (tomorrowDate.getMonth() + 1) + "&toDateYear=" + (tomorrowDate.getYear()) + "&size=50", function(json) {
+        JSONoutToday = "";
             for (var i = 0; i < json.result.results.length; i++) {
                 TS = "";
                 MS = "";
