@@ -166,8 +166,9 @@ generateUpcomingReleases = function() {
 generateTodaysReleases = function() {
 tomorrowDate = new Date;
 tomorrowDate.setDate(dateToday + 1);
+JSONoutToday = "";
     $.getJSON("https://www.ons.gov.uk/releasecalendar/data?view=upcoming&query=&toDateDay=" + (tomorrowDate.getDate()) + "&toDateMonth=" + (tomorrowDate.getMonth() + 1) + "&toDateYear=" + (tomorrowDate.getFullYear()) + "&size=50", function(json) {
-        JSONoutToday = "";
+        
             for (var i = 0; i < json.result.results.length; i++) {
                 TS = "";
                 MS = "";
