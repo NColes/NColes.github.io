@@ -24,9 +24,9 @@ basicMetadata = function() {
         document.getElementById("dSumm").innerHTML = myJSON.description.summary;
     };
     if (myJSON.description.nationalStatistic === true) {
-        document.getElementById("descNS").innerHTML = "Yes";
+        document.getElementById("descNS").innerHTML = "&#10003; Yes";
     } else if (myJSON.description.nationalStatistic === false) {
-        document.getElementById("descNS").innerHTML = "No";
+        document.getElementById("descNS").innerHTML = "&#10007; No";
     };
 };
 
@@ -72,6 +72,13 @@ getRelatedBulletins = function() {
 };
 
 getRelatedData = function(callback) {
+    //Check for PDFs
+    if (myJSON.pdfTable != "") {
+      document.getElementById("descPDF").innerHTML = "&#10003; This release contains PDF reference tables";  
+    } else {
+      document.getElementById("descPDF").innerHTML = "&#10007; This release does not contain PDF reference tables";
+    };
+    
     for (var d = 0; d < myJSON.relatedData.length; d++) {
         dataArray = [];
         linkArray = [];
