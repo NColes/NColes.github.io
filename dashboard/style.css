@@ -40,7 +40,7 @@ td {
 }
 
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
-    
+    border-bottom: 1px solid #ddd;
 }
 
 table.dataTable thead th, table.dataTable thead td {
