@@ -29,6 +29,7 @@ function generateReleaseTable() {
     for (var i = 0; i < JSON.result.results.length; i++) {
         TS = "";
         MS = "";
+        DB = "";
         cancelledReason = "";
         cancelled = "";
         jsonDate = JSON.result.results[i].description.releaseDate.substring(8, 10);
@@ -57,6 +58,10 @@ function generateReleaseTable() {
         if (new RegExp(timeseriesData.join("|"), "i").test(JSON.result.results[i].description.title)) {
             TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
+        
+        if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
+            DB = '<img src="https://ncoles.github.io/releasesheet/dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard"><div style="display:none;">DB</div>';
+        };
 
         if (JSON.result.results[i].description.cancelled == true) {
             cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
@@ -68,11 +73,11 @@ function generateReleaseTable() {
         if (jsonDateToday === todaysDate) {
 
             JSONout += '<tr><td><img src="https://ncoles.github.io/releasesheet/today.svg" class="pubToday" data-toggle="tooltip" data-placement="right" title="Published today"> <a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+                '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
 
         } else {
             JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+                '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
         };
     };
     if (tablePublished === true) {
@@ -172,6 +177,7 @@ JSONoutToday = "";
             for (var i = 0; i < json.result.results.length; i++) {
                 TS = "";
                 MS = "";
+                DB = "";
                 jsonDate = json.result.results[i].description.releaseDate.substring(8, 10);
                 jsonMonth = json.result.results[i].description.releaseDate.substring(5, 7);
                 jsonYear = json.result.results[i].description.releaseDate.substring(0, 4);
@@ -198,14 +204,16 @@ JSONoutToday = "";
                 if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[i].description.title)) {
                     TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"> <div style="display:none;"> TS </div>';
                 };
+                
+                if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
+                    DB = '<img src="https://ncoles.github.io/releasesheet/dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard"><div style="display:none;">DB</div>';
+                };
 
                 if (json.result.results[i].description.cancelled == true) {
                     cancelledReason = json.result.results[i].description.cancellationNotice[0];
                     cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title = "Cancelled: ' + cancelledReason + '"> <div style="display:none;"> Cancelled </div>';
                 };
-                JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' + json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS +
-
-                    '</td></tr>';
+                JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' + json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td></tr>';
 
                 document.getElementById("toadysReleases").innerHTML = JSONoutToday;
             };
@@ -222,6 +230,7 @@ JSONoutToday = "";
                     for (var s = 0; s < json.result.results.length; s++) {
                         TS = "";
                         MS = "";
+                        DB = "";
                         jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
                         jsonMonth2 = json.result.results[s].description.releaseDate.substring(5, 7);
                         jsonYear2 = json.result.results[s].description.releaseDate.substring(0, 4);
@@ -248,6 +257,10 @@ JSONoutToday = "";
                         if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[s].description.title)) {
                             TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"> <div style="display:none;"> TS < /div>';
                         };
+                        
+                        if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
+                            DB = '<img src="https://ncoles.github.io/dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard"><div style="display:none;">DB</div>';
+                        };
 
                         if (json.result.results[s].description.cancelled == true) {
                             cancelledReason = JSON.result.results[s].description.cancellationNotice[0];
@@ -255,9 +268,7 @@ JSONoutToday = "";
                         };
                         JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' +
 
-                            json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS +
-
-                            '</td></tr>';
+                            json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td></tr>';
                         document.getElementById("toadysReleases").innerHTML = JSONoutToday;
                     };
 
