@@ -198,7 +198,7 @@ JSONoutToday = "";
                 jsonDate = json.result.results[i].description.releaseDate.substring(8, 10);
                 jsonMonth = json.result.results[i].description.releaseDate.substring(5, 7);
                 jsonYear = json.result.results[i].description.releaseDate.substring(0, 4);
-		jsonTitle = myJSON.result.results[i].description.title;
+		jsonTitle = json.result.results[i].description.title;
 
                 //Format months to match JSON
                 if (jsonMonth < 10) {
@@ -241,7 +241,7 @@ JSONoutToday = "";
                         jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
                         jsonMonth2 = json.result.results[s].description.releaseDate.substring(5, 7);
                         jsonYear2 = json.result.results[s].description.releaseDate.substring(0, 4);
-			jsonTitle = myJSON.result.results[s].description.title;
+			jsonTitle = json.result.results[s].description.title;
 
                         //Format months to match JSON
                         if (jsonMonth2 < 10) {
