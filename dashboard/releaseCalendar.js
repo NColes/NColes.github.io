@@ -65,7 +65,7 @@ function generateReleaseTable() {
 
         if (JSON.result.results[i].description.cancelled == true) {
             cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
-            cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
+            cancelled = '<img src="https://ncoles.github.io/releasesheet/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
         };
 
         //Highlight todays releases
@@ -211,7 +211,7 @@ JSONoutToday = "";
 
                 if (json.result.results[i].description.cancelled == true) {
                     cancelledReason = json.result.results[i].description.cancellationNotice[0];
-                    cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title = "Cancelled: ' + cancelledReason + '"> <div style="display:none;"> Cancelled </div>';
+                    cancelled = '<img src="https://ncoles.github.io/releasesheet/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title = "Cancelled: ' + cancelledReason + '"> <div style="display:none;"> Cancelled </div>';
                 };
                 JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' + json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td></tr>';
 
@@ -259,12 +259,12 @@ JSONoutToday = "";
                         };
                         
                         if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
-                            DB = '<img src="https://ncoles.github.io/dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard"><div style="display:none;">DB</div>';
+                            DB = '<img src="https://ncoles.github.io/releasesheet/dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard"><div style="display:none;">DB</div>';
                         };
 
                         if (json.result.results[s].description.cancelled == true) {
                             cancelledReason = JSON.result.results[s].description.cancellationNotice[0];
-                            cancelled = '<img src="cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"> < div style="display:none;"> Cancelled </div>';
+                            cancelled = '<img src="https://ncoles.github.io/releasesheet/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"> < div style="display:none;"> Cancelled </div>';
                         };
                         JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' +
 
