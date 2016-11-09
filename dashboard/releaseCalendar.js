@@ -266,12 +266,12 @@ JSONoutToday = "";
                             cancelledReason = JSON.result.results[s].description.cancellationNotice[0];
                             cancelled = '<img src="https://ncoles.github.io/releasesheet/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" title="Cancelled: ' + cancelledReason + '"> < div style="display:none;"> Cancelled </div>';
                         };
-                        JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' +
-
-                            json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td></tr>';
+                        JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' + json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td></tr>';
                         
                     };
+                
                     document.getElementById("toadysReleases").innerHTML = JSONoutToday;
+                
                     $('#todaysTable').dataTable({
                         "lengthChange": false,
                         "paging": false,
