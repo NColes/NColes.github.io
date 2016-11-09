@@ -251,11 +251,11 @@ JSONoutToday = "";
                         jsonDateToday = jsonDate2 + " " + jsonMonth2;
 
                         if (new RegExp(marketSensitive.join("|"), "i").test(json.result.results[s].description.title)) {
-                            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."> <div style="display:none;"> MS < /div>';
+                            MS = ' <img src="https://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS</div>';
                         };
 
                         if (new RegExp(timeseriesData.join("|"), "i").test(json.result.results[s].description.title)) {
-                            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"> <div style="display:none;"> TS < /div>';
+                            TS = '<img src="https://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
                         };
                         
                         if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
