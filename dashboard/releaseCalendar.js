@@ -269,9 +269,9 @@ JSONoutToday = "";
                         JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' +
 
                             json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td></tr>';
-                        document.getElementById("toadysReleases").innerHTML = JSONoutToday;
+                        
                     };
-
+                    document.getElementById("toadysReleases").innerHTML = JSONoutToday;
                     $('#todaysTable').dataTable({
                         "lengthChange": false,
                         "paging": false,
