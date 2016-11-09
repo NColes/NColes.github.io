@@ -42,6 +42,7 @@ function generateReleaseTable() {
     for (var i = 0; i < JSON.result.results.length; i++) {
         TS = "";
         MS = "";
+	DB = "";
         cancelledReason = "";
 	cancelled = "";
         jsonDate = JSON.result.results[i].description.releaseDate.substring(8, 10);
@@ -70,6 +71,10 @@ function generateReleaseTable() {
         if (new RegExp(timeseriesData.join("|"), "i").test(JSON.result.results[i].description.title)) {
             TS = '<img src="ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
+	    
+	if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
+            DB = '<img src="dashboard.svg" class="DB" data-toggle="tooltip" title="This release feeds into the UK post-referendum economy dashboard." style="margin-left:2px;"><div style="display:none;">DB</div>';
+        };
         
         if (JSON.result.results[i].description.cancelled == true) {
 	    cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
@@ -81,11 +86,11 @@ function generateReleaseTable() {
         if (jsonDateToday === todaysDate) {
 
             JSONout += '<tr><td><img src="today.svg" class="pubToday" data-toggle="tooltip" title="Published today"> <a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+                '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
 
         } else {
             JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
-                '<td class="tableData" id="releaseNotes">' + TS + MS + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+                '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
         };
 
         if (tablePublished === true) {
