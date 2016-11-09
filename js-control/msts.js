@@ -53,3 +53,21 @@ timeseriesData = [
         'UK trade:',
         'United Kingdom Balance of Payments, The Pink Book:'
     ];
+
+dashboardData = [
+        'UK GDP, preliminary estimate:',
+        'UK GDP, second estimate:',
+        'UK quarterly national accounts:',
+        'UK consumer price inflation:',
+        'UK index of production:',
+        'UK index of services:',
+        'Construction output in Great Britain:',
+        'Retail Sales in Great Britain:',
+        'Business investment in the UK:',
+        'UK labour market statistics:',
+	'UK house price index:',
+        'UK producer price inflation:',
+        'UK trade:',
+        'United Kingdom Balance of Payments, The Pink Book:',
+        'Balance of payments for the UK:'
+    ];
