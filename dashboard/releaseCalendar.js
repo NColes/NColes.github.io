@@ -241,7 +241,7 @@ JSONoutToday = "";
                         jsonDate2 = json.result.results[s].description.releaseDate.substring(8, 10);
                         jsonMonth2 = json.result.results[s].description.releaseDate.substring(5, 7);
                         jsonYear2 = json.result.results[s].description.releaseDate.substring(0, 4);
-			jsonTitle = myJSON.result.results[i].description.title;
+			jsonTitle = myJSON.result.results[s].description.title;
 
                         //Format months to match JSON
                         if (jsonMonth2 < 10) {
@@ -264,7 +264,7 @@ JSONoutToday = "";
                         };
                         
                         getHTMLCode( function() {
-                            JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[i].uri + '">' + json.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td></tr>';
+                            JSONoutToday += '<tr><td><a href="https://www.ons.gov.uk' + json.result.results[s].uri + '">' + json.result.results[s].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td></tr>';
                             document.getElementById("toadysReleases").innerHTML = JSONoutToday;
                         });
                         
