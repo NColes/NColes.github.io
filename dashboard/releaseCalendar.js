@@ -180,7 +180,7 @@ getHTMLCode = function(callback) {
     };
 
     if (new RegExp(dashboardData.join("|"), "i").test(jsonTitle)) {
-        DB = '<img src="dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard"><div style="display:none;">DB</div>';
+        DB = '<img src="https://ncoles.github.io/releasesheet/dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard"><div style="display:none;">DB</div>';
     };
     callback && callback();
 };
