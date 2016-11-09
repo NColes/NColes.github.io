@@ -175,6 +175,6 @@ a.dt-button:hover:not(.disabled) {
     color: #fff;
 }
 
-.TS, .pubToday, .MS, .cancelled{
+.TS, .pubToday, .MS, .cancelled, .DB {
     cursor:pointer;
 }
