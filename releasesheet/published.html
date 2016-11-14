@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>Upcoming releases</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css" />
+    <link href="http://ncoles.github.io/style.css" rel="stylesheet">
+    <link href="http://ncoles.github.io/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ncoles.github.io/js-control/tooltip.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+</head>
+
+<body>
+    <table id="publishedTable" class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <div colspan="2" id="backDate"></div>
+                </th>
+		<th></th>
+		<th></th>
+            </tr>
+            <tr>
+                <th class="tableText" style="width:70%">Release</th>
+                <th class="tableData" style="width:10%"></th>
+                <th class="tableData" style="width:20%">Publishing date</th>
+                <th class="tableData">Unformatted date</th>
+            </tr>
+        </thead>
+        <tbody id="publishedreleases"></tbody>
+
+    </table>
+
+    <script src="releaseCalendar.js"></script>
+    <script src="http://ncoles.github.io/js-control/msts.js"></script>
+    <script>
+generatePublishedTable();
+    </script>
+
+</body>
+
+</html>
