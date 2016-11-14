@@ -22,19 +22,6 @@ var yBack = fortnightBack.getFullYear();
 var fortnightAwayURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=&fromDateMonth=&fromDateYear=&toDateDay=" + dAway + "&toDateMonth=" + mAway + "&toDateYear=" + yAway + "&view=upcoming&size=50";
 var fortnightBackURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + dBack + "&fromDateMonth=" + mBack + "&fromDateYear=" + yBack + "&toDateDay=&toDateMonth=&toDateYear=&view=&size=50";
 
-function tableHeadingDates() { 
-
-        mAway = monthNames[mAway - 1];
-
-	document.getElementById("forwardDate").innerHTML = todaysDate + " " + yearToday + " to " + dAway + " " + mAway + " " + yAway;
-
-        mBack = monthNames[mBack - 1];
-
-	document.getElementById("backDate").innerHTML =  dBack + " " + mBack + " " + yBack + " to " + todaysDate + " " + yearToday;
-
-};
-
-
 function generateReleaseTable() {
 
     JSONout = "";
@@ -107,13 +94,16 @@ function generateReleaseTable() {
 
 };
 
-tableHeadingDates();
-
 //Published data
+function generatePublishedTable() {
 $.getJSON(fortnightBackURL, function(json) {
     JSON = json;
 
     tablePublished = true;
+
+        mBack = monthNames[mBack - 1];
+
+	document.getElementById("backDate").innerHTML =  dBack + " " + mBack + " " + yBack + " to " + todaysDate + " " + yearToday;
 
     generateReleaseTable();
     
@@ -135,10 +125,16 @@ $.getJSON(fortnightBackURL, function(json) {
     });
     $('[data-toggle="tooltip"]').tooltip();
 });
+};
 
 //Upcoming data
+function generateUpcomingTable() {
 $.getJSON(fortnightAwayURL, function(json) {
     JSON = json;
+
+        mAway = monthNames[mAway - 1];
+
+	document.getElementById("forwardDate").innerHTML = todaysDate + " " + yearToday + " to " + dAway + " " + mAway + " " + yAway;
 
     tablePublished = false;
 
@@ -180,3 +176,5 @@ $.getJSON(fortnightAwayURL, function(json) {
 
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+};
