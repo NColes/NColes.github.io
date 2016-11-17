@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <title>Upcoming releases</title>
+    <title>Published releases</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css" />
     <link href="http://ncoles.github.io/style.css" rel="stylesheet">
@@ -15,10 +15,26 @@
     <script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+
+<style>
+.releaseTable {
+	width:100%
+}
+
+
+
+@media screen and (max-width: 1079px) {
+.releaseTable tr {
+    height: 61px;
+}
+}
+</style>
+
 </head>
 
-<body>
-    <table id="publishedTable" class="table table-hover">
+<body onresize="resizePublished()">
+<div style="float:left;" class="releaseTable">
+    <table id="publishedTable" class="table table-hover" >
         <thead>
             <tr>
                 <th>
@@ -28,8 +44,8 @@
 		<th></th>
             </tr>
             <tr>
-                <th class="tableText" style="width:70%">Release</th>
-                <th class="tableData" style="width:10%"></th>
+                <th class="tableText" style="width:68%">Release</th>
+                <th class="tableData" style="width:12%"></th>
                 <th class="tableData" style="width:20%">Publishing date</th>
                 <th class="tableData">Unformatted date</th>
             </tr>
@@ -37,11 +53,32 @@
         <tbody id="publishedreleases"></tbody>
 
     </table>
+</div>
 
     <script src="releaseCalendar.js"></script>
-    <script src="http://ncoles.github.io/js-control/msts.js"></script>
+    <script src="../dashboard/msts.js"></script>
     <script>
-generatePublishedTable();
+generatePublishedTable( function() {
+    $('#publishedTable').dataTable({
+        "lengthChange": false,
+        "pageLength": 15,
+        "searching": false,
+        "autoWidth": false,
+        "order": [
+            [3, "desc"]
+        ],
+        "columnDefs": [{
+            "targets": 3,
+            "visible": false
+        }],
+        "drawCallback": function(settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        }
+    });
+});
+setTimeout(resizePublished, 500);
+
     </script>
 
 </body>
