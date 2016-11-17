@@ -36,10 +36,29 @@
 
 }
 
-/*Overflow ideas
-max-width: 385px;
-min-width: 300px;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-*/
+.masthead {
+    padding-bottom: 30px;
+}
+
+.col-lg-6 {
+    width: 50%;
+}
+
+.well {
+    border: 0px;
+    background-color: white;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, .05);
+}
+
+@media screen and (max-width: 1380px) {
+    .col-lg-6 {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1380px) {
+    #upcomingBox,
+    #publishedBox {
+        float: right;
+    }
+}
