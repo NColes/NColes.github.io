@@ -72,7 +72,7 @@ function generateReleaseTable() {
 
         if (jsonDateToday === todaysDate) {
 
-            JSONout += '<tr style="background-color: #f5f5f5;"><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
+            JSONout += '<tr class="publishedToday"><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
                 '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
 
         } else {
