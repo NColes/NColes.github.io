@@ -207,3 +207,63 @@ function closeNav() {
 function reloadChart() {
     $('#upcomingReleases').highcharts().reflow();
 };
+
+generateTodaysReleases();
+generateUpcomingTable( function() {
+    var createUpcoming = $('#upcomingTable').dataTable({
+            "lengthChange": false,
+            "pageLength": 10,
+            "autoWidth": false,
+            "scrollY": '300px',
+            "scrollCollapse": true,
+            "searching": false,
+            "order": [
+                [3, "asc"]
+            ],
+            "columnDefs": [{
+                "targets": 3,
+                "visible": false
+            }],
+        "drawCallback": function(settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
+
+	 var buttons = new $.fn.dataTable.Buttons(createUpcoming, {
+        "buttons": [
+
+            {
+                "extend": 'csvHtml5',
+                "exportOptions": {
+                    "columns": ':visible'
+                }
+            }, {
+                "extend": 'excelHtml5',
+                "exportOptions": {
+                    "columns": ':visible'
+                }
+            }
+        ]
+}).container().appendTo($('#dlbuttons'));
+});
+generatePublishedTable( function() {
+    $('#publishedTable').dataTable({
+            "lengthChange": false,
+            "pageLength": 10,
+            "searching": false,
+            "autoWidth": false,
+            "scrollY": '300px',
+            "scrollCollapse": true,
+            "order": [
+                [3, "desc"]
+            ],
+            "columnDefs": [{
+                "targets": 3,
+                "visible": false
+            }],
+        "drawCallback": function(settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        }
+    });
+});
