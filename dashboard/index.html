@@ -14,7 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <title>Dashboard</title>
-	
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css" />
 
@@ -25,7 +25,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
     <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
-	
+
     <link href="style.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
     <link href="../bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <span class="menubutton" onclick="openNav();"><a href="#"><h4>Menu</h4></a></span>
+    <span class="menubutton" onclick="openNav();"><h4><a href="#">Menu</a></h4></span>
     <div class="container-fluid">
         <div class="row content">
             <div id="mySidenav" class="sidenav">
@@ -50,249 +50,255 @@
                     <li><a href="#section2">Calendar</a></li>
                     <li><a href="#section3">Timeseries</a></li>
                     <li><a href="#section3">Metadata tool</a></li>
-                </ul><br>
+                </ul>
+                      <br>
             </div>
-	    </div><br>
-	                <div id="main">
-                <h2>Publishing team dashboard</h2>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <div class="well" style="height:460px">
-                            <h3>Release timeseries</h3>
-                            <div id="upcomingReleases" style="padding:0px 20px;height:90%"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="well" style="height:460px">
-                            <h3>Todays releases</h3>
-                            <table class="table table-hover" id="todaysTable">
-                                <thead>
-                                    <tr>
-                                        <th class="tableText" style="width:75%">Release</th>
-                                        <th class="tableData" style="width:25%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="toadysReleases">
-				    <tr>
-					<td>No releases today.</td>
-					<td></td>
-				    </tr>
-				</tbody>
-                            </table>
-                        </div>
+        </div>
+                      <br>
+        <div id="main">
+            <h2>Publishing team dashboard</h2>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="well" style="height:460px">
+                        <h3>Release timeseries</h3>
+                        <div id="upcomingReleases" style="padding:0px 20px;height:90%"></div>
                     </div>
                 </div>
+                <div class="col-sm-4">
+                    <div class="well" style="height:460px">
+                        <h3>Todays releases</h3>
+                        <table class="table table-hover" id="todaysTable">
+                            <thead>
+                                <tr>
+                                    <th class="tableText" style="width:75%">Release</th>
+                                    <th class="tableData" style="width:25%"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="toadysReleases">
+                                <tr>
+                                    <td>No releases today.</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="well">
-                            <div id="atAGlance">
-                                <h3>Last 30 days</h3>
-                                <div id="atAGlanceContent">
-                                    <table class="table table-hover">
-					<thead>
-						<tr>
-							<th>We published</th>
-							<th><span id="releaseNumber"></span></th>
-						</tr>
-					</thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="width:40%;">Text</td>
-                                                <td><span id="wordCount"></span> <span id="characterCount"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Total charts</td>
-                                                <td id="chartTotal"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Total tables</td>
-                                                <td id="tableTotal"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Datasets</td>
-                                                <td><span id="datasetTotal"></span> <span id="timeseriesTotal"></span></td>
-                                            </tr>
-					    <tr>
-						<td></td>
-						<td></td>
-					    </tr>
-                                        </tbody>
-                                    </table>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="well">
+                        <div id="atAGlance">
+                            <h3>Last 30 days</h3>
+                            <div id="atAGlanceContent">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>We published</th>
+                                            <th><span id="releaseNumber"></span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="width:40%;">Text</td>
+                                            <td><span id="wordCount"></span> <span id="characterCount"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total charts</td>
+                                            <td id="chartTotal"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total tables</td>
+                                            <td id="tableTotal"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Datasets</td>
+                                            <td><span id="datasetTotal"></span> <span id="timeseriesTotal"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                                </div>
-				<div class="filler" style="height:38.5px">
-				</div>
+                            </div>
+                            <div class="filler" style="height:38.5px">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-8">
-                        <div class="well">
-                            <h3>Upcoming releases</h3>
-                            <table id="upcomingTable" class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th class="tableText" style="width:65%">Release <div id="forwardDate"></div></th>
-                                        <th class="tableData" style="width:14%"></th>
-                                        <th class="tableData" style="width:21%">Publishing<br>date</th>
-                                        <th class="tableData">Unformatted date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="upcomingreleases"></tbody>
-                            </table>
-                        </div>
-                    </div>
-		</div>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="well">
-                            <h3>Commentary published</h3>
-                            <table class="table table-hover" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Type of release</th>
-                                        <th class="tableData">Total published</th>
-					<th class="tableData">Of which are unique</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Bulletins:</td>
-                                        <td id="totalBulletins" class="tableData"></td>
-					<td id="totalBulletinsUnique" class="tableData"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Articles:</td>
-                                        <td id="totalArticles" class="tableData"></td>
-                                        <td id="totalArticlesUnique" class="tableData"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Compendia:</td>
-                                        <td id="totalCompendia" class="tableData"></td>
-                                        <td id="totalCompendiaUnique" class="tableData"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="well">
-                            <h3>Data published</h3>
-                            <table class="table table-hover" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Type of data</th>
-                                        <th class="tableData">Total published</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Datasets:</td>
-                                        <td id="totalDatasets" class="tableData"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Timeseries CDIDs:</td>
-                                        <td id="totalCDIDs" class="tableData"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>User requested datasets:</td>
-                                        <td id="totalAdHocs" class="tableData"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="well">
-                            <h3>Static content published</h3>
-                            <table class="table table-hover" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Type of content</th>
-                                        <th class="tableData">Total published</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Methodology articles:</td>
-                                        <td id="totalMethodology" class="tableData"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Quality and methodology information:</td>
-                                        <td id="totalQMIs" class="tableData"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Freedom of Information requests:</td>
-                                        <td id="totalFOIs" class="tableData"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="well">
+                        <h3>Upcoming releases</h3>
+                        <table id="upcomingTable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="tableText" style="width:65%">Release
+                                        <div id="forwardDate"></div>
+                                    </th>
+                                    <th class="tableData" style="width:14%"></th>
+                                    <th class="tableData" style="width:21%">Publishing<br>date</th>
+                                    <th class="tableData">Unformatted date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="upcomingreleases"></tbody>
+                        </table>
                     </div>
                 </div>
-
-		<div class="row">
-                    <div class="col-sm-12">
-                        <div class="well">
-                            <h3>Published releases</h3>
-                            <table id="publishedTable" class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th class="tableText" style="width:70%">Release <div id="backDate"></div></th>
-                                        <th class="tableData" style="width:9%"></th>
-                                        <th class="tableData" style="width:21%">Publishing<br>date</th>
-                                        <th class="tableData">Unformatted date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="publishedreleases">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <h4>Users</h4>
-                            <p>1 Million</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <h4>Pages</h4>
-                            <p>100 Million</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <h4>Sessions</h4>
-                            <p>10 Million</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <h4>Bounce</h4>
-                            <p>30%</p>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="well">
+                        <h3>Commentary published</h3>
+                        <table class="table table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Type of release</th>
+                                    <th class="tableData">Total published</th>
+                                    <th class="tableData">Of which are unique</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bulletins:</td>
+                                    <td id="totalBulletins" class="tableData"></td>
+                                    <td id="totalBulletinsUnique" class="tableData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Articles:</td>
+                                    <td id="totalArticles" class="tableData"></td>
+                                    <td id="totalArticlesUnique" class="tableData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Compendia:</td>
+                                    <td id="totalCompendia" class="tableData"></td>
+                                    <td id="totalCompendiaUnique" class="tableData"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="well">
+                        <h3>Data published</h3>
+                        <table class="table table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Type of data</th>
+                                    <th class="tableData">Total published</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Datasets:</td>
+                                    <td id="totalDatasets" class="tableData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Timeseries CDIDs:</td>
+                                    <td id="totalCDIDs" class="tableData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>User requested datasets:</td>
+                                    <td id="totalAdHocs" class="tableData"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="well">
+                        <h3>Static content published</h3>
+                        <table class="table table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Type of content</th>
+                                    <th class="tableData">Total published</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Methodology articles:</td>
+                                    <td id="totalMethodology" class="tableData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Quality and methodology information:</td>
+                                    <td id="totalQMIs" class="tableData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Freedom of Information requests:</td>
+                                    <td id="totalFOIs" class="tableData"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="well">
+                        <h3>Published releases</h3>
+                        <table id="publishedTable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="tableText" style="width:70%">Release
+                                        <div id="backDate"></div>
+                                    </th>
+                                    <th class="tableData" style="width:9%"></th>
+                                    <th class="tableData" style="width:21%">Publishing<br>date</th>
+                                    <th class="tableData">Unformatted date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="publishedreleases">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Users</h4>
+                        <p>1 Million</p>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Pages</h4>
+                        <p>100 Million</p>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Sessions</h4>
+                        <p>10 Million</p>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Bounce</h4>
+                        <p>30%</p>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-    
-            <br>
+    </div>
+
+    <br>
 
     <script src="../releasesheet/releaseCalendar.js"></script>
     <script src="../js-control/msts.js"></script>
