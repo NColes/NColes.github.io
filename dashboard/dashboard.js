@@ -267,3 +267,75 @@ generatePublishedTable( function() {
         }
     });
 });
+
+function roundHundred(value) {
+    return Math.round(value / 100) * 100
+};
+
+
+
+
+get30DayAtAGlance = function() {
+    last30URL = "https://www.ons.gov.uk/publications/data?sortBy=release_date&query=&filter=bulletin&filter=article&size=100";
+    allDatasets = 0;
+    allWords = 0;
+    allChars = 0;
+    allCharts = 0;
+    allTables = 0;
+    past30 = new Date();
+    past30.setDate(past30.getDate() - 30.5);
+    past30Days = new Date(past30);
+    numberOfReleases = 0;
+    allText = "";
+
+    function generateAAG(callback) {
+        $.getJSON(last30URL, function(json) {
+            if (json.result.hasOwnProperty("results") != true) {
+                console.log("Error: Non-standard template at https://www.ons.gov.uk" + json.uri);
+            } else {
+                for (var x = 0; x < json.result.results.length; x++) {
+
+                    jsonDate = new Date((json.result.results[x].description.releaseDate).substr(0, 10));
+
+                    if (jsonDate > past30Days) {
+                        numberOfReleases += 1;
+                        $.getJSON(("https://www.ons.gov.uk" + json.result.results[x].uri + "/data"), function(json) {
+                            myJSON = json;
+                            if (myJSON.hasOwnProperty("sections") != true) {
+                                console.log("Error: Non-standard template at https://www.ons.gov.uk" + json.uri);
+                            } else {
+                                for (var s = 0; s < myJSON.sections.length; s++) {
+                                    allText += myJSON.sections[s].markdown;
+                                };
+                            };
+                            allWords = thousandsSeperator(roundHundred(allText.split(" ").length));
+                            allChars = thousandsSeperator(roundHundred(allText.length));
+                            allCharts += myJSON.charts.length + myJSON.images.length;
+                            allTables += myJSON.tables.length;
+                            allDatasets += myJSON.relatedData.length;
+                            callback && callback();
+                        });
+
+                    };
+                };
+
+            };
+
+        });
+    };
+
+    function printAAG() {
+        document.getElementById("characterCount").innerHTML = ("</br>(approx. " + allChars + " characters)");
+        document.getElementById("wordCount").innerHTML = allWords + " words";
+        document.getElementById("chartTotal").innerHTML = (allCharts + " charts");
+        document.getElementById("tableTotal").innerHTML = (allTables + " tables");
+        document.getElementById("datasetTotal").innerHTML = ((allDatasets) + " datasets");
+        document.getElementById("releaseNumber").innerHTML = numberOfReleases + " releases";
+
+    };
+
+    generateAAG(function() {
+        printAAG();
+    });
+
+};
