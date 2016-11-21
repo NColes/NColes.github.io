@@ -173,6 +173,22 @@ loadBoxes = function() {
     });
 };
 
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    setTimeout(reloadChart,300);
+};
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    setTimeout(reloadChart,300);
+};
+
+function reloadChart() {
+    $('#upcomingReleases').highcharts().reflow();
+};
+
 generateChartData = function() {
 
 	getReleaseData( function() {
@@ -191,22 +207,6 @@ generateChartData = function() {
 loadBoxes();
 
 generateChartData();
-
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    setTimeout(reloadChart,300);
-};
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-    setTimeout(reloadChart,300);
-};
-
-function reloadChart() {
-    $('#upcomingReleases').highcharts().reflow();
-};
 
 generateTodaysReleases();
 generateUpcomingTable( function() {
@@ -272,9 +272,6 @@ function roundHundred(value) {
     return Math.round(value / 100) * 100
 };
 
-
-
-
 get30DayAtAGlance = function() {
     last30URL = "https://www.ons.gov.uk/publications/data?sortBy=release_date&query=&filter=bulletin&filter=article&size=100";
     allDatasets = 0;
@@ -339,3 +336,5 @@ get30DayAtAGlance = function() {
     });
 
 };
+
+get30DayAtAGlance();
