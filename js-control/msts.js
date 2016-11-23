@@ -63,7 +63,7 @@ dashboardData = [
         'UK index of services:',
         'Construction output in Great Britain:',
         'Retail Sales in Great Britain:',
-        'Business investment in the UK:',
+        'Business investment in the UK',
         'UK labour market statistics:',
 	'UK house price index:',
         'UK producer price inflation:',
