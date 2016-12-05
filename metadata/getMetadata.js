@@ -124,6 +124,8 @@ getRelatedData = function(callback) {
         });
     };
 };
+    
+};
 
 getRelatedArticles = function() {
     if (myJSON.relatedArticles != null) {
