@@ -80,15 +80,17 @@ getRelatedData = function(callback) {
     };
 
     for (var d = 0; d < myJSON.relatedData.length; d++) {
-        dataArray = [];
-        linkArray = [];
-        TSDArray = [];
+    dataArray = [];
+    linkArray = [];
+    TSDArray = [];
+    for (var d = 0; d < myJSON.relatedData.length; d++) {
         linkArray.push('<a href="https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '">');
-        relDataLink = 'https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data';
-        $.getJSON(relDataLink, function(json) {
+        $.getJSON('https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data', function(json) {
             if (json.description.title.indexOf("timeseries") != -1 || json.description.title.indexOf("time series") != -1) {
                 TSDKeywords = "";
+
                 if (json.hasOwnProperty("keywords") === true) {
+
                     if (json.description.keywords.length == 0) {
                         TSDKeywords = "No keywords.";
                     } else {
@@ -97,11 +99,13 @@ getRelatedData = function(callback) {
                 } else {
                     TSDKeywords = "No keywords.";
                 };
+
                 if (json.description.nationalStatistic === true) {
                     NSStatus = "&#10003; Yes";
                 } else if (json.description.nationalStatistic === false) {
                     NSStatus = "&#10007; No";
                 };
+
                 if (json.section.markdown === "") {
                     timeseriesNotes = "No notes.";
                 } else {
