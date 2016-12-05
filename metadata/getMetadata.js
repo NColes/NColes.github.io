@@ -74,11 +74,11 @@ getRelatedBulletins = function() {
 getRelatedData = function(callback) {
     //Check for PDFs
     if (myJSON.pdfTable != "") {
-      document.getElementById("descPDF").innerHTML = "&#10003; This release contains PDF reference tables";  
+        document.getElementById("descPDF").innerHTML = "&#10003; This release contains PDF reference tables";
     } else {
-      document.getElementById("descPDF").innerHTML = "&#10007; This release does not contain PDF reference tables";
+        document.getElementById("descPDF").innerHTML = "&#10007; This release does not contain PDF reference tables";
     };
-    
+
     for (var d = 0; d < myJSON.relatedData.length; d++) {
         dataArray = [];
         linkArray = [];
@@ -86,24 +86,28 @@ getRelatedData = function(callback) {
         linkArray.push('<a href="https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '">');
         relDataLink = 'https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data';
         $.getJSON(relDataLink, function(json) {
-            if (json.description.title.indexOf("time series") != -1) {
+            if (json.description.title.indexOf("timeseries") != -1 || json.description.title.indexOf("time series") != -1) {
                 TSDKeywords = "";
-                if (json.description.keywords.length == 0) {
-                    TSDKeywords = "No keywords.";
+                if (json.hasOwnProperty("keywords") === true) {
+                    if (json.description.keywords.length == 0) {
+                        TSDKeywords = "No keywords.";
+                    } else {
+                        TSDKeywords = json.description.keywords.join("<br>");
+                    };
                 } else {
-                    TSDKeywords = json.description.keywords.join("<br>");
-                };
-                relData = '<tr><td><a data-name="' + json.description.title + '" href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + json.description.title + '</a></td>' + '<td>' + json.description.summary + '</td><td>' + json.description.datasetId + '</td><td>' + TSDKeywords + '</td><td>Contact: ' + json.description.contact.name + '<br>Email: ' + json.description.contact.email + '<br>Telephone: ' + json.description.contact.telephone + '</td></tr>';
-                TSDArray.push(relData);
-                document.getElementById("rTSD").innerHTML = TSDArray.join("");
-            } else if (json.description.title.indexOf("timeseries") != -1) {
-                TSDKeywords = "";
-                if (json.description.keywords.length == 0) {
                     TSDKeywords = "No keywords.";
-                } else {
-                    TSDKeywords = json.description.keywords.join("<br>");
                 };
-                relData = '<tr><td><a data-name="' + json.description.title + '" href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + json.description.title + '</a></td>' + '<td>' + json.description.summary + '</td><td>' + json.description.datasetId + '</td><td>' + TSDKeywords + '</td><td>Contact: ' + json.description.contact.name + '<br>Email: ' + json.description.contact.email + '<br>Telephone: ' + json.description.contact.telephone + '</td></tr>';
+                if (json.description.nationalStatistic === true) {
+                    NSStatus = "&#10003; Yes";
+                } else if (json.description.nationalStatistic === false) {
+                    NSStatus = "&#10007; No";
+                };
+                if (json.section.markdown === "") {
+                    timeseriesNotes = "No notes.";
+                } else {
+                    timeseriesNotes = (json.section.markdown).replace(/\n/g, "<br>");
+                };
+                relData = '<table class="table table-hover"><thead><tr><td colspan="2"><h4 style="padding-left:0px;"><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + json.description.title + '</a></h4></td></tr></thead><tbody><tr><td style="width:130px;">Summary</td><td>' + json.description.summary + '</td></tr><tr><td>Contact</td><td>' + json.description.contact.name + '</br>' + json.description.contact.email + '</br>' + json.description.contact.telephone + '</td></tr><tr><td>Dataset ID</td><td>' + json.description.datasetId + '</td></tr><tr><td>National statistic</td><td>' + NSStatus + '</td></tr><tr><td>Keywords</td><td>' + TSDKeywords + '</td></tr><tr><td>Metadescription</td><td>' + json.description.metaDescription + '</td></tr><tr><td>Notes</td><td>' + timeseriesNotes + '</td></tr></tbody></table>';
                 TSDArray.push(relData);
                 document.getElementById("rTSD").innerHTML = TSDArray.join("");
             } else {
