@@ -170,6 +170,27 @@ window.addEventListener('message', function(e) {
         };
     };
 }, false);
+	    
+window.addEventListener('message', function(pagination) {
+
+ if (pagination.data === "Upcoming page changed") {
+	console.log(pagination.data + " " + q);
+	q = q + 1;
+	$('html, body').animate({
+            scrollTop: $("#upcomingBox").offset().top
+        }, 600);
+	resizeUpcoming();
+} else if (pagination.data === "Published page changed") {
+	console.log(pagination.data + " " + r);
+	r = r + 1;
+	$('html, body').animate({
+           scrollTop: $("#publishedBox").offset().top
+        }, 600);
+	resizePublished();
+};
+
+}, false);
+	    
 </script>
 
     <!-- /container -->
