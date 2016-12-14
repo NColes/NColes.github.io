@@ -20,9 +20,6 @@
 .releaseTable {
 	width:100%
 }
-
-
-
 @media screen and (max-width: 1079px) {
 .releaseTable tr {
     height: 61px;
@@ -76,6 +73,7 @@ generatePublishedTable( function() {
 
         }
     });
+	bindPublishedButtons();resizePublished();
 });
 setTimeout(resizePublished, 500);
 
