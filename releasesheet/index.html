@@ -172,7 +172,8 @@ window.addEventListener('message', function(e) {
 }, false);
 	    
 window.addEventListener('message', function(pagination) {
-
+q = 1;
+r = 1
  if (pagination.data === "Upcoming page changed") {
 	console.log(pagination.data + " " + q);
 	q = q + 1;
