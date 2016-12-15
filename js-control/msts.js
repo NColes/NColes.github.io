@@ -71,3 +71,27 @@ dashboardData = [
         'United Kingdom Balance of Payments, The Pink Book:',
         'Balance of payments for the UK:'
     ];
+
+trackingTable = [
+	"Balance of payments for the UK:", 
+	"Business investment in the UK", 
+	"Construction output in Great Britain:", 
+	"UK consumer price inflation:", 
+	"UK consumer trends:", 
+	"Economic well-being:", 
+	"UK GDP, preliminary estimate:", 
+	"UK quarterly national accounts:", 
+	"UK house price index:", 
+	"UK index of production:", 
+	"UK index of services:", 
+	"Investment by insurance companies, pension funds and trusts in the UK (MQ5):", 
+	"UK labour market statistics:", 
+	"Migration in the UK:", 
+	"Overseas travel and tourism, monthly provisional results:", 
+	"UK population by country of birth and nationality:", 
+	"Population estimates for UK, England and Wales, Scotland and Northern Ireland:", 
+	"UK producer price inflation:", "UK public sector finances:", 
+	"Retail sales in Great Britain:", 
+	"UK productivity:", 
+	"UK trade:"
+    ];
