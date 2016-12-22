@@ -52,20 +52,20 @@ function generateReleaseTable() {
         jsonDateToday = jsonDate + " " + jsonMonth;
 
         if (new RegExp(marketSensitive.join("|"), "i").test(JSON.result.results[i].description.title)) {
-            MS = ' <img src="http://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" title="This release is market sensitive."><div style="display:none;">MS </div>';
+            MS = ' <img src="http://ncoles.github.io/releasesheet/ms.svg" class="MS" data-toggle="tooltip" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
         };
 
         if (new RegExp(timeseriesData.join("|"), "i").test(JSON.result.results[i].description.title)) {
-            TS = '<img src="http://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
+            TS = '<img src="http://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
 	    
 	if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
-            DB = '<img src="http://ncoles.github.io/releasesheet/dashboard.svg" class="DB" data-toggle="tooltip" title="This release feeds into the UK post-referendum economy dashboard." style="margin-left:2px;"><div style="display:none;">DB</div>';
+            DB = '<img src="http://ncoles.github.io/releasesheet/dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard." style="margin-left:2px;"><div style="display:none;">DB</div>';
         };
         
         if (JSON.result.results[i].description.cancelled == true) {
 	    cancelledReason = JSON.result.results[i].description.cancellationNotice[0];
-	    cancelled = '<img src="http://ncoles.github.io/releasesheet/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="right" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
+	    cancelled = '<img src="http://ncoles.github.io/releasesheet/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" data-placement="right" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
 	};
 
         //Highlight todays releases
