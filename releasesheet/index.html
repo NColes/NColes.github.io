@@ -57,36 +57,6 @@ h3 a {
 	color:inherit;
 	text-decoration:none;
 }
-
-#snow{
-	border-radius:5px;
-	background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
-	z-index:1;
-	-webkit-animation: snow 10s linear infinite;
-	-moz-animation: snow 10s linear infinite;
-	-ms-animation: snow 10s linear infinite;
-	animation: snow 10s linear infinite;
-}
-@keyframes snow {
-  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
-  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
-}
-@-moz-keyframes snow {
-  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
-  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
-}
-@-webkit-keyframes snow {
-  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
-  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
-}
-@-ms-keyframes snow {
-  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
-  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
-}	
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -114,20 +84,6 @@ h3 a {
             </nav>
         </div>
         <div class="container-fluid">
-            <div class="row">
-<div class="col-lg-4">
-</div>
-<div class="col-lg-4">
-            <div class="box" id="snow">
-<h4>Countdown to Christmas</h4>
-<div id="clockdiv" class="boxContent">
-<span id="daysSpan" style="font-size:24px"></span> days, <span id="hoursSpan" style="font-size:24px"></span> hours, <span id="minutesSpan" style="font-size:18px"></span> minutes, <span id="secondsSpan" style="font-size:18px"></span> seconds.
-</div>
-	    </div>
-</div>
-<div class="col-lg-4">
-</div>
-</div>
             <div class="row">
                 <div class="col-lg-6" id="upcomingBox">
                     <div class="well">
