@@ -59,8 +59,12 @@ function generateReleaseTable() {
             TS = '<img src="http://ncoles.github.io/releasesheet/ts.svg" class="TS" data-toggle="tooltip" data-placement="left" title="Timeseries data is published alongside this release"><div style="display:none;">TS</div>';
         };
 	    
-	if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
-            DB = '<img src="http://ncoles.github.io/releasesheet/dashboard.svg" class="DB" data-toggle="tooltip" data-placement="left" title="This release feeds into the UK post-referendum economy dashboard." style="margin-left:2px;"><div style="display:none;">DB</div>';
+	if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title) && new RegExp(trackingTable.join("|"), "i").test(JSON.result.results[i].description.title)) {
+            DB = '<img src="dashboard.svg" class="DB" data-toggle="tooltip" title="This release feeds into the UK post-referendum economy dashboard and tracking table." style="margin-left:2px;"><div style="display:none;">EU</div>';
+        } else 	if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title)) {
+            DB = '<img src="dashboard.svg" class="DB" data-toggle="tooltip" title="This release feeds into the UK post-referendum economy dashboard." style="margin-left:2px;"><div style="display:none;">DB</div>';
+        } else if (new RegExp(trackingTable.join("|"), "i").test(JSON.result.results[i].description.title)) {
+            DB = '<img src="dashboard.svg" class="DB" data-toggle="tooltip" title="This release feeds into the &ldquo;Tracking the impact of the EU referendum&rdquo; table." style="margin-left:2px;"><div style="display:none;">TT</div>';
         };
         
         if (JSON.result.results[i].description.cancelled == true) {
