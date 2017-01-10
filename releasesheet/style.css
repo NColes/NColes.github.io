@@ -44,6 +44,10 @@
     width: 50%;
 }
 
+.col-lg-6 h3 {
+    margin-top:0px;	
+}
+
 .well {
     border: 0px;
     background-color: white;
