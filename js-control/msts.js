@@ -67,9 +67,7 @@ dashboardData = [
         'UK labour market statistics:',
 	'UK house price index:',
         'UK producer price inflation:',
-        'UK trade:',
-        'United Kingdom Balance of Payments, The Pink Book:',
-        'Balance of payments for the UK:'
+        'UK trade:'
     ];
 
 trackingTable = [
