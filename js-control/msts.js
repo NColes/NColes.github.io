@@ -84,7 +84,7 @@ trackingTable = [
 	"UK index of services:", 
 	"Investment by insurance companies, pension funds and trusts in the UK (MQ5):", 
 	"UK labour market statistics:", 
-	"Migration in the UK:", 
+	//"Migration in the UK:", Removed temporarily
 	"Overseas travel and tourism, monthly provisional results:", 
 	"UK population by country of birth and nationality:", 
 	"Population estimates for UK, England and Wales, Scotland and Northern Ireland:", 
