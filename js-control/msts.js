@@ -78,6 +78,7 @@ trackingTable = [
 	"UK consumer trends:", 
 	"Economic well-being:", 
 	"UK GDP, preliminary estimate:", 
+	'UK GDP, second estimate:',
 	"UK quarterly national accounts:", 
 	"UK house price index:", 
 	"UK index of production:", 
