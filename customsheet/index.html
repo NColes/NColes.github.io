@@ -51,6 +51,15 @@ h3 a {
   color: inherit;
   text-decoration: none;
 }
+
+#form-table td {
+   padding-top:5px;
+   padding-bottom:5px;
+}
+
+#form-table button {
+   width:90%;
+};
   </style>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -84,13 +93,22 @@ h3 a {
         <div class="col-lg-4">
           <div class="well">
 
-            <label for="start">Start date: </br>
-<input id="start" type="date" required>
-</label>
+<table id="form-table">
+	<tr>
+	  <td><label for="start">Start date:</label></td>
+	  <td><label for="end">End date:</label></td>
+	</tr>
 
-            <label for="end">End date: </br><input id="end" type="date" required></label>
+	<tr>
+	  <td><input id="start" type="date" required></td>
+	  <td><input id="end" type="date" required></td>
+	</tr>
 
-            <button onclick="customSheet()">Generate sheet</button>
+	<tr>
+	  <td colspan="2"><button class="standardButton" onclick="customSheet()">Generate sheet</button></td>
+	</tr>
+</table>
+
 
 <p><a href="#advancedOptions" data-toggle="collapse" class="collapsed">Advanced options</a></p>
 
