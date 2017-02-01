@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="http://ncoles.github.io/favicon.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <title>Custom release sheet</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css" />
+
+  <link href="http://ncoles.github.io/style.css" rel="stylesheet">
+  <link href="http://ncoles.github.io/bootstrap.min.css" rel="stylesheet">
+  <link href="http://ncoles.github.io/css/justified-nav.css" rel="stylesheet">
+  <link href="http://ncoles.github.io/releasesheet/style.css" rel="stylesheet">
+
+  <script type="text/javascript" src="http://ncoles.github.io/js-control/tooltip.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+.box {
+  background-color: #7A1A13;
+  border: 1px solid white;
+  color: white;
+  margin: 10px;
+  text-align: center;
+}
+
+.box h4 {
+  border-bottom: 1px solid white;
+  padding: 20px 10px 20px 15px;
+  margin: 0px;
+}
+
+.boxContent {
+  margin: 15px;
+}
+
+h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+  </style>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body onresize="resizePublished()">
+
+  <div class="container">
+
+    <div class="masthead">
+
+      <h3 class="text-muted">Release sheet</h3>
+      <nav>
+        <ul class="nav nav-justified">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../metadata/index.html">Metadata tool</a></li>
+          <li class="active"><a href="#">Release sheet</a></li>
+          <li><a href="../timeseries/index.html">Timeseries</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <div class="well">
+
+            <label for="start">Start date: </br>
+<input id="start" type="date" required>
+</label>
+
+            <label for="end">End date: </br><input id="end" type="date" required></label>
+
+            <button onclick="customSheet()">Generate sheet</button>
+
+<p><a href="#advancedOptions" data-toggle="collapse" class="collapsed">Advanced options</a></p>
+
+<div id="advancedOptions" class="collapse">
+Choose only:</br>
+<label id="timeseriesOnly" class="clickme">Timeseries: <input type="checkbox"></label>
+
+</div>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12" id="upcomingBox" style="display:none;">
+          <div class="well" >
+            <h3>Custom release sheet</h3>
+            <table id="customTable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th>
+                    <div id="periodDate"></div>
+		  </th>
+                  <th colspan="2" id="dlbuttons" class="tableData">
+                  </th>
+
+                </tr>
+                <tr>
+                  <th class="tableText" style="width:68%">Release</th>
+                  <th class="tableData" style="width:12%"></th>
+                  <th class="tableData" style="width:20%">Publishing date</th>
+                  <th class="tableData" style="display:none;">Unformatted date</th>
+                </tr>
+              </thead>
+              <tbody id="publishedreleases"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="http://ncoles.github.io/releasesheet/releaseCalendar.js"></script>
+    <script src="releaseCalendarCustom.js"></script>
+    <script src="http://ncoles.github.io/js-control/msts.js"></script>
+
+
+    <script>
+var today = new Date();
+var dd = today.getDate();
+ddT = today.getDate() + 1;
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+if (dd < 10) {
+  dd = '0' + dd
+};
+
+if (mm < 10) {
+  mm = '0' + mm
+};
+
+today = yyyy + '-' + mm + '-' + dd;
+
+document.getElementById("start").setAttribute("min", today);
+document.getElementById("start").value = today;
+
+start.addEventListener('change', function() {
+  if (start.value)
+    end.min = start.value;
+}, false);
+
+end.addEventListener('change', function() {
+  if (end.value)
+    start.max = end.value;
+}, false);
+
+
+
+
+customSheet = function() {
+
+  if (start.value === "" | end.value === "") {
+    alert("Please fill in start and end dates");
+  } else {
+document.getElementById("upcomingBox").setAttribute("style", "display:block;");
+startDate = start.value;
+startDate = new Date(startDate);
+
+endDate = end.value;
+endDate = new Date(endDate);
+
+startDay = start.value.substring(8,10);
+startMonth = start.value.substring(5,7);
+startYear = start.value.substring(0,4);
+endDay = end.value.substring(8,10);
+endMonth = end.value.substring(5,7);
+endYear = end.value.substring(0,4);
+
+customURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + startDay + "&fromDateMonth=" + startMonth + "&fromDateYear=" + startYear + "&toDateDay=" + endDay + "&toDateMonth=" + endMonth + "&toDateYear=" + endYear + "&view=upcoming&size=250";
+
+generateCustomTable( function() {
+    var createCustom = $('#customTable').dataTable({
+        "lengthChange": false,
+        "pageLength": 15,
+        "autoWidth": false,
+        "searching": false,
+        "order": [
+            [3, "asc"]
+        ],
+        "columnDefs": [{
+            "targets": 3,
+            "visible": false
+        }],
+        "drawCallback": function(settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
+
+	 var buttons = new $.fn.dataTable.Buttons(createCustom, {
+        "buttons": [
+
+            {
+                "extend": 'csvHtml5',
+                "exportOptions": {
+                    "columns": ':visible'
+                }
+            }, {
+                "extend": 'excelHtml5',
+                "exportOptions": {
+                    "columns": ':visible'
+                }
+            }
+        ]
+}).container().appendTo($('#dlbuttons'));
+
+bindUpcomingButtons();
+
+});
+
+};
+
+};
+
+    </script>
+
+<script>
+
+</script>
+
+    <!-- /container -->
+
+</body>
+
+</html>
