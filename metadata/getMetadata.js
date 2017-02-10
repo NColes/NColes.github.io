@@ -106,10 +106,10 @@ getRelatedData = function(callback) {
                     NSStatus = "&#10007; No";
                 };
 
-                if (json.section.markdown === "") {
+                if (json.hasOwnProperty.section.markdown === "") {
                     timeseriesNotes = "No notes.";
                 } else {
-                    timeseriesNotes = (json.section.markdown).replace(/\n/g, "<br>");
+                    timeseriesNotes = (json.hasOwnProperty.section.markdown).replace(/\n/g, "<br>");
                 };
                 relData = '<table class="table table-hover"><thead><tr><td colspan="2"><h4 style="padding-left:0px;"><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + json.description.title + '</a></h4></td></tr></thead><tbody><tr><td style="width:130px;">Summary</td><td>' + json.description.summary + '</td></tr><tr><td>Contact</td><td>' + json.description.contact.name + '</br>' + json.description.contact.email + '</br>' + json.description.contact.telephone + '</td></tr><tr><td>Dataset ID</td><td>' + json.description.datasetId + '</td></tr><tr><td>National statistic</td><td>' + NSStatus + '</td></tr><tr><td>Keywords</td><td>' + TSDKeywords + '</td></tr><tr><td>Metadescription</td><td>' + json.description.metaDescription + '</td></tr><tr><td>Notes</td><td>' + timeseriesNotes + '</td></tr></tbody></table>';
                 TSDArray.push(relData);
