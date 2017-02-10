@@ -1,3 +1,9 @@
+//Open and close advanced options
+$('.collapseHeader').click(function() {
+
+  $(this).nextUntil('tr.collapseHeader').toggle('slow');
+});
+
 function generateCustomReleaseTable() {
 
   JSONout = "";
@@ -48,8 +54,29 @@ function generateCustomReleaseTable() {
       cancelled = '<img src="http://ncoles.github.io/releasesheet/cancelled.svg" class="cancelled" data-toggle="tooltip" data-placement="left" data-placement="right" title="Cancelled: ' + cancelledReason + '"><div style="display:none;">Cancelled</div>';
     };
 
-    JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '" target="_blank">' + JSON.result.results[i].description.title + '</a>' + '</td>' +
-      '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+    if (selectTimeseries.checked === true) {
+
+      if (new RegExp(timeseriesData.join("|"), "i").test(JSON.result.results[i].description.title)) {
+        JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '" target="_blank">' + JSON.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+      };
+    };
+
+    if (selectMS.checked === true) {
+      if (new RegExp(timeseriesData.join("|"), "i").test(JSON.result.results[i].description.title)) {
+        JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '" target="_blank">' + JSON.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+      };
+    };
+
+    if (selectDashboard.checked === true) {
+      console.log("Dashboard selected");
+      if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title) && new RegExp(trackingTable.join("|"), "i").test(JSON.result.results[i].description.title)) {
+        JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '" target="_blank">' + JSON.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+      };
+    };
+
+    if (selectTimeseries.checked === false && selectMS.checked === false && selectDashboard.checked === false) {
+      JSONout += '<tr><td><a href="https://www.ons.gov.uk' + JSON.result.results[i].uri + '" target="_blank">' + JSON.result.results[i].description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + '</td><td>' + JSON.result.results[i].description.releaseDate + '</td></tr>';
+    };
 
     document.getElementById("publishedreleases").innerHTML = JSONout;
 
@@ -58,7 +85,6 @@ function generateCustomReleaseTable() {
 
 };
 
-//Published data
 function generateCustomTable(callback) {
 
   console.log(customURL);
