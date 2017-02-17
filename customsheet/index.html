@@ -26,7 +26,41 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
   <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
   <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+  <!-- Tag-it CSS -->
+  <link href="http://aehlke.github.io/tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+  <link href="http://aehlke.github.io/tag-it/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+  <!-- Tag-it JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="http://aehlke.github.io/tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+
+  <script>
+searchKeywordsArray = [];
+$(function() {
+
+  $('#inputTags').tagit({
+    allowSpaces: true,
+    singleField: true,
+    singleFieldNode: $('#searchKeywords'),
+    autocomplete: {
+      delay: 0,
+      minLength: 2
+    }
+  });
+
+});
+
+
+$("#inputTags").tagit("assignedTags");
+  </script>
+
+
 
   <style>
 .box {
@@ -53,13 +87,15 @@ h3 a {
 }
 
 #form-table td {
-   padding-top:5px;
-   padding-bottom:5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #form-table button {
-   width:90%;
-};
+  width: 90%;
+}
+
+;
   </style>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -92,32 +128,49 @@ h3 a {
         </div>
         <div class="col-lg-4">
           <div class="well">
+            <table id="form-table">
+              <tr>
+                <td><label for="start">Start date:</label></td>
+                <td><label for="end">End date:</label></td>
+              </tr>
 
-<table id="form-table">
-	<tr>
-	  <td><label for="start">Start date:</label></td>
-	  <td><label for="end">End date:</label></td>
-	</tr>
+              <tr>
+                <td><input id="start" type="date" required></td>
+                <td><input id="end" type="date" required></td>
+              </tr>
+              <tr class="collapseHeader">
+                <td colspan="2"><a href="#">Advanced options</a></td>
+              </tr>
+              <tr style="display:none;">
+                <td colspan="2">Show me:</td>
+              </tr>
+              <tr style="display:none;">
+                <label class="clickme">
+<td>Timeseries</td><td><input id="selectTimeseries" type="checkbox"></td>
+    </label>
+              </tr>
+              <tr style="display:none;">
+                <label class="clickme"><td>Market sensitive</td><td><input id="selectMS" type="checkbox"></td></label>
+              </tr>
+              <tr style="display:none;">
+                <label class="clickme"><td>Dashboard and tracking table</td><td><input id="selectDashboard" type="checkbox"></td></label>
+              </tr>
+              <tr style="display:none;">
+                <td colspan="2">Keywords:</td>
+              </tr>
+              <tr style="display:none;">
+                <td colspan="2">
+                  <form>
+                    <ul id="inputTags"></ul>
+                  </form>
+                </td>
+              </tr>
 
-	<tr>
-	  <td><input id="start" type="date" required></td>
-	  <td><input id="end" type="date" required></td>
-	</tr>
-
-	<tr>
-	  <td colspan="2"><button class="standardButton" onclick="customSheet()">Generate sheet</button></td>
-	</tr>
-</table>
-
-
-<p><a href="#advancedOptions" data-toggle="collapse" class="collapsed">Advanced options</a></p>
-
-<div id="advancedOptions" class="collapse">
-Choose only:</br>
-<label id="timeseriesOnly" class="clickme">Timeseries: <input type="checkbox"></label>
-
-</div>
-
+              <tr class="collapseHeader"></tr>
+              <tr>
+                <td colspan="2"><button class="standardButton" onclick="customSheet()">Generate sheet</button></td>
+              </tr>
+            </table>
           </div>
         </div>
         <div class="col-lg-4">
@@ -125,14 +178,15 @@ Choose only:</br>
       </div>
       <div class="row">
         <div class="col-lg-12" id="upcomingBox" style="display:none;">
-          <div class="well" >
+          <div class="well">
             <h3>Custom release sheet</h3>
+	    <input name="tags" id="searchKeywords" disabled="true" style="display:none;">
             <table id="customTable" class="table table-hover">
               <thead>
                 <tr>
                   <th>
                     <div id="periodDate"></div>
-		  </th>
+                  </th>
                   <th colspan="2" id="dlbuttons" class="tableData">
                   </th>
 
@@ -146,12 +200,13 @@ Choose only:</br>
               </thead>
               <tbody id="publishedreleases"></tbody>
             </table>
+
           </div>
         </div>
       </div>
     </div>
 
-    <script src="http://ncoles.github.io/releasesheet/releaseCalendar.js"></script>
+
     <script src="releaseCalendarCustom.js"></script>
     <script src="http://ncoles.github.io/js-control/msts.js"></script>
 
@@ -186,77 +241,89 @@ end.addEventListener('change', function() {
 }, false);
 
 
-
+var tableDrawn = false;
 
 customSheet = function() {
 
   if (start.value === "" | end.value === "") {
     alert("Please fill in start and end dates");
-  } else {
-document.getElementById("upcomingBox").setAttribute("style", "display:block;");
-startDate = start.value;
-startDate = new Date(startDate);
+  } else {    
 
-endDate = end.value;
-endDate = new Date(endDate);
+    searchKeywordsArray = document.getElementById("searchKeywords").value.split(",");
 
-startDay = start.value.substring(8,10);
-startMonth = start.value.substring(5,7);
-startYear = start.value.substring(0,4);
-endDay = end.value.substring(8,10);
-endMonth = end.value.substring(5,7);
-endYear = end.value.substring(0,4);
+    document.getElementById("upcomingBox").setAttribute("style", "display:block;");
+    startDate = start.value;
+    startDate = new Date(startDate);
 
-customURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + startDay + "&fromDateMonth=" + startMonth + "&fromDateYear=" + startYear + "&toDateDay=" + endDay + "&toDateMonth=" + endMonth + "&toDateYear=" + endYear + "&view=upcoming&size=250";
+    endDate = end.value;
+    endDate = new Date(endDate);
 
-generateCustomTable( function() {
-    var createCustom = $('#customTable').dataTable({
+    startDay = start.value.substring(8, 10);
+    startMonth = start.value.substring(5, 7);
+    startYear = start.value.substring(0, 4);
+    endDay = end.value.substring(8, 10);
+    endMonth = end.value.substring(5, 7);
+    endYear = end.value.substring(0, 4);
+
+    customURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + startDay + "&fromDateMonth=" + startMonth + "&fromDateYear=" + startYear + "&toDateDay=" + endDay + "&toDateMonth=" + endMonth + "&toDateYear=" + endYear + "&view=upcoming&size=250";
+
+    generateCustomTable(function() {
+
+     var createCustom = $('#customTable').dataTable({
         "lengthChange": false,
         "pageLength": 15,
         "autoWidth": false,
         "searching": false,
+        "language": {
+          "zeroRecords": "No releases found."
+        },
         "order": [
-            [3, "asc"]
+          [3, "asc"]
         ],
         "columnDefs": [{
-            "targets": 3,
-            "visible": false
+          "targets": 3,
+          "visible": false
         }],
         "drawCallback": function(settings) {
-            $('[data-toggle="tooltip"]').tooltip();
+          $('[data-toggle="tooltip"]').tooltip();
         }
-    });
+      });
 
-	 var buttons = new $.fn.dataTable.Buttons(createCustom, {
+      var buttons = new $.fn.dataTable.Buttons(createCustom, {
         "buttons": [
 
-            {
-                "extend": 'csvHtml5',
-                "exportOptions": {
-                    "columns": ':visible'
-                }
-            }, {
-                "extend": 'excelHtml5',
-                "exportOptions": {
-                    "columns": ':visible'
-                }
+          {
+            "extend": 'csvHtml5',
+            "exportOptions": {
+              "columns": ':visible'
             }
+          }, {
+            "extend": 'excelHtml5',
+            "exportOptions": {
+              "columns": ':visible'
+            }
+          }
         ]
-}).container().appendTo($('#dlbuttons'));
+      }).container().appendTo($('#dlbuttons'));
 
-bindUpcomingButtons();
+      bindUpcomingButtons();
+      var tableDrawn = true;
+    });
 
-});
+  };
 
 };
-
-};
-
     </script>
 
-<script>
+    <script>
+var addingTags = document.getElementById("searchKeywords");
 
-</script>
+addingTags.addEventListener('change', function() {
+  console.log("Tag added");
+  if (addingTags.value != "")
+    console.log("Tag added");
+}, false);
+    </script>
 
     <!-- /container -->
 
