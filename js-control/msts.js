@@ -48,7 +48,7 @@ timeseriesData = [
         'UK productivity:',
         'UK public sector finances:',
         'UK quarterly national accounts:',
-        'UK services producer price indeces',
+        'UK services producer price indices',
         'UK trade in goods by classification of product by activity',
         'UK trade:',
         'United Kingdom Balance of Payments, The Pink Book:'
