@@ -61,7 +61,7 @@ function generateReleaseTable() {
         };
 	    
 	if (JSON.result.results[i].description.finalised === false) {
-	    provDate = " (provisional)";
+	    provDate = "<br> (provisional)";
 	};
 	    
 	if (new RegExp(dashboardData.join("|"), "i").test(JSON.result.results[i].description.title) && new RegExp(trackingTable.join("|"), "i").test(JSON.result.results[i].description.title)) {
