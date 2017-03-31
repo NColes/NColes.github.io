@@ -37,7 +37,7 @@ function generateCustomReleaseTable() {
     jsonDateToday = jsonDate + " " + jsonMonth;
 
     if (new RegExp(marketSensitive.join("|"), "i").test(JSON.result.results[i].description.title)) {
-      MS = '<img src="http://ncoles.github.io/releasesheet/ms.svg" class="MS" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS</div>';
+      MS = '<img src="http://ncoles.github.io/releasesheet/ms.svg" class="MS" data-placement="left" title="This release is market sensitive."><div style="display:none;">MS </div>';
     };
 
     if (new RegExp(timeseriesData.join("|"), "i").test(JSON.result.results[i].description.title)) {
