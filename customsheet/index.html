@@ -267,7 +267,7 @@ customSheet = function() {
     startDay = start.value.substring(8, 10);
     startMonth = start.value.substring(5, 7);
     startYear = start.value.substring(0, 4);
-    endDay = end.value.substring(8, 10);
+    endDay = Number(end.value.substring(8, 10)) + 1;
     endMonth = end.value.substring(5, 7);
     endYear = end.value.substring(0, 4);
 
