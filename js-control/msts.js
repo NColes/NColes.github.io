@@ -41,6 +41,7 @@ timeseriesData = [
         'UK economic accounts:',
         'UK GDP, preliminary estimate:',
         'UK GDP, second estimate:',
+	'UK government debt and deficit as reported to the European Commission',
         'UK index of production:',
         'UK index of services:',
         'UK labour market statistics:',
