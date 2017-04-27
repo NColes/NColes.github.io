@@ -248,6 +248,10 @@ end.addEventListener('change', function() {
 
 
 var tableDrawn = false;
+	    
+daysInMonth = function(month,year) {
+    return new Date(year, month, 0).getDate();
+}
 
 customSheet = function() {
 
@@ -267,9 +271,17 @@ customSheet = function() {
     startDay = start.value.substring(8, 10);
     startMonth = start.value.substring(5, 7);
     startYear = start.value.substring(0, 4);
-    endDay = Number(end.value.substring(8, 10)) + 1;
-    endMonth = end.value.substring(5, 7);
+
     endYear = end.value.substring(0, 4);
+
+    if (Number(end.value.substring(8, 10)) + 1 > daysInMonth(end.value.substring(5, 7),end.value.substring(0, 4))) {
+	console.log("Invalid date produced");
+        endDay = 1;
+        endMonth = Number(end.value.substring(5, 7)) + 1;
+    } else {
+	endMonth = end.value.substring(5, 7);
+        endDay = Number(end.value.substring(8, 10)) + 1;
+    };
 
     customURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + startDay + "&fromDateMonth=" + startMonth + "&fromDateYear=" + startYear + "&toDateDay=" + endDay + "&toDateMonth=" + endMonth + "&toDateYear=" + endYear + "&view=upcoming&size=250";
 
