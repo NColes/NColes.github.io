@@ -17,7 +17,7 @@ basicMetadata = function() {
     document.getElementById("dPhone").innerHTML = myJSON.description.contact.telephone;
     document.getElementById("dNext").innerHTML = myJSON.description.nextRelease;
     if ((new Date).getTimezoneOffset() != -60) {
-        document.getElementById("dPubl").innerHTML = myJSON.description.releaseDate.substring(8, 10) + " " + monthNames[myJSON.description.releaseDate.substring(5, 7) - 1] + " " + myJSON.description.releaseDate.substring(0, 4);    
+        document.getElementById("dPubl").innerHTML = Number(myJSON.description.releaseDate.substring(8, 10)) + " " + monthNames[myJSON.description.releaseDate.substring(5, 7) - 1] + " " + myJSON.description.releaseDate.substring(0, 4);    
     } else {
         document.getElementById("dPubl").innerHTML = (Number(myJSON.description.releaseDate.substring(8, 10)) + 1) + " " + monthNames[myJSON.description.releaseDate.substring(5, 7) - 1] + " " + myJSON.description.releaseDate.substring(0, 4);
     }
