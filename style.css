@@ -156,7 +156,7 @@ a.dt-button:hover:not(.disabled) {
 	padding:10px 0px;
 }
 
-button.dt-button:active {
+button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled)  {
 	background-color: #0F8243;
 	background-image: linear-gradient(to bottom, #0F8243 0%, #074021 100%);
 }
