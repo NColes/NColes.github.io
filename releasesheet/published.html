@@ -29,7 +29,7 @@
 
 </head>
 
-<body onresize="resizePublished()">
+<body>
 <div style="float:left;" class="releaseTable">
     <table id="publishedTable" class="table table-hover" >
         <thead>
@@ -54,31 +54,7 @@
 
     <script src="releaseCalendar.js"></script>
     <script src="../js-control/msts.js"></script>
-    <script>
-generatePublishedTable( function() {
-    $('#publishedTable').dataTable({
-        "lengthChange": false,
-        "pageLength": 15,
-        "searching": false,
-        "autoWidth": false,
-        "order": [
-            [3, "desc"]
-        ],
-        "columnDefs": [{
-            "targets": 3,
-            "visible": false
-        }],
-        "drawCallback": function(settings) {
-            $('[data-toggle="tooltip"]').tooltip();
-
-        }
-    });
-	bindPublishedButtons();
-	resizePublished();
-});
-setTimeout(resizePublished, 2000);
-
-    </script>
+    <script src="published.js"></script>
 
 </body>
 
