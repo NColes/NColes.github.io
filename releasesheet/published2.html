@@ -62,37 +62,6 @@
     <script src="https://ncoles.github.io/js-control/msts.js"></script>
 
 <script>
-generatePublishedTable( function() {
-    $('#publishedTable').dataTable({
-        "lengthChange": false,
-        "pageLength": 15,
-        "searching": false,
-        "autoWidth": false,
-        "order": [
-            [3, "desc"]
-        ],
-        "columnDefs": [{
-            "targets": 3,
-            "visible": false
-        }],
-        "drawCallback": function(settings) {
-            $('[data-toggle="tooltip"]').tooltip();
-
-        }
-    });
-bindPublishedButtons();
-resizePublished();
-});
-
-setTimeout(resizePublished, 6000);
-
-document.body.onresize = function() {
-	resizePublished()
-};
-
-
-
-
 var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var dToday = new Date;
 var dateToday = dToday.getDate();
@@ -398,6 +367,37 @@ function bindUpcomingButtons() {
         $(".paginate_button").unbind('click', logPublishedPagination);
         $(".paginate_button").bind('click', logPublishedPagination);
     };
+	
+	
+	
+	generatePublishedTable( function() {
+    $('#publishedTable').dataTable({
+        "lengthChange": false,
+        "pageLength": 15,
+        "searching": false,
+        "autoWidth": false,
+        "order": [
+            [3, "desc"]
+        ],
+        "columnDefs": [{
+            "targets": 3,
+            "visible": false
+        }],
+        "drawCallback": function(settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        }
+    });
+bindPublishedButtons();
+resizePublished();
+});
+
+setTimeout(resizePublished, 6000);
+
+document.body.onresize = function() {
+	resizePublished()
+};
+
 </script>
 
 
