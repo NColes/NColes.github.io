@@ -156,6 +156,11 @@ a.dt-button:hover:not(.disabled) {
 	padding:10px 0px;
 }
 
+button.dt-button:active {
+	background-color: #0F8243;
+	background-image: linear-gradient(to bottom, #0F8243 0%, #074021 100%);
+}
+
 .standardButton {
     color: #F2F2F2;
     background-color: #0F8243;
