@@ -33,7 +33,7 @@ timeseriesData = [
         'Profitability of UK Companies:',
         'Public sector employment, UK:',
         'Retail Sales in Great Britain:',
-        'The Blue Book',
+        'The Blue Book:',
         //'Turnover and orders in UK production and Great Britain services industries',
 	'Turnover in production and services industries',
         'UK consumer price inflation:',
