@@ -56,3 +56,45 @@ h4 {
 #atAGlanceContent {
 	margin:15px;
 }
+
+.tooltip-inner {
+  max-width: 400px;
+  background-color: white;
+  padding: 0px;
+}
+
+.tooltip-inner img {
+  padding: 10px;
+}
+
+.tooltip-arrow {
+  border-bottom-color: grey !important;
+}
+
+#allCharts table a {
+  display: block;
+}
+
+.tooltip.in {
+  opacity: 1;
+}
+
+img {
+  border: 1px solid grey;
+}
+
+[data-title="Type"] {
+  text-transform: capitalize;
+}
+
+[data-title="Alt text"] {
+  max-width: 250px;
+}
+
+[data-title="Title"] {
+  max-width: 300px;
+}
+
+.standardButton {
+  margin-top: 10px;
+}
