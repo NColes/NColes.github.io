@@ -6,6 +6,12 @@ function roundHundred(value) {
     return Math.round(value / 100) * 100
 };
 
+copyID = function(id) {
+  document.getElementById(id).select();
+  document.execCommand('copy');
+  swal("Done!", "The chart ID has been copied to your clipboard.", "success")
+};
+
 basicMetadata = function() {
     monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
