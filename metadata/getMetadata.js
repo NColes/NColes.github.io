@@ -158,45 +158,48 @@ getSections = function() {
 };
 
 getChartsTables = function() {
-    tablesArray = [];
-    if (myJSON.charts.length > 0) {
-        for (var x = 0; x < myJSON.charts.length; x++) {
-            chartArray = [];
-            chartLink = 'https://www.ons.gov.uk' + myJSON.charts[x].uri + '/data';
+  tablesArray = [];
+  if (myJSON.charts.length > 0) {
+    for (x = 0; x < myJSON.charts.length; x++) {
+      chartArray = [];
+      chartLink = 'https://www.ons.gov.uk' + myJSON.charts[x].uri + '/data';
 
-            $.getJSON(chartLink, function(json) {
-                chartBuilderType = "";
-                if (json.chartType === "rotated") {
-                    chartBuilderType = "Rotated bar";
-                } else if (json.chartType === "line") {
-                    chartBuilderType = "Line";
-                } else if (json.chartType === "barline") {
-                    chartBuilderType = "Bar and line";
-                } else if (json.chartType === "bar") {
-                    chartBuilderType = "Bar";
-                } else {
-                    chartBuilderType = json.chartType;
-                };
-                chartInfo = '<tr><td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>' + json.unit + '</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + chartBuilderType + '</a></td></tr>';
-                chartArray.push(chartInfo);
-                chartArray.sort(naturalCompare);
-                document.getElementById("allcharts").innerHTML = chartArray.join("");
-            });
+      $.getJSON(chartLink, function(json) {
+        chartBuilderType = "";
+        imageSource = "<img width=&#39;300px&#39; src=&#39;https://www.ons.gov.uk/chartimage?uri=" + json.uri + "&#39;>";
+        chartBuilderType = json.chartType.replace(/-/i, " ");
+        chartInfo = '<tr data-label="' + json.title.substring(0, 10).trim() + '"><td data-title="Title">' +  json.title + '<a href="https://www.ons.gov.uk' + json.uri + '" style="display:inline;" target="_blank" data-toggle="tooltip" title="' + imageSource + '"><img src="chart.svg" style="border:0px;"></a></td>' + '<td data-title="Subtitle">' + json.subtitle + '</td>' + '<td data-title="Source">' + json.source + '</td>' + '<td data-title="Units">' + json.unit + '</td>' + '<td data-title="Alt text">' + json.altText + '</td>' + '<td data-title="Type"><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank">' + chartBuilderType + '</a></td><td data-title="Chart ID">' + json.filename + '  <textarea style="position:absolute;left:-9999em" id="' + json.filename + '">' + json.uri + '</textarea><button class="standardButton" onclick=copyID("' + json.filename + '");>Copy</button></td></tr>';
+        chartArray.push(chartInfo);
+        chartArray.sort(naturalCompare);
+        document.getElementById("allcharts").innerHTML = chartArray.join("");
+        $('[data-toggle="tooltip"]').tooltip({
+          animated: 'fade',
+          placement: 'bottom',
+          html: true
+        });
+      });
 
-        };
     };
 
-    if (myJSON.images.length > 0) {
-        for (var n = 0; n < myJSON.images.length; n++) {
-            imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
-            $.getJSON(imageLink, function(json) {
-                imageInfo = '<tr>' + '<td>' + json.title + '</td>' + '<td>' + json.subtitle + '</td>' + '<td>' + json.source + '</td>' + '<td>N/A</td>' + '<td>' + json.altText + '</td>' + '<td><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td></tr>';
-                chartArray.push(imageInfo);
-                chartArray.sort(naturalCompare);
-                document.getElementById("allcharts").innerHTML = chartArray.join("");
-            });
-        };
+  };
+
+  if (myJSON.images.length > 0) {
+    for (n = 0; n < myJSON.images.length; n++) {
+      imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
+      $.getJSON(imageLink, function(json) {
+        imageSource2 = "<img width=&#39;300px&#39; src=&#39;https://www.ons.gov.uk/resource?uri=" + json.uri + "." + json.files[0].fileType + "&#39;>";
+        imageInfo = '<tr data-label="' + json.title.substring(0, 10).trim() + '"><td data-title="Title"><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank" data-toggle="tooltip" title="' + imageSource2 + '">' + json.title + '</td>' + '<td data-title="Subtitle">' + json.subtitle + '</td>' + '<td data-title="Source">' + json.source + '</td>' + '<td data-title="Units">N/A</td>' + '<td data-title="Alt text">' + json.altText + '</td>' + '<td data-title="Type"><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td><td></td></tr>';
+        chartArray.push(imageInfo);
+        chartArray.sort(naturalCompare);
+        document.getElementById("allcharts").innerHTML = chartArray.join("");
+        $('[data-toggle="tooltip"]').tooltip({
+          animated: 'fade',
+          placement: 'bottom',
+          html: true
+        });
+      });
     };
+  };
 
     
     
