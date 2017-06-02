@@ -7,7 +7,8 @@ var monthTodayValue = mToday.getMonth();
 var yToday = new Date;
 var yearToday = yToday.getFullYear();
 var todaysDate = dateToday + " " + monthToday;
-var fortnightAway = new Date(+new Date + 12096e5);
+//Needs to be 15 days away as it does not include final date
+var fortnightAway = new Date(+new Date + 1296000000);
 var fortnightBack = new Date(+new Date - 12096e5);
 
 var dAway = fortnightAway.getDate();
