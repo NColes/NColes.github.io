@@ -193,7 +193,7 @@ getChartsTables = function() {
     for (n = 0; n < myJSON.images.length; n++) {
       imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
       $.getJSON(imageLink, function(json) {
-        imageSource2 = "<img width=&#39;300px&#39; src=&#39;https://www.ons.gov.uk/resource?uri=" + myJSON.uri + "." + json.files[0].filename + "&#39;>";
+        imageSource2 = "<img width=&#39;300px&#39; src=&#39;https://www.ons.gov.uk/resource?uri=" + myJSON.uri + "/" + json.files[0].filename + "&#39;>";
         imageInfo = '<tr data-label="' + json.title.substring(0, 10).trim() + '"><td data-title="Title">' + json.title + '<a href="https://www.ons.gov.uk' + json.uri + '" target="_blank" data-toggle="tooltip" title="' + imageSource2 + '"><img src="chart.svg" style="border:0px;"></a></td>' + '<td data-title="Subtitle">' + json.subtitle + '</td>' + '<td data-title="Source">' + json.source + '</td>' + '<td data-title="Units">N/A</td>' + '<td data-title="Alt text">' + json.altText + '</td>' + '<td data-title="Type">Image</td><td></td></tr>';
         chartArray.push(imageInfo);
         chartArray.sort(naturalCompare);
