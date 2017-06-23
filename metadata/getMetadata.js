@@ -194,7 +194,7 @@ getChartsTables = function() {
       imageLink = 'https://www.ons.gov.uk' + myJSON.images[n].uri + '/data';
       $.getJSON(imageLink, function(json) {
         imageSource2 = "<img width=&#39;300px&#39; src=&#39;https://www.ons.gov.uk/resource?uri=" + json.uri + "." + json.files[0].fileType + "&#39;>";
-        imageInfo = '<tr data-label="' + json.title.substring(0, 10).trim() + '"><td data-title="Title"><a href="https://www.ons.gov.uk' + json.uri + '" target="_blank" data-toggle="tooltip" title="' + imageSource2 + '">' + json.title + '</td>' + '<td data-title="Subtitle">' + json.subtitle + '</td>' + '<td data-title="Source">' + json.source + '</td>' + '<td data-title="Units">N/A</td>' + '<td data-title="Alt text">' + json.altText + '</td>' + '<td data-title="Type"><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td><td></td></tr>';
+        imageInfo = '<tr data-label="' + json.title.substring(0, 10).trim() + '"><td data-title="Title">' + json.title + '<a href="https://www.ons.gov.uk' + json.uri + '" target="_blank" data-toggle="tooltip" title="' + imageSource2 + '"><img src="chart.svg" style="border:0px;"></a></td>' + '<td data-title="Subtitle">' + json.subtitle + '</td>' + '<td data-title="Source">' + json.source + '</td>' + '<td data-title="Units">N/A</td>' + '<td data-title="Alt text">' + json.altText + '</td>' + '<td data-title="Type"><a href="https://www.ons.gov.uk/resource?uri=' + json.uri + '.png" target="_blank">Image</a></td><td></td></tr>';
         chartArray.push(imageInfo);
         chartArray.sort(naturalCompare);
         document.getElementById("allcharts").innerHTML = chartArray.join("");
