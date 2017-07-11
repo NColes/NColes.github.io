@@ -195,7 +195,7 @@ getChartsTables = function() {
       $.getJSON(imageLink, function(json) {
         for (y = 0; y < json.files.length; y++) {
             if (json.files[y].type === 'uploaded-image') {
-                imageSource2 = "<img width=&#39;300px&#39; src=&#39;https://www.ons.gov.uk/resource?uri=" + myJSON.uri + "/" + json.files[0].filename + "&#39;>";
+                imageSource2 = "<img width=&#39;300px&#39; src=&#39;https://www.ons.gov.uk/resource?uri=" + myJSON.uri + "/" + json.files[y].filename + "&#39;>";
                 break;
             } else {
             }
