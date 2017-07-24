@@ -282,8 +282,10 @@ getMetadata = function() {
             getSections();
             getChartsTables();
             getTaxonomy();
-            getRelatedData();
-            getDatasetNumbers();
+            getRelatedData( function() {
+                getDatasetNumbers();
+            });
+            
         };
 
         if (myJSON.type === "article") {
@@ -292,8 +294,9 @@ getMetadata = function() {
             getSections();
             getChartsTables();
             getTaxonomy();
-            getRelatedData();
-            getDatasetNumbers();
+            getRelatedData( function() {
+                getDatasetNumbers();
+            });
         };
 
         if (myJSON.type === "dataset_landing_page") {
