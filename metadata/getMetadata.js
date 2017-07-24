@@ -267,6 +267,7 @@ getAtAGlance = function(callback) {
 
 getDatasetNumbers = function() {
     document.getElementById("datasetTotal").innerHTML = ((myJSON.relatedData.length - TSDArray.length) + " datasets,");
+    document.getElementById("timeseriesTotal").innerHTML = (TSDArray.length + " timeseries datasets.");
 };
 
 getMetadata = function() {
@@ -281,8 +282,8 @@ getMetadata = function() {
             getSections();
             getChartsTables();
             getTaxonomy();
-            getDatasetNumbers();
             getRelatedData();
+            getDatasetNumbers();
         };
 
         if (myJSON.type === "article") {
@@ -291,8 +292,8 @@ getMetadata = function() {
             getSections();
             getChartsTables();
             getTaxonomy();
-            getDatasetNumbers();
             getRelatedData();
+            getDatasetNumbers();
         };
 
         if (myJSON.type === "dataset_landing_page") {
