@@ -264,17 +264,6 @@ JSONoutToday = "";
 
 };
 
-function resizeUpcoming() {
-  var height = document.getElementsByTagName("html")[0].scrollHeight;
-//  window.parent.postMessage(["upcoming", "setHeight", height], "*");
-};
-
-function resizePublished() {
-  var height = document.getElementsByTagName("html")[0].scrollHeight;
-//  window.parent.postMessage(["published", "setHeight", height], "*"); 
-  console.log(["setHeight", height], "*"); 
-};
-
 function bindPublishedButtons() {
     $(".paginate_button").unbind('click', logPublishedPagination);
     $(".paginate_button").bind('click', logPublishedPagination);
