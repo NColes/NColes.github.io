@@ -264,35 +264,4 @@ JSONoutToday = "";
 
 };
 
-function resizeUpcoming() {
-  var height = document.getElementsByTagName("html")[0].scrollHeight;
-  window.parent.postMessage(["upcoming", "setHeight", height], "*");
-};
 
-function resizePublished() {
-  var height = document.getElementsByTagName("html")[0].scrollHeight;
-  window.parent.postMessage(["published", "setHeight", height], "*"); 
-  console.log(["setHeight", height], "*"); 
-};
-
-function bindPublishedButtons() {
-    $(".paginate_button").unbind('click', logPublishedPagination);
-    $(".paginate_button").bind('click', logPublishedPagination);
-};
-
-function bindUpcomingButtons() {
-    $(".paginate_button").unbind('click', logUpcomingPagination);
-    $(".paginate_button").bind('click', logUpcomingPagination);
-};
-
-function logUpcomingPagination() {
-    window.parent.postMessage("Upcoming page changed", "*");
-    $(".paginate_button").unbind('click', logUpcomingPagination);
-    $(".paginate_button").bind('click', logUpcomingPagination);
-};
-
-function logPublishedPagination() {
-    window.parent.postMessage("Published page changed", "*");
-    $(".paginate_button").unbind('click', logPublishedPagination);
-    $(".paginate_button").bind('click', logPublishedPagination);
-};
