@@ -234,6 +234,7 @@ if (mm < 10) {
 today = yyyy + '-' + mm + '-' + dd;
 
 document.getElementById("start").setAttribute("min", today);
+document.getElementById("end").setAttribute("min", today);
 document.getElementById("start").value = today;
 
 start.addEventListener('change', function() {
