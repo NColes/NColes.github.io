@@ -8,9 +8,177 @@ var newPathname = "";
 var JSONURL = "";
 var previousPath = ""
 
+clearContent = function() {
+    document.getElementById("contentBox").innerHTML = `<div class="row marketing">
+            <div id="atAGlance" style="display:none;">
+                <h4>At a glance</h4>
+                <div id="atAGlanceContent">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="min-width:150px">Title</td>
+                                <td><span id="aTitle"></span><span id="aEdition"></span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Number of editions</td>
+                                <td id="previousVersions"></td>
+                            </tr>
+                            <tr>
+                                <td>Length</td>
+                                <td><span id="wordCount"></span> <span id="characterCount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Total charts</td>
+                                <td id="chartTotal"></td>
+                            </tr>
+                            <tr>
+                                <td>Total tables</td>
+                                <td id="tableTotal"></td>
+                            </tr>
+                            <tr>
+                                <td>Datasets</td>
+                                <td><span id="datasetTotal"></span> <span id="timeseriesTotal"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <div id="metadata" style="display:none;">
+                <h3>Release metadata</h3>
+
+                  <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">Title</td>
+                            <td style="width:600px;" id="dTitle"></td>
+                        </tr>
+                        <tr>
+                            <td>Edition</td>
+                            <td id="dEdition"></td>
+                        </tr>
+                        <tr>
+                            <td>Release date</td>
+                            <td id="dPubl"></td>
+                        </tr>
+                        <tr>
+                            <td>Next release date</td>
+                            <td id="dNext">No next release date.</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td id="dType"></td>
+                        </tr>
+                        <tr>
+                            <td>Taxonomy</td>
+                            <td id="dTax"></td>
+                        </tr>
+                        <tr>
+                            <td>Contact details</td>
+                            <td>Name:
+                                <div id="dName" style="display:inline;"></div><br>Email:
+                                <div id="dEmail" style="display:inline;"></div><br>Telephone:
+                                <div id="dPhone" style="display:inline;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Summary or abstract</td>
+                            <td id="dSumm">No summary or abstract.</td>
+                        </tr>
+                        <tr>
+                            <td>Metadescription</td>
+                            <td id="dMeta">No metadescription.</td>
+                        </tr>
+                        <tr>
+                            <td>Keywords</td>
+                            <td id="dKeywords">No keywords.</td>
+                        </tr>
+                        <tr>
+                            <td>National Statistics</td>
+                            <td id="descNS"></td>
+                        </tr>
+                        <tr>
+                            <td>PDF reference tables</td>
+                            <td id="descPDF"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Sections</h3>
+
+                <ol>
+                    <div id="sections"></div>
+                    <div id="accordion"></div>
+                </ol>
+
+                <h3>Charts or images</h3>
+          <table id="tableWide" class="table table-hover">
+            <thead>
+              <tr>
+                <th data-title="Title">Title</th>
+                <th data-title="Subtitle">Subtitle</th>
+                <th data-title="Source">Source</th>
+                <th data-title="Units">Units</th>
+                <th data-title="Alt text">Alt text</th>
+                <th data-title="Type">Type</th>
+                <th data-title="chartID">Chart ID</th>
+              </tr>
+              </th>
+            </thead>
+            <tbody id="allcharts">
+              <td colspan="6">No charts.</td>
+
+            </tbody>
+          </table>
+                <h4>Tables</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alltables">
+                        <tr>
+                            <td>No tables.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Related datasets</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <th>Title</th>
+                        <th>Summary
+                            <th>
+                    </thead>
+                    <tbody id="rData">
+                        <tr>
+                            <td colspan="2">No related data.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Related timeseries</h3>
+
+		<div id="rTSD"></div>
+            
+                <h3>Related links</h3>
+
+                <div id="rBulletins">No related bulletins.</div>
+                <div id="rDocs"></div>
+                <div id="rMethod"></div>
+                <div id="rMethodA"></div>
+
+            </div>
+        </div>`;
+};
+
 assemble = function() {
+    clearContent();
     myURL = "";
-    myURL2 = "";
     newPathname = "";
     pathArray = [];
     myURL = document.getElementById("URLName").value;
