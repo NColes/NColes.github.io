@@ -133,7 +133,8 @@ getRelatedData = function(callback) {
                 dataArray.sort(naturalCompare);
                 document.getElementById("rData").innerHTML = dataArray.join("");
             };
-            callback && callback();
+                getDatasetNumbers();
+                callback && callback();
         });
     };
 };
@@ -295,9 +296,7 @@ getMetadata = function() {
             getSections();
             getChartsTables();
             getTaxonomy();
-            getRelatedData( function() {
-                getDatasetNumbers();
-            });
+            getRelatedData();
         };
 
         if (myJSON.type === "dataset_landing_page") {
