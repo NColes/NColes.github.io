@@ -81,6 +81,10 @@ getRelatedBulletins = function() {
     };
 };
 
+var dataArray = [];
+var linkArray = [];
+var TSDArray = [];
+
 getRelatedData = function(callback) {
     //Check for PDFs
     if (myJSON.pdfTable != "") {
@@ -90,15 +94,12 @@ getRelatedData = function(callback) {
     };
 
     for (var d = 0; d < myJSON.relatedData.length; d++) {
-    dataArray = [];
-    linkArray = [];
-    TSDArray = [];
-    for (var d = 0; d < myJSON.relatedData.length; d++) {
-        linkArray.push('<a href="https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '">');
-        $.getJSON('https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data', function(json) {
-            if (json.description.title.indexOf("timeseries") != -1 || json.description.title.indexOf("time series") != -1) {
-                TSDKeywords = "";
-
+        for (var d = 0; d < myJSON.relatedData.length; d++) {
+            linkArray.push('<a href="https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '">');
+            $.getJSON('https://www.ons.gov.uk' + myJSON.relatedData[d].uri + '/data', function(json) {
+                if (json.description.title.indexOf("timeseries") != -1 || json.description.title.indexOf("time series") != -1) {
+                    TSDKeywords = "";
+                    
                 if (json.hasOwnProperty("keywords") === true) {
 
                     if (json.description.keywords.length == 0) {
