@@ -17,11 +17,11 @@ generatePublishedTable( function() {
         }
     });
 bindPublishedButtons();
-resizePublished();
+//resizePublished();
 });
 
-setTimeout(resizePublished, 6000);
+//setTimeout(resizePublished, 6000);
 
 document.body.onresize = function() {
-	resizePublished()
+//	resizePublished()
 };
