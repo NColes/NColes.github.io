@@ -164,14 +164,6 @@ clearContent = function() {
                 <h3>Related timeseries</h3>
 
 		<div id="rTSD"></div>
-            
-                <h3>Related links</h3>
-
-                <div id="rBulletins">No related bulletins.</div>
-                <div id="rDocs"></div>
-                <div id="rMethod"></div>
-                <div id="rMethodA"></div>
-
             </div>
         </div>`;
 };
