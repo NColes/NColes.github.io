@@ -81,12 +81,15 @@ getRelatedBulletins = function() {
     };
 };
 
-var dataArray = [];
-var linkArray = [];
-var TSDArray = [];
+
 
 getRelatedData = function(callback) {
     //Check for PDFs
+    relData = "";
+    dataArray = [];
+    linkArray = [];
+    TSDArray = [];
+    
     if (myJSON.pdfTable != "") {
         document.getElementById("descPDF").innerHTML = "&#10003; This release contains PDF reference tables";
     } else {
