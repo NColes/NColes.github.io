@@ -163,7 +163,7 @@ clearContent = function() {
 
                 <h3>Related timeseries</h3>
 
-		<div id="rTSD"></div>
+		<div id="rTSD">No related timeseries.</div>
             </div>
         </div>`;
 };
