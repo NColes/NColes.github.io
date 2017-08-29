@@ -114,7 +114,7 @@ clearContent = function() {
                 </ol>
 
                 <h3>Charts or images</h3>
-          <table id="tableWide" class="table table-hover">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th data-title="Title">Title</th>
