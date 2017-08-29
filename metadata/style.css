@@ -105,7 +105,13 @@ img {
 	margin:auto;
 }
 
-@meddia (min-width: 768px) {
+@media (min-width: 1400px) {
+	.container-custom {
+		width:60%;
+	}
+}
+
+@media (min-width: 910px) {
 	.container-custom {
 		width:100%;
 	}
