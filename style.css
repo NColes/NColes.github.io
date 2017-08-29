@@ -50,6 +50,19 @@ padding:10px;
 	background-color:#323132;
 	color:white;
 }
+
+nav {
+	font-size: 1.2em;
+}
+
+nav .navbar-brand {
+	font-size: 1.3em;
+}
+
+.nav-item {
+	padding: 0 5px;
+}
+
 /* -----------Content----------- */
 
 .main {
