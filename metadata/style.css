@@ -45,6 +45,7 @@ h4 {
 	border: 1px solid #D0D2D3;
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
+	margin: auto;
 }
 
 #atAGlance h4 {
@@ -97,4 +98,15 @@ img {
 
 .standardButton {
   margin-top: 10px;
+}
+
+.container-custom {
+	width:60%;
+	margin:auto;
+}
+
+@meddia (min-width: 768px) {
+	.container-custom {
+		width:100%;
+	}
 }
