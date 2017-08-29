@@ -59,6 +59,21 @@ iframe {
 	min-height:1100px;
 }
     </style>
+	
+	<style>
+		/*Fixing the issue with dispalying upcoming on left/right and top/bottom*/
+		.row {
+			display: block;
+			flex-wrap: nowrap;
+		}
+		@media (min-width: 992px) {
+			.col-lg-6 {
+				-ms-flex: 0 0 50%;
+				flex: 0 0 50%;
+				width: 100%;
+			}
+		}
+	</style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
