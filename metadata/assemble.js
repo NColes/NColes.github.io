@@ -132,7 +132,7 @@ clearContent = function() {
 
             </tbody>
           </table>
-                <h4>Tables</h4>
+                <h3>Tables</h3>
                 <table class="table table-hover">
                     <thead>
                         <tr>
