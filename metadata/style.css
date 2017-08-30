@@ -80,8 +80,12 @@ h4 {
   opacity: 1;
 }
 
-td a img {
+img {
   border: 1px solid grey;
+}
+
+nav ul li a img {
+	border: 0px;	
 }
 
 [data-title="Type"] {
