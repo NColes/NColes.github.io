@@ -52,8 +52,4 @@ h3 a {
   display: none;
 }
 
-@media (min-width: 1200px) {
-	.container-large {
-		max-width: 1140px;
-	}
-}
+
