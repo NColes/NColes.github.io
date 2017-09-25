@@ -140,6 +140,19 @@ body {
 	}
 }
 
+@media (min-width: 1200px) {
+	.container-large {
+		max-width: 1140px;
+	}
+}
+
+.container-large {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 /* -----------Buttons----------- */
 
 .dt-buttons {
