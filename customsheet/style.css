@@ -57,3 +57,7 @@ h3 a {
 		max-width: 760px;
 	}
 }
+
+input {
+	width: 140px;
+}
