@@ -129,7 +129,7 @@ function buildTableRow(jsonInput) {
     if (jsonDate < 10) {
         jsonDate = jsonDate.substring(1);
     };
-    JSONout += '<tr><td><a href="https://www.ons.gov.uk' + jsonInput.uri + '" target="_blank">' + jsonInput.description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + provDate + '</td><td>' + jsonInput.description.releaseDate + '</td></tr>';
+    JSONout += '<tr><td><a href="https://api.ons.gov.uk' + jsonInput.uri + '" target="_blank">' + jsonInput.description.title + '</a>' + '</td>' + '<td class="tableData" id="releaseNotes">' + TS + MS + DB + cancelled + '</td>' + '<td class="tableData">' + jsonDate + ' ' + jsonMonth + ' ' + jsonYear + provDate + '</td><td>' + jsonInput.description.releaseDate + '</td></tr>';
 }
 
 function generateCustomReleaseTable() {
@@ -206,7 +206,7 @@ customSheet = function() {
             endDay = Number(end.value.substring(8, 10)) + 1;
         };
 
-        customURL = "https://www.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + startDay + "&fromDateMonth=" + startMonth + "&fromDateYear=" + startYear + "&toDateDay=" + endDay + "&toDateMonth=" + endMonth + "&toDateYear=" + endYear + "&view=upcoming&size=250";
+        customURL = "https://api.ons.gov.uk/releasecalendar/data?query=&fromDateDay=" + startDay + "&fromDateMonth=" + startMonth + "&fromDateYear=" + startYear + "&toDateDay=" + endDay + "&toDateMonth=" + endMonth + "&toDateYear=" + endYear + "&view=upcoming&size=250";
 
         generateCustomTable(function() {
             var createCustom = $('#customTable').dataTable({
