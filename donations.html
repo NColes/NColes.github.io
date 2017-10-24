@@ -88,6 +88,7 @@ updateProgress = function() {
 	document.getElementById("donationProgress").innerHTML = Math.round((total/goal)*100) + "%";
 	if (Math.round((total/goal)*100) < 30) {
 		document.getElementById("donationProgress").className = "progress-bar progress-bar-danger";
+		document.getElementById("donationProgress").style = "width:" + (total/goal)*100 + "%" + ";color: black";
 	} else if (Math.round((total/goal)*100) < 60) {
 		document.getElementById("donationProgress").className = "progress-bar progress-bar-warning";
 	} else if (Math.round((total/goal)*100) > 60) {
