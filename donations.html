@@ -67,14 +67,16 @@ shoeboxObject = [];
 		console.log($.csv.toObjects(data));
 		donationObject = $.csv.toObjects(data);
             }
-        });
+        })
+        .then (function() {
+	    loadDashboard();
+        })
+
 loadDashboard = function() {
     //Cats
     document.getElementById("amount").innerHTML = donationObject[0].Amount;
     document.getElementById("goal").innerHTML = donationObject[1].Amount;
 };
-
-loadDashboard();
 
     </script>
 
