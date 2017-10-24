@@ -50,12 +50,12 @@
 <body>
 
         <div class="shoebox-box">
-            <h4>Donated in store</h4>
+            <h4>Donations</h4>
             <hr>
 	    <p>The amount kindly donated at our stores.</p>
 	    <p><b>&pound;<span id="amount"></span></b> donated out of our <b>&pound;<span id="goal"></span></b> goal</p>
             <div class="progress shoebox-progress">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="220" style="width:31%">31%</div>
+                <div class="progress-bar progress-bar-danger" id="donationProgress" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="220" style="width:31%">31%</div>
             </div>
         </div>
 
@@ -73,6 +73,7 @@ shoeboxObject = [];
         })
         .then (function() {
 	    loadDashboard();
+		updateProgress();
         })
 
 loadDashboard = function() {
@@ -80,6 +81,19 @@ loadDashboard = function() {
     document.getElementById("amount").innerHTML = donationObject[0].Amount;
     document.getElementById("goal").innerHTML = donationObject[1].Amount;
 };
+updateProgress = function() {
+	var goal = donationObject[1].Amount;
+	var total = donationObject[0].Amount;
+	document.getElementById("donationProgress").style = "width:" + (total/goal)*100 + "%";
+	document.getElementById("donationProgress").innerHTML = "width:" + Math.round((total/goal)*100) + "%";
+	if (Math.round((total/goal)*100) < 30) {
+		document.getElementById("donationProgress").className = "progress-bar progress-bar-danger";
+	} else if (Math.round((total/goal)*100) < 60) {
+		document.getElementById("donationProgress").className = "progress-bar progress-bar-warning";
+	} else if (Math.round((total/goal)*100) > 60) {
+		document.getElementById("donationProgress").className = "progress-bar progress-bar-success";
+	}
+}
 
     </script>
 
