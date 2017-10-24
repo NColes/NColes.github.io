@@ -85,7 +85,7 @@ updateProgress = function() {
 	var goal = donationObject[1].Amount;
 	var total = donationObject[0].Amount;
 	document.getElementById("donationProgress").style = "width:" + (total/goal)*100 + "%";
-	document.getElementById("donationProgress").innerHTML = "width:" + Math.round((total/goal)*100) + "%";
+	document.getElementById("donationProgress").innerHTML = Math.round((total/goal)*100) + "%";
 	if (Math.round((total/goal)*100) < 30) {
 		document.getElementById("donationProgress").className = "progress-bar progress-bar-danger";
 	} else if (Math.round((total/goal)*100) < 60) {
