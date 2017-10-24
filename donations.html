@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.min.js"></script>
+<style>
+    body {
+        font-family: "Roboto", Arial, sans-serif;
+    }
+    .shoebox-row {
+        width: 70%;
+        margin: auto;
+        margin-top: 30px;
+    }
+    .shoebox-box {
+        display: inline-block;
+        width: 32%;
+        height: 250px;
+        margin: auto;
+        border: 2px solid #e6e6e6;
+    }
+    .shoebox-box h4 {
+        margin: 10px 50px 10px;
+        color: gray;
+        font-size: 24px;
+        font-weight: 300;
+    }
+    .shoebox-box ul li {
+        margin: 10px;
+        font-size: 19px;
+    }
+    .box-number {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    .box-total {
+        color: green;
+    }
+    .shoebox-box hr {
+        color: #e6e6e6
+    }
+    .shoebox-progress {
+        margin: 10px;
+    }
+</style>
+
+<body>
+
+        <div class="shoebox-box">
+            <h4>Donated in store</h4>
+            <hr>
+	    <p>The amount kindly donated at our stores.</p>
+	    <p><b>&pound;<span id="amount"></span></b> donated out of our <b>&pound;<span id="goal"></span></b> goal</p>
+            <div class="progress shoebox-progress">
+                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="220" style="width:31%">31%</div>
+            </div>
+        </div>
+
+
+    <script>
+shoeboxObject = [];
+        $.ajax({
+            type: "GET",
+            url: "https://santapawsgwent.com/wp-content/uploads/donations.csv",
+            dataType: "text",
+            success: function(data) {
+		console.log($.csv.toObjects(data));
+		donationObject = $.csv.toObjects(data);
+            }
+        });
+loadDashboard = function() {
+    //Cats
+    document.getElementById("amount").innerHTML = donationObject[0].Amount;
+    document.getElementById("goal").innerHTML = donationObject[1].Amount;
+};
+setTimeout( function() {
+loadDashboard();
+}, 3000);
+    </script>
+
+</body>
+
+</html>
