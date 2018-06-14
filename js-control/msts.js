@@ -68,7 +68,7 @@ dashboardData = [
         'Business investment in the UK',
         'UK labour market statistics:',
 	'UK house price index:',
-        'UK producer price inflation:',
+        'Producer price inflation, UK:',
         'UK trade:'
     ];
 
